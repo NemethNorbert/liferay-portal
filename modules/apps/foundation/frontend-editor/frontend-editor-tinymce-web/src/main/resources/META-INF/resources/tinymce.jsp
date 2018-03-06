@@ -293,7 +293,7 @@ name = HtmlUtil.escapeJS(name);
 
 			var editorComponent = Liferay.component('<%= name %>');
 
-			if (!editorComponent){
+			if (!editorComponent) {
 				Liferay.component('<%= name %>', window['<%= name %>']);
 			}
 		},

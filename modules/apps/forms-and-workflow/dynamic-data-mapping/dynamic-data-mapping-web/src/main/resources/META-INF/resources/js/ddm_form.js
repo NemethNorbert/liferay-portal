@@ -2764,7 +2764,7 @@ AUI.add(
 							editor.setHTML(value);
 						}
 						else {
-							Liferay.after(editorComponentName + ':registered',function(){
+							Liferay.after(editorComponentName + ':registered',function() {
 								if (value === localizationMap[instance.get('displayLocale')]) {
 									editor.setHTML(value);
 								}

@@ -364,7 +364,7 @@ AUI.add(
 
 						var editorComponent = Liferay.component(editorNamespace);
 
-						if (!editorComponent){
+						if (!editorComponent) {
 							Liferay.component(editorNamespace, window[editorNamespace]);
 						}
 
