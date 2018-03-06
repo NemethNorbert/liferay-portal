@@ -291,7 +291,11 @@ name = HtmlUtil.escapeJS(name);
 
 			window['<%= name %>'].instanceReady = true;
 
-			Liferay.component('<%= name %>', window['<%= name %>']);
+			var editorComponent = Liferay.component('<%= name %>');
+
+			if (!editorComponent){
+				Liferay.component('<%= name %>', window['<%= name %>']);
+			}
 		},
 
 		instanceReady: false,
