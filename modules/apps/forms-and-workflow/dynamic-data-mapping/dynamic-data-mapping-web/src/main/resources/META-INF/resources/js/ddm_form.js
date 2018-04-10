@@ -2681,19 +2681,20 @@ AUI.add(
 
 						var localizationMap = instance.get('localizationMap');
 
+						var translationManagerWrapperId = '#' + instance.get('portletNamespace') + 'translationManagerWrapper';
+
+						var translationManagerWrapper = A.one(translationManagerWrapperId);
+
 						if (isNode(editor)) {
 							TextHTMLField.superclass.setValue.apply(instance, arguments);
 						}
-						else if (editor.instanceReady) {
+						else {
 							editor.setHTML(value);
 						}
-						else {
-							Liferay.after(editorComponentName + ':registered', function() {
-								if (value === localizationMap[instance.get('displayLocale')]) {
-									editor.setHTML(value);
-								}
-							});
-						}
+
+						Liferay.after(editorComponentName + ':registered', function() {
+							translationManagerWrapper.removeClass('position-absolute');
+						});
 					},
 
 					syncReadOnlyUI: function() {
