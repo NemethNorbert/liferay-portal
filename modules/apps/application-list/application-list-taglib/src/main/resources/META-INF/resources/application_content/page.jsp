@@ -18,7 +18,7 @@
 
 <%
 PanelAppContentHelper panelAppContentHelper = new PanelAppContentHelper(request, response);
-String langType = LayoutTemplateLocalServiceUtil.getLangType(layoutTypePortlet.getLayoutTemplateId(), true, theme.getThemeId());
+String langType = LayoutTemplateLocalServiceUtil.getLangType(layoutTypePortlet.getLayoutTemplateId(), false, theme.getThemeId());
 %>
 
 <c:choose>
