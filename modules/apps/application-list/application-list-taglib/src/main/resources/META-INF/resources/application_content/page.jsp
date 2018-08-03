@@ -18,13 +18,14 @@
 
 <%
 PanelAppContentHelper panelAppContentHelper = new PanelAppContentHelper(request, response);
+String langType = LayoutTemplateLocalServiceUtil.getLangType(layoutTypePortlet.getLayoutTemplateId(), true, theme.getThemeId());
 %>
 
 <c:choose>
 	<c:when test="<%= panelAppContentHelper.isValidPortletSelected() %>">
 
 		<%
-		panelAppContentHelper.writeContent(pageContext.getOut());
+		panelAppContentHelper.writeContent(pageContext.getOut(), langType);
 		%>
 
 	</c:when>

@@ -58,7 +58,7 @@ public class PanelAppContentHelper {
 		return true;
 	}
 
-	public void writeContent(Writer writer) throws Exception {
+	public void writeContent(Writer writer, String langType) throws Exception {
 		ThemeDisplay themeDisplay = _getThemeDisplay();
 
 		String layoutTemplateId = "max";
@@ -83,7 +83,7 @@ public class PanelAppContentHelper {
 				_request);
 
 			StringBundler sb = RuntimePageUtil.getProcessedTemplate(
-				request, _response, getPortletId(),
+				request, _response, getPortletId(), langType,
 				new StringTemplateResource(velocityTemplateId, content));
 
 			if (sb != null) {

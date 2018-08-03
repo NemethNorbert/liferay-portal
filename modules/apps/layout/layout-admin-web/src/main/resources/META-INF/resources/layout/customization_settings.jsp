@@ -22,6 +22,8 @@ Layout selLayout = layoutsAdminDisplayContext.getSelLayout();
 boolean curFreeformLayout = false;
 boolean prototypeGroup = false;
 
+String langType = null;
+
 String velocityTemplateId = null;
 
 String velocityTemplateContent = null;
@@ -60,6 +62,10 @@ if (selLayout != null) {
 			velocityTemplateContent = LayoutTemplateLocalServiceUtil.getContent(curLayoutTypePortlet.getLayoutTemplateId(), false, themeId);
 		}
 	}
+
+
+	langType = LayoutTemplateLocalServiceUtil.getLangType(layoutTypePortlet.getLayoutTemplateId(), false, themeId);
+
 }
 %>
 
@@ -88,7 +94,7 @@ if (selLayout != null) {
 
 			<%
 			if (Validator.isNotNull(velocityTemplateId) && Validator.isNotNull(velocityTemplateContent)) {
-				RuntimePageUtil.processCustomizationSettings(request, response, new StringTemplateResource(velocityTemplateId, velocityTemplateContent));
+				RuntimePageUtil.processCustomizationSettings(request, response, langType, new StringTemplateResource(velocityTemplateId, velocityTemplateContent));
 			}
 			%>
 

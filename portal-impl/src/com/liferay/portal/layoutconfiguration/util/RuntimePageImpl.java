@@ -104,23 +104,24 @@ public class RuntimePageImpl implements RuntimePage {
 	@Override
 	public StringBundler getProcessedTemplate(
 			HttpServletRequest request, HttpServletResponse response,
-			String portletId, TemplateResource templateResource)
+			String portletId, String langType,
+			TemplateResource templateResource)
 		throws Exception {
 
 		return doDispatch(
 			request, response, portletId, templateResource,
-			TemplateConstants.LANG_TYPE_VM, true);
+			langType, true);
 	}
 
 	@Override
 	public void processCustomizationSettings(
 			HttpServletRequest request, HttpServletResponse response,
-			TemplateResource templateResource)
+			String langType, TemplateResource templateResource)
 		throws Exception {
 
 		doDispatch(
 			request, response, null, templateResource,
-			TemplateConstants.LANG_TYPE_VM, false);
+			langType, false);
 	}
 
 	@Override

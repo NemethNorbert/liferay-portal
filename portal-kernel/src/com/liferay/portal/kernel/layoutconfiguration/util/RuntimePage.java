@@ -33,12 +33,13 @@ public interface RuntimePage {
 
 	public StringBundler getProcessedTemplate(
 			HttpServletRequest request, HttpServletResponse response,
-			String portletId, TemplateResource templateResource)
+			String portletId, String langType,
+			TemplateResource templateResource)
 		throws Exception;
 
 	public void processCustomizationSettings(
 			HttpServletRequest request, HttpServletResponse response,
-			TemplateResource templateResource)
+			String langType, TemplateResource templateResource)
 		throws Exception;
 
 	public void processTemplate(

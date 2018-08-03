@@ -30,11 +30,12 @@ public class RuntimePageUtil {
 
 	public static StringBundler getProcessedTemplate(
 			HttpServletRequest request, HttpServletResponse response,
-			String portletId, TemplateResource templateResource)
+			String portletId, String langType,
+			TemplateResource templateResource)
 		throws Exception {
 
 		return getRuntimePage().getProcessedTemplate(
-			request, response, portletId, templateResource);
+			request, response, portletId, langType, templateResource);
 	}
 
 	public static RuntimePage getRuntimePage() {
@@ -43,11 +44,11 @@ public class RuntimePageUtil {
 
 	public static void processCustomizationSettings(
 			HttpServletRequest request, HttpServletResponse response,
-			TemplateResource templateResource)
+			String langType, TemplateResource templateResource)
 		throws Exception {
 
 		getRuntimePage().processCustomizationSettings(
-			request, response, templateResource);
+			request, response, langType, templateResource);
 	}
 
 	public static void processTemplate(
