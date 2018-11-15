@@ -65,19 +65,7 @@ if (ListUtil.isEmpty(folders) && ListUtil.isEmpty(entries)) {
 			</h5>
 		</div>
 
-		<clay:navigation-bar
-			navigationItems="<%=
-				new JSPNavigationItemList(pageContext) {
-					{
-						add(
-							navigationItem -> {
-								navigationItem.setActive(true);
-								navigationItem.setLabel(LanguageUtil.get(request, "details"));
-							});
-					}
-				}
-			%>"
-		/>
+		
 
 		<div class="sidebar-body">
 			<dl class="sidebar-block">
