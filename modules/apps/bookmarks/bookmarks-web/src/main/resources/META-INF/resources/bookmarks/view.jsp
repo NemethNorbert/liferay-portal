@@ -16,6 +16,13 @@
 
 <%@ include file="/bookmarks/init.jsp" %>
 
+
+<soy:component-renderer
+	componentId='<%= renderResponse.getNamespace() + "helloWorld" %>'
+	module="bookmarks-web/js/HelloWorld.es"
+	templateNamespace="com.liferay.bookmarks.web.HelloWorld.render"
+/>
+
 <%
 String navigation = ParamUtil.getString(request, "navigation", "all");
 
