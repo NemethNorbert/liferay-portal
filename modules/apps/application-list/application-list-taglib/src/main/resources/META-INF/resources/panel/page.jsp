@@ -18,6 +18,7 @@
 
 <%
 List<PanelCategory> childPanelCategories = (List<PanelCategory>)request.getAttribute("liferay-application-list:panel:childPanelCategories");
+List<PanelApp> childPanelApps = (List<PanelApp>)request.getAttribute("liferay-application-list:panel:childPanelApps");
 %>
 
 <c:if test="<%= !childPanelCategories.isEmpty() %>">
@@ -34,6 +35,17 @@ List<PanelCategory> childPanelCategories = (List<PanelCategory>)request.getAttri
 
 		<%
 		}
+
+		for (PanelApp childPanelApp : childPanelApps) {
+		%>
+		<ul class="nav nav-equal-height nav-stacked panel-app" role="menu">
+			<liferay-application-list:panel-app
+			panelApp="<%= childPanelApp %>"
+			/>
+		</ul>
+
+		<%
+			}
 		%>
 
 	</div>
