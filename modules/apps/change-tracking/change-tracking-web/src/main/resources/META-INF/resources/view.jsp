@@ -18,6 +18,12 @@
 <%
     String redirect = ParamUtil.getString(request, "redirect");
 %>
+<soy:component-renderer
+	componentId='<%= renderResponse.getNamespace() + "configurationPanel" %>'
+	module="change-tracking-web/js/ConfigurationPanel.es"
+	templateNamespace="com.liferay.change.tracking.web.ConfigurationPanel.render"
+/>
+
 <div class="container-fluid-1280 entry-body" >
 
     <div class="change-lists-header">
