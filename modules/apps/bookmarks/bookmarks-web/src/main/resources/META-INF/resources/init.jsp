@@ -99,6 +99,8 @@ page import="com.liferay.subscription.service.SubscriptionLocalServiceUtil" %>
 
 <%@ page import="java.text.Format" %>
 
+<%@ page import="com.liferay.portal.kernel.util.ReleaseInfo" %>
+
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.Arrays" %><%@
 page import="java.util.HashMap" %><%@

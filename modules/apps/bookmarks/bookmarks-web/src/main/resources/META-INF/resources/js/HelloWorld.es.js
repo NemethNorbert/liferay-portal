@@ -1,28 +1,21 @@
-import 'metal';
-import 'metal-component';
-import PortletBase from 'frontend-js-web/liferay/PortletBase.es';
+import Component from 'metal-component';
 import Soy from 'metal-soy';
-import {Config} from 'metal-state';
+
+import {ClayManagementToolbar} from 'clay';
+
+
+import Footer from './Footer.soy';
+import Header from './Header.soy';
 
 import templates from './HelloWorld.soy';
 
-/**
- * HelloWorld
- *
- * This component shows a list of available folders to move content in and
- * allows to filter them by searching.
- */
-
-class HelloWorld extends PortletBase {
-
-
-}
+class HelloWorld extends Component {}
 
 HelloWorld.STATE = {
-
-
-};
+	releaseInfo: Config.string()
+};	
 
 Soy.register(HelloWorld, templates);
 
+export {HelloWorld};
 export default HelloWorld;
