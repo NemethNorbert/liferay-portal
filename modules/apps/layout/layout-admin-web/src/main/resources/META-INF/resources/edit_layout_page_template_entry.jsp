@@ -27,6 +27,7 @@ portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
 
 renderResponse.setTitle(layoutPageTemplateDisplayContext.getLayoutPageTemplateEntryTitle());
+System.out.println("SEEEEGA edit_layout_page_template_entry.jsp");
 %>
 
 <liferay-editor:resources

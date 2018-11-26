@@ -18,7 +18,7 @@
 
 <%
 FragmentsEditorDisplayContext fragmentsEditorDisplayContext = new FragmentsEditorDisplayContext(request, renderResponse);
-%>
+System.out.pritln("NeoGeo modules\apps\layout\layout-type-controller\layout-type-controller-content\src\main\ resources\META-INF\view.jsp");
 
 <liferay-editor:resources
 	editorName="alloyeditor"
