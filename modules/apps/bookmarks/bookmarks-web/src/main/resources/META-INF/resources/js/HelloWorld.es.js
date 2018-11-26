@@ -1,7 +1,8 @@
 import Component from 'metal-component';
 import Soy from 'metal-soy';
+import {Config} from 'metal-state';
 
-import {ClayManagementToolbar} from 'clay';
+
 
 
 import Footer from './Footer.soy';
