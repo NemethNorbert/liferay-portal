@@ -7,7 +7,11 @@ Provide-Capability:\
 		type="bookmarks-web";\
 		version:Version="${Bundle-Version}"
 Require-Capability:\
+	liferay.resource.bundle;\
+		filter:="(bundle.symbolic.name=com.liferay.frontend.editor.lang)",\
 	osgi.extender;\
-		filter:="(&(osgi.extender=jsp.taglib)(uri=http://liferay.com/tld/soy))"
+		filter:="(&(osgi.extender=jsp.taglib)(uri=http://liferay.com/tld/soy))",\
+	soy;\
+		filter:="(type=layout-taglib)"
 Web-ContextPath: /bookmarks-web
 -includeresource: @com.liferay.util.java-[0-9]*.jar!/com/liferay/util/bean/PortletBeanLocatorUtil.class
