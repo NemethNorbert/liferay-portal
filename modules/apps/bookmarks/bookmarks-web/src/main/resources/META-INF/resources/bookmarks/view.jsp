@@ -19,7 +19,7 @@
 <%
 Map<String, Object> context = new HashMap<>();
 context.put("releaseInfo", ReleaseInfo.getReleaseInfo());
-
+context.put("pathThemeImages", themeDisplay.getPathThemeImages());
 
 %>
 <soy:component-renderer

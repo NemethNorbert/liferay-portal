@@ -2,38 +2,88 @@ import Component from 'metal-component';
 import Soy from 'metal-soy';
 import {Config} from 'metal-state';
 
+import {ClayPagination} from 'clay-pagination';
+import {ClayPaginationBar} from 'clay-pagination-bar';
+import {ClayManagementToolbar} from 'clay-management-toolbar'
 
 import templates from './HelloWorld.soy';
 
 class HelloWorld extends Component {
 	
 	
-	render() {
-		
-		
-		//if collapsible
-		var storeTask = AUI().debounce(Liferay.Store, 100);
-
-		$('#supportedContentTypes').on(
-			'hide.bs.collapse show.bs.collapse',
-			function(event) {
-				if (event.target.id === 'supportedContentTypes') {
-					storeTask(
-						{
-							'supportedContentTypes': (event.type === 'hide')
-						}
-					);
-				}
-			}
-		);
-		///
-
-	}
+		rendered() {
+					
+			/*this.paginationBarEntries = [
+				{
+					href: 'container',
+					itemsPerPage: 5,
+					label: 5
+				},
+				{
+					active: true,
+					href: 'container',
+					itemsPerPage: 10,
+					label: 10
+				},
+				{
+					href: 'container',
+					itemsPerPage: 15,
+					label: 15
+				},
+				{
+					href: 'container',
+					itemsPerPage: 20,
+					label: 20
+				},
+			];*/
+					
+			
+		}
 	
+	
+
 }
 
 HelloWorld.STATE = {
-	releaseInfo: Config.string()
+	releaseInfo: Config.string(),
+	
+	
+	pathThemeImages: Config.string().required(),
+	
+	paginationBarEntries: Config.internal().arrayOf(
+			Config.shapeOf(
+				{
+					itemsPerPage: Config.int().required(),
+					href: Config.string().required(),
+					label: Config.string().required()
+				}
+			)
+		).value([
+				{
+					href: 'container',
+					itemsPerPage: 5,
+					label: 5
+				},
+				{
+					active: true,
+					href: 'container',
+					itemsPerPage: 10,
+					label: 10
+				},
+				{
+					href: 'container',
+					itemsPerPage: 15,
+					label: 15
+				},
+				{
+					href: 'container',
+					itemsPerPage: 20,
+					label: 20
+				},
+			])
+		
+
+
 };	
 
 Soy.register(HelloWorld, templates);

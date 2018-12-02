@@ -4,6 +4,11 @@
  * This renders the main element.
  */
 {template .render}
+{@param pathThemeImages: string}
+{@param paginationBarEntries: list<[itemsPerPage: int, href: string, label: int]>}
+
+
+
 
 
 	<div class="">
@@ -78,7 +83,67 @@
 					<div class="panel-body"> 
 						<div class="form-group form-inline input-checkbox-wrapper"> 
 				
-			
+							
+						<ul class="nav nav-underline" role="tablist">
+							<li class="nav-item">
+								<a aria-controls="navSites" aria-expanded="true" class="active nav-link" data-toggle="tab" href="#navSites" id="navSitesTab" role="tab">Sites</a>
+							</li>
+							<li class="nav-item">
+								<a aria-controls="navContentGroups" class="nav-link" data-toggle="tab" href="#navContentGroups" id="navContentGroupsTab" role="tab">Content Groups</a>
+							</li>
+						</ul>
+
+						<div class="tab-content container">
+							<div aria-labelledby="navSitesTab" class="active fade show tab-pane" id="navSites" role="tabpanel">
+				
+								
+								<div class="row row-spacing">
+									<div class="col">
+									
+										{let $spritemap: $pathThemeImages + '/lexicon/icons.svg' /}
+										
+										
+											{call ClayManagementToolbar.render}
+												{param filterItems: [] /}
+												{param searchFormName: 'mySearchName' /}
+												{param searchInputName: 'searchInputName' /}
+												{param selectable: false /}
+												{param showInfoButton: false /}
+												{param sortingURL: '#pageTitle' /}
+												{param sortingOrder: 'asc' /}
+												{param spritemap: $spritemap /}
+											{/call}
+											
+											
+											{call ClayPaginationBar.render}
+												{param baseHref: 'container' /}
+												{param currentPage: 2 /}
+												{param entries: $paginationBarEntries/} 
+												{param selectedEntry: 1 /}
+												{param totalEntries: 21 /}
+												{param spritemap: $spritemap /}
+											{/call}
+											
+											
+										
+									</div>
+								</div>
+				
+														
+							</div>
+							
+							
+							<div aria-labelledby="navContentGroupsTab" class="fade tab-pane" id="navContentGroups" role="tabpanel">
+								
+									Content Groups
+								
+							</div>
+						</div>
+							
+							
+							
+							
+							
 						</div> 
 					</div> 
 				</div>
