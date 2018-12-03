@@ -50,15 +50,7 @@ HelloWorld.STATE = {
 	
 	pathThemeImages: Config.string().required(),
 	
-	paginationBarEntries: Config.internal().arrayOf(
-			Config.shapeOf(
-				{
-					itemsPerPage: Config.int().required(),
-					href: Config.string().required(),
-					label: Config.string().required()
-				}
-			)
-		).value([
+	paginationBarEntries: [
 				{
 					href: 'container',
 					itemsPerPage: 5,
@@ -80,7 +72,7 @@ HelloWorld.STATE = {
 					itemsPerPage: 20,
 					label: 20
 				},
-			])
+			]
 		
 
 
