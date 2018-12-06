@@ -248,6 +248,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 			}
 
 			var labelName = formRow.one('.label-name');
+			var optionalCheckbox = formRow.one('.optional-control');
 			var optionalControl = formRow.one('.optional-control').ancestor();
 			var paragraphDiv = formRow.one('.paragraph');
 
@@ -260,6 +261,8 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 
 				inputName.val('<liferay-ui:message key="paragraph" />' + formFieldsIndex);
 				inputName.fire('change');
+
+				optionalCheckbox.attr('checked', true);
 			}
 
 			labelName.toggle(!paragraph);
