@@ -9,5 +9,7 @@ Provide-Capability:\
 Require-Capability:\
 	osgi.extender;\
 		filter:="(&(osgi.extender=jsp.taglib)(uri=http://liferay.com/tld/soy))"
+	soy;\
+		filter:="(type=layout-taglib)"
 Web-ContextPath: /change-tracking-my-change-lists-web
 -dsannotations-options: inherit
