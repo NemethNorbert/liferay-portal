@@ -1,4 +1,4 @@
-{namespace com.liferay.change.tracking.web.GlanceCard}
+{namespace com.liferay.change.tracking.my.change.lists.web.GlanceCard}
 
 /**
  * This renders the component's whole content.
@@ -7,6 +7,7 @@
 	{@param  headerTitle: string}
 
 	{@param? bodyType: string}
+	{@param? cardState: string}
 	{@param? headerSubTitle: string}
 	{@param? headerInfo: bool}
 	{@param? headerLink1: [
@@ -38,10 +39,10 @@
 		modified: number,
 		deleted: number
 	]}
-	
-	<div class="glance-card-sheet ">
+
+	<div class="glance-card-sheet {$cardState}">
 		
-		{call com.liferay.change.tracking.web.GlanceCardHeader.render}
+		{call com.liferay.change.tracking.my.change.lists.web.GlanceCardHeader.render}
 			{param headerTitle: $headerTitle /}
 			{param headerSubTitle: $headerSubTitle /}
 			{param headerLink1: $headerLink1 /}
@@ -54,10 +55,10 @@
 		<div class="glance-card-sheet-divider"></div>
 			
 		{if $bodyType and $bodyType == 'table'}
-			{call com.liferay.change.tracking.web.GlanceCardTable.render}
+			{call com.liferay.change.tracking.my.change.lists.web.GlanceCardTable.render}
 			{/call}
 		{else}
-			{call com.liferay.change.tracking.web.GlanceCardBody.render}
+			{call com.liferay.change.tracking.my.change.lists.web.GlanceCardBody.render}
 				{param description: $description /}
 				{param publishedBy: $publishedBy /}
 				{param changes: $changes /}

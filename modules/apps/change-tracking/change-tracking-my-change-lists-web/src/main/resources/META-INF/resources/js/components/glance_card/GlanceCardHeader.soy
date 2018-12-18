@@ -1,4 +1,4 @@
-{namespace com.liferay.change.tracking.web.GlanceCardHeader}
+{namespace com.liferay.change.tracking.my.change.lists.web.GlanceCardHeader}
  /**
  * Prints the portlet header.
  */
@@ -23,8 +23,7 @@
 		label: string,
 		dataOnClick: string
 	]>} 
-	
-	
+
 	{let $twoColumns: $headerInfo or $headerButton or $headerDropdown /}
 	
 	<div class="glance-card-container glance-card-header">
@@ -43,10 +42,18 @@
 			{if $twoColumns}
 			
 				<div class="col-sm-6">
-					<div class="autofit-row">
+					<div class="navbar-nav stick-to-right">
 						{if $headerInfo}	
 							<div class="flex-col"> 
-								<button class="btn nav-link nav-link-monospaced btn-unstyled" aria-label="info-circle-open" type="button" id="" data-title="Info" title="Info">
+
+								{call liferay.frontend.Tooltip.render}
+									{param elementClasses: 'fade' /}
+									{param position: 3 /}
+									{param selector: '.nav-link-monospaced' /}
+									{param title: '' /}
+									{param visible: false /}
+								{/call}
+								<button class="btn nav-link nav-link-monospaced btn-unstyled text-warning" aria-label="info-circle-open" type="button" id="" data-title="Collision Detected" title="Collision Detected">			
 									<svg aria-hidden="true" class="lexicon-icon lexicon-icon-info-circle-open" focusable="false" viewBox="0 0 512 512">
 										<title>info-circle-open</title>
 										<path class="lexicon-icon-body" fill="none" d="M437,75C388.7,26.6,324.4,0,256,0C187.6,0,123.3,26.6,75,75C26.6,123.3,0,187.6,0,256c0,68.4,26.6,132.7,75,181
@@ -56,19 +63,31 @@
 											c-105.9,0-192-86.1-192-192S150.1,64,256,64s192,86.1,192,192S361.9,448,256,448z"></path>
 										<path class="lexicon-icon-outline" d="M256,192c-17.7,0-32,14.3-32,32v160c0,17.7,14.3,32,32,32c17.7,0,32-14.3,32-32V224C288,206.3,273.7,192,256,192z"></path>
 										<circle class="lexicon-icon-outline" cx="256" cy="128" r="32"></circle>
-										</svg>
+									</svg>
 								</button>
+
+								<button class="btn nav-link nav-link-monospaced btn-unstyled text-success" aria-label="info-circle-open" type="button" id="" data-title="No Collision" title="No Collision">
+									<svg class="lexicon-icon lexicon-icon-check-circle" viewBox="0 0 512 512">
+										<path class="lexicon-icon-outline" d="M254.2,304.9c49.9-58.2,134-156.4,169.5-197.8l0,0c5.9-6.8,14.6-11.2,24.3-11.2c17.7,0,32,14.3,32,32
+											c0,8-2.9,15.2-7.7,20.8l0,0c-41.7,48.6-150.3,175.4-192,224l0,0c-5.9,6.8-14.6,11.2-24.3,11.2c-8.8,0-16.8-3.6-22.6-9.4
+											c-45.3-45.3-50.7-50.7-96-96c-5.8-5.8-9.4-13.8-9.4-22.6c0-17.7,14.3-32,32-32c8.8,0,16.8,3.6,22.6,9.4
+											C218.2,268.9,229.2,279.9,254.2,304.9z M507.3,207.1c-18.3,21.4-39.5,46.1-60.6,70.6C435.9,373.6,354.7,448,256,448
+											c-106,0-192-86-192-192S150,64,256,64c35.5,0,68.7,9.6,97.2,26.4c15.1-17.6,29.5-34.4,42.1-49.2C355.3,15.2,307.4,0,256,0
+											C114.6,0,0,114.6,0,256s114.6,256,256,256s256-114.6,256-256C512,239.3,510.4,223,507.3,207.1z"></path>
+									</svg>
+								</button>
+
 							</div>
 						{/if}
 						{if $headerButton}
-							<div class="flex-col-expand">
+							<div class="flex-col">
 								<button class="btn btn-primary btn-default" id="" type="submit">
 									<span class="lfr-btn-label">{$headerButton.label}</span> 
 								</button>
 							</div>
 						{/if}
 						{if $headerDropdown}
-							<div class="flex-col stick-to-right">
+							<div class="flex-col">
 								<div aria-expanded="false" aria-haspopup="true" class="dropdown dropdown-action mt-0">
 									<button class="component-action dropdown-toggle" data-toggle="dropdown" type="button" title="Show Actions" aria-expanded="false">
 										<svg aria-hidden="true" class="lexicon-icon lexicon-icon-ellipsis-v" viewBox="0 0 512 512">

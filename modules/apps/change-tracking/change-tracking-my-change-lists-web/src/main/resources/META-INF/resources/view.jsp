@@ -21,8 +21,7 @@ Map<String, Object> context = new HashMap<>();
 context.put("pathThemeImages", themeDisplay.getPathThemeImages());
 
 %>
-<soy:component-renderer
-	module="change-tracking-my-change-lists-web/js/GlanceView.es"
-	templateNamespace="com.liferay.change.tracking.web.GlanceView.render"
-	context="<%= context %>"
-/>
+<soy:component-renderer 
+	module="change-tracking-my-change-lists-web/js/GlanceView.es" 
+	templateNamespace="com.liferay.change.tracking.my.change.lists.web.GlanceView.render"
+	context="<%= context %>" />

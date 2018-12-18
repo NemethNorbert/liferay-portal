@@ -1,4 +1,4 @@
-{namespace com.liferay.change.tracking.web.GlanceView}
+{namespace com.liferay.change.tracking.my.change.lists.web.GlanceView}
 
 /**
  * This renders the view element.
@@ -9,8 +9,9 @@
 	
 		<div class="row">
 			<div class="col-sm-6">
-				{call com.liferay.change.tracking.web.GlanceCard.render}
+				{call com.liferay.change.tracking.my.change.lists.web.GlanceCard.render}
 					{param bodyType: 'default' /}
+					{param cardState: 'border-left-blue' /}
 					{param headerTitle: 'Christmas Sale' /}
 					{param headerSubTitle: 'Active Change List' /}
 					{param headerInfo: true /}	
@@ -23,8 +24,9 @@
 				{/call}
 			</div>
 			<div class="col-sm-6">
-				{call com.liferay.change.tracking.web.GlanceCard.render}
+				{call com.liferay.change.tracking.my.change.lists.web.GlanceCard.render}
 					{param bodyType: 'default' /}
+					{param cardState: 'border-left-blue' /}
 					{param headerTitle: 'Minor Design Issues' /}
 					{param headerSubTitle: 'Puplished Change List' /}
 					{param headerLink1: ['href': 'href', 'label': 'Production View'] /}
@@ -36,8 +38,9 @@
 		
 		<div class="row">
 			<div class="col-sm-12">
-				{call com.liferay.change.tracking.web.GlanceCard.render}
+				{call com.liferay.change.tracking.my.change.lists.web.GlanceCard.render}
 					{param bodyType: 'table' /}
+					{param cardState: 'border-left-green' /}
 					{param headerTitle: 'Latest Changes in Christmas Sale' /}
 				{/call}
 			</div>
