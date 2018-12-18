@@ -6,8 +6,6 @@
 	border-radius: 0.25rem;
 	padding-bottom: 2rem;
 	padding-top: 1.5rem;
-	border-left-width: 0.45rem;
-	border-left-color: #0053F0;
 	margin-top: 1.5rem;
 	margin-bottom: 1.5rem;
 }
@@ -72,4 +70,14 @@
 	background-color: #FFF;
 	border: 1px solid #E7E7ED;
 	color: #9C33BE;
+}
+
+.border-left-blue {
+	border-left-width: 0.45rem;
+	border-left-color: #0B5FFF;
+}
+
+.border-left-green {
+	border-left-width: 0.45rem;
+	border-left-color: #28a745;
 }
