@@ -23,6 +23,7 @@
 		label: string,
 		dataOnClick: string
 	]>} 
+	{@param? _handleButtonClick: any}
 
 	{let $twoColumns: $headerInfo or $headerButton or $headerDropdown /}
 	
@@ -81,7 +82,7 @@
 						{/if}
 						{if $headerButton}
 							<div class="flex-col">
-								<button class="btn btn-primary btn-default" id="" type="submit">
+								<button data-onclick="{$_handleButtonClick}" class="btn btn-primary btn-default" id="" type="button">
 									<span class="lfr-btn-label">{$headerButton.label}</span> 
 								</button>
 							</div>

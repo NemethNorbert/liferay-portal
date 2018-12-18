@@ -4,7 +4,13 @@ import { Config } from 'metal-state';
 
 import templates from './GlanceCardHeader.soy';
 
-class GlanceCardHeader extends Component { }
+class GlanceCardHeader extends Component { 
+
+    _handleButtonClick(event) {
+        event.preventDefault();
+        console.log('sega');
+    }
+}
 
 GlanceCardHeader.STATE = {};
 
