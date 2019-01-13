@@ -29,7 +29,20 @@ class ChangeListConfiguration extends Component {
 	}
 
 	save(event) {
-		console.log(event + 'saving...');
+		fetch(
+			"http://localhost:8080/o/change-tracking/configurations/20101",
+			{
+				method: "PUT", //method: "PUT"
+				headers: {
+					"Authorization": "Basic dGVzdEBsaWZlcmF5LmNvbTp0ZXN0",
+					"Content-Type": "application/json"
+				},
+				body: {
+				     "changeTrackingEnabled": true,
+				     "userId": 20141
+				}
+			})
+			.then(console.log("saved!..."));
 	}
 
 }
