@@ -1,4 +1,3 @@
-<%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
@@ -12,21 +11,28 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
---%>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+package com.liferay.change.tracking.rest.internal.dto;
 
-<%@ taglib uri="http://liferay.com/tld/frontend" prefix="liferay-frontend" %><%@
-taglib uri="http://liferay.com/tld/soy" prefix="soy" %><%@
-taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
+import javax.xml.bind.annotation.XmlElement;
 
-<%@ page import="java.util.HashMap" %><%@
-page import="java.util.Map" %>
+/**
+ * @author Máté Thurzó
+ */
+public class GenericErrorResponseDTO {
 
-<liferay-frontend:defineObjects />
+	public GenericErrorResponseDTO() {
+	}
 
-<liferay-theme:defineObjects />
+	public GenericErrorResponseDTO(String errorMessage) {
+		_errorMessage = errorMessage;
+	}
 
-<portlet:defineObjects />
+	@XmlElement(name = "errorMessage")
+	public String getErrorMessage() {
+		return _errorMessage;
+	}
 
-<%@ include file="/init-ext.jsp" %>
+	private String _errorMessage;
+
+}

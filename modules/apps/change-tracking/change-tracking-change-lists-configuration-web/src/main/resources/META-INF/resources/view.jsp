@@ -16,10 +16,17 @@
 
 <%@ include file="/init.jsp" %>
 
-<div class="change-lists-configuration-sheet sheet sheet-lg">
-	<div class="sheet-header">
-		<h2 class="sheet-title">Change Lists Settings</h2>
+<%
+Map<String, Object> context = new HashMap<>();
 
-		<div class="sheet-text">This is only a placeholder for what's later be added to the change lists configuration screen.</div>
-	</div>
-</div>
+context.put("namespace", liferayPortletResponse.getNamespace());
+context.put("pathThemeImages", themeDisplay.getPathThemeImages());
+context.put("companyId", themeDisplay.getCompanyId());
+%>
+
+<soy:component-renderer
+	componentId="Change-tracking-change-list-configuration-window"
+	context="<%= context %>"
+	module="change-tracking-change-lists-configuration-web/js/ChangeListConfiguration.es"
+	templateNamespace="com.liferay.change.tracking.change.lists.configuration.web.ChangeListConfiguration.render"
+/>
