@@ -22,6 +22,7 @@ Map<String, Object> context = new HashMap<>();
 context.put("namespace", liferayPortletResponse.getNamespace());
 context.put("pathThemeImages", themeDisplay.getPathThemeImages());
 context.put("companyId", themeDisplay.getCompanyId());
+context.put("spritemap", themeDisplay.getPathThemeImages() + "/lexicon/icons.svg");
 %>
 
 <soy:component-renderer
