@@ -3,6 +3,7 @@ import Soy from 'metal-soy';
 
 import templates from './ChangeListConfiguration.soy';
 
+//const axios = require('axios');
 /**
  * ChangeListConfiguration
  *
@@ -11,30 +12,37 @@ import templates from './ChangeListConfiguration.soy';
 class ChangeListConfiguration extends Component {
 
 	attached() {
-		// fetch(
-		// 	"http://localhost:8080/o/change-tracking/configurations/20101",
-		// 	{
-		// 		method: "GET", //method: "PUT"
-		// 		headers: {
-		// 			"Authorization": "Basic dGVzdEBsaWZlcmF5LmNvbTp0ZXN0",
-		// 			"Content-Type": "application/json"
-		// 		},
-		// 		//body: {
-		// 		//     "changeTrackingEnabled": true,
-		// 		//     "userId": 20141
-		// 		// }
-		// 	})
-		// 	.then(response => response.json())
-		// 	.then(console.log(resonse))
+		 fetch(
+			"http://localhost:8080/o/change-tracking/configurations/20101",
+			{
+				method: "GET", //method: "PUT"
+				headers: {
+					"Authorization": "Basic dGVzdEBsaWZlcmF5LmNvbTp0ZXN0",
+					"Content-Type": "application/json"
+				},
+				//body: {
+				//     "changeTrackingEnabled": true,
+				//     "userId": 20141
+				// }
+			})
+			.then(response => {
+				console.log(response);
+				this.setState({changeTrackingEnabled: response.changeTrackingEnabled});
+			})
+		// axios({
+		// 	method:'get',
+		// 	url:'http://localhost:8080/o/change-tracking/configurations/20101',
+		// 	responseType:'json'
+		//   })
+		// 	.then(function (response) {
+		// 		console.log(response);
+		// 		this.setState({changeTrackingEnabled: response.data.changeTrackingEnabled});
+		// 	});
 		const mockUpData = {
 			"changeTrackingEnabled": false,
 			"userId": 20141,
 			"tooltip": ["Web Content", "Documents and Media", "Forms", "Blogs", "Pages"]
 		}
-		console.log(mockUpData)
-		this.setState({
-			changeTrackingEnabled: mockUpData.changeTrackingEnabled
-		})
 		this.setState({
 			tooltip: mockUpData.tooltip
 		})
