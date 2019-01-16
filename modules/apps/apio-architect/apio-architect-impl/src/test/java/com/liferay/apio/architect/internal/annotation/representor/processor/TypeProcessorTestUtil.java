@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 /**
- * @author Víctor Galán Grande
+ * @author Víctor Galán
  */
 public class TypeProcessorTestUtil {
 
@@ -73,13 +73,13 @@ public class TypeProcessorTestUtil {
 	}
 
 	public static void testFieldData(
-		FieldData fieldData, String fieldName, Class<?> returnType) {
+		FieldData fieldData, String fieldName, Class<?> returnTypeClass) {
 
 		Field field = fieldData.getField();
 		Method method = fieldData.getMethod();
 
 		assertThat(field.value(), is(fieldName));
-		assertThat(method.getReturnType(), equalTo(returnType));
+		assertThat(method.getReturnType(), equalTo(returnTypeClass));
 	}
 
 	public static void testLinkToFieldData(

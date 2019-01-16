@@ -406,7 +406,7 @@ public class JournalArticleLocalServiceImpl
 		friendlyURLMap = _checkFriendlyURLMap(locale, friendlyURLMap, titleMap);
 
 		Map<String, String> urlTitleMap = _getURLTitleMap(
-			groupId, resourcePrimKey, friendlyURLMap);
+			groupId, resourcePrimKey, friendlyURLMap, titleMap);
 
 		String urlTitle = urlTitleMap.get(LocaleUtil.toLanguageId(locale));
 
@@ -3690,18 +3690,17 @@ public class JournalArticleLocalServiceImpl
 			if ((article == null) || articleId.equals(article.getArticleId())) {
 				break;
 			}
-			else {
-				String suffix = StringPool.DASH + i;
 
-				String prefix = urlTitle;
+			String suffix = StringPool.DASH + i;
 
-				if (urlTitle.length() > suffix.length()) {
-					prefix = urlTitle.substring(
-						0, urlTitle.length() - suffix.length());
-				}
+			String prefix = urlTitle;
 
-				urlTitle = prefix + suffix;
+			if (urlTitle.length() > suffix.length()) {
+				prefix = urlTitle.substring(
+					0, urlTitle.length() - suffix.length());
 			}
+
+			urlTitle = prefix + suffix;
 		}
 
 		return urlTitle;
@@ -5660,7 +5659,7 @@ public class JournalArticleLocalServiceImpl
 		Locale locale = getArticleDefaultLocale(content);
 
 		Map<String, String> urlTitleMap = _getURLTitleMap(
-			groupId, article.getResourcePrimKey(), friendlyURLMap);
+			groupId, article.getResourcePrimKey(), friendlyURLMap, titleMap);
 
 		String urlTitle = urlTitleMap.get(LocaleUtil.toLanguageId(locale));
 
@@ -8783,37 +8782,41 @@ public class JournalArticleLocalServiceImpl
 
 				return i - 1;
 			}
-			else {
-				String suffix = StringPool.DASH + i;
 
-				String prefix = urlTitle;
+			String suffix = StringPool.DASH + i;
 
-				if (urlTitle.length() > suffix.length()) {
-					prefix = urlTitle.substring(
-						0, urlTitle.length() - suffix.length());
-				}
+			String prefix = urlTitle;
 
-				urlTitle = prefix + suffix;
+			if (urlTitle.length() > suffix.length()) {
+				prefix = urlTitle.substring(
+					0, urlTitle.length() - suffix.length());
 			}
+
+			urlTitle = prefix + suffix;
 		}
 	}
 
 	private Map<String, String> _getURLTitleMap(
-		long groupId, long resourcePrimKey, Map<Locale, String> titleMap) {
+		long groupId, long resourcePrimKey, Map<Locale, String> friendlyURLMap,
+		Map<Locale, String> titleMap) {
 
 		Map<String, String> urlTitleMap = new HashMap<>();
 
 		for (Map.Entry<Locale, String> entry : titleMap.entrySet()) {
-			String title = entry.getValue();
+			String friendlyURL = friendlyURLMap.get(entry.getKey());
 
-			if (Validator.isNull(title)) {
-				continue;
+			if (Validator.isNull(friendlyURL)) {
+				friendlyURL = titleMap.get(entry.getKey());
+
+				if (Validator.isNull(friendlyURL)) {
+					continue;
+				}
 			}
 
 			String urlTitle = friendlyURLEntryLocalService.getUniqueUrlTitle(
 				groupId,
 				classNameLocalService.getClassNameId(JournalArticle.class),
-				resourcePrimKey, title);
+				resourcePrimKey, friendlyURL);
 
 			urlTitleMap.put(LocaleUtil.toLanguageId(entry.getKey()), urlTitle);
 		}

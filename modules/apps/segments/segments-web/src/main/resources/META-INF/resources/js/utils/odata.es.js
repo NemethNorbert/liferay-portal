@@ -39,7 +39,10 @@ const oDataV4ParserNameMap = {
 function addNewGroup({oDataASTNode, prevConjunction}) {
 	return {
 		lastNodeWasGroup: false,
-		oDataASTNode: {type: 'BoolParenExpression', value: oDataASTNode},
+		oDataASTNode: {
+			type: 'BoolParenExpression',
+			value: oDataASTNode
+		},
 		prevConjunction
 	};
 }
@@ -209,6 +212,9 @@ function translateQueryToCriteria(queryString) {
 	let criteria;
 
 	try {
+		if (queryString === '()') {
+			throw 'queryString is ()';
+		}
 		const oDataASTNode = oDataFilterFn(queryString);
 
 		const criteriaArray = toCriteria({oDataASTNode});

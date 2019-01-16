@@ -239,7 +239,8 @@ public class JCRStore extends BaseStore {
 			logFailedDeletion(companyId, repositoryId, dirName, pnfe);
 		}
 		catch (RepositoryException re) {
-			String message = GetterUtil.getString(re.getMessage());
+			String message = StringUtil.toLowerCase(
+				GetterUtil.getString(re.getMessage()));
 
 			if (message.contains("failed to resolve path")) {
 				logFailedDeletion(companyId, repositoryId, dirName, re);
@@ -334,12 +335,11 @@ public class JCRStore extends BaseStore {
 				if (itr.getPosition() == itr.getSize()) {
 					break;
 				}
-				else {
-					if (!StringUtils.equals(
-							JCRConstants.JCR_ROOT_VERSION, version.getName())) {
 
-						versionHistory.removeVersion(version.getName());
-					}
+				if (!StringUtils.equals(
+						JCRConstants.JCR_ROOT_VERSION, version.getName())) {
+
+					versionHistory.removeVersion(version.getName());
 				}
 			}
 

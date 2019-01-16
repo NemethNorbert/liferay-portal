@@ -1002,6 +1002,8 @@ public interface PropsKeys {
 
 	public static final String IMAGE_DEFAULT_USER_MALE_PORTRAIT = "image.default.user.male.portrait";
 
+	public static final String IMAGE_DEFAULT_USER_PORTRAIT = "image.default.user.portrait";
+
 	public static final String IMAGE_HOOK_FILE_SYSTEM_ROOT_DIR = "image.hook.file.system.root.dir";
 
 	public static final String IMAGE_HOOK_IMPL = "image.hook.impl";
@@ -2104,6 +2106,9 @@ public interface PropsKeys {
 	public static final String SCHEDULER_DESCRIPTION_MAX_LENGTH = "scheduler.description.max.length";
 
 	public static final String SCHEDULER_ENABLED = "scheduler.enabled";
+
+	public static final String SCHEDULER_EVENT_MESSAGE_LISTENER_LOCK_TIMEOUT =
+		"scheduler.event.message.listener.lock.timeout";
 
 	public static final String SCHEDULER_GROUP_NAME_MAX_LENGTH = "scheduler.group.name.max.length";
 

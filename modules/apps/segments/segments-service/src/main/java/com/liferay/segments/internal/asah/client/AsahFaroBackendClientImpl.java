@@ -38,15 +38,31 @@ import java.util.Map;
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.MultivaluedMap;
 
-import org.osgi.service.component.annotations.Activate;
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-
 /**
  * @author David Arques
  */
-@Component(immediate = true, service = AsahFaroBackendClient.class)
 public class AsahFaroBackendClientImpl implements AsahFaroBackendClient {
+
+	public AsahFaroBackendClientImpl(
+		JSONWebServiceClient jsonWebServiceClient,
+		String asahFaroBackendDataSourceId,
+		String asahFaroBackendSecuritySignature, String asahFaroBackendURL) {
+
+		_jsonWebServiceClient = jsonWebServiceClient;
+
+		_dataSourceId = asahFaroBackendDataSourceId;
+
+		_headers.put(
+			"OSB-Asah-Faro-Backend-Security-Signature",
+			asahFaroBackendSecuritySignature);
+
+		_jsonWebServiceClient.setBaseURI(asahFaroBackendURL);
+	}
+
+	@Override
+	public String getDataSourceId() {
+		return _dataSourceId;
+	}
 
 	@Override
 	public Results<Individual> getIndividualResults(
@@ -56,8 +72,7 @@ public class AsahFaroBackendClientImpl implements AsahFaroBackendClient {
 		FilterBuilder filterBuilder = new FilterBuilder();
 
 		filterBuilder.addNullFilter(
-			"dataSourceIndividualPKs/" +
-				System.getProperty("asah.faro.backend.dxp.dataSourceId"),
+			"dataSourceIndividualPKs/" + _dataSourceId,
 			FilterConstants.COMPARISON_OPERATOR_NOT_EQUALS);
 
 		filterBuilder.addFilter(
@@ -71,7 +86,7 @@ public class AsahFaroBackendClientImpl implements AsahFaroBackendClient {
 					filterBuilder,
 					FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL, cur, delta,
 					orderByFields),
-				_getHeaders());
+				_headers);
 
 			return _individualJSONObjectMapper.mapToResults(response);
 		}
@@ -101,7 +116,7 @@ public class AsahFaroBackendClientImpl implements AsahFaroBackendClient {
 					filterBuilder,
 					FilterConstants.FIELD_NAME_CONTEXT_INDIVIDUAL_SEGMENT, cur,
 					delta, orderByFields),
-				_getHeaders());
+				_headers);
 
 			return _individualSegmentJSONObjectMapper.mapToResults(response);
 		}
@@ -109,22 +124,6 @@ public class AsahFaroBackendClientImpl implements AsahFaroBackendClient {
 			throw new NestableRuntimeException(
 				"Unable to handle JSON response: " + ioe.getMessage(), ioe);
 		}
-	}
-
-	@Activate
-	protected void activate() {
-		_jsonWebServiceClient.setBaseURI(
-			System.getProperty("asah.faro.backend.url"));
-	}
-
-	private Map<String, String> _getHeaders() {
-		Map<String, String> headers = new HashMap<>();
-
-		headers.put(
-			"OSB-Asah-Faro-Backend-Security-Signature",
-			System.getProperty("asah.faro.backend.security.signature"));
-
-		return headers;
 	}
 
 	private MultivaluedMap<String, Object> _getParameters(
@@ -177,7 +176,8 @@ public class AsahFaroBackendClientImpl implements AsahFaroBackendClient {
 		_individualSegmentJSONObjectMapper =
 			new IndividualSegmentJSONObjectMapper();
 
-	@Reference
-	private JSONWebServiceClient _jsonWebServiceClient;
+	private final String _dataSourceId;
+	private final Map<String, String> _headers = new HashMap<>();
+	private final JSONWebServiceClient _jsonWebServiceClient;
 
 }

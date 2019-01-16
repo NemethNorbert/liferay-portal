@@ -119,7 +119,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
-		DMDocument.viewCP(dmDocumentSize = "0KB", dmDocumentTitle = "DM Document Title");
+		DMDocument.viewCP(dmDocumentSize = "259B", dmDocumentTitle = "DM Document Title");
 	}
 
 	@description = "This test ensures that a user can check in a document without changing versions."
@@ -164,7 +164,7 @@ definition {
 			dmDocumentTitle = "Check in as current version"
 		);
 
-		DMDocument.expandInfo();
+		Click(locator1 = "Icon#INFO");
 
 		DMDocument.selectVersion();
 
@@ -196,7 +196,7 @@ definition {
 
 		DMDocument.checkinCP(
 			dmDocumentTitle = "Check in as major version",
-			revision = "Minor"
+			revision = "Major"
 		);
 
 		Navigator.openURL();
@@ -216,7 +216,7 @@ definition {
 			dmDocumentTitle = "Check in as major version"
 		);
 
-		DMDocument.expandInfo();
+		Click(locator1 = "Icon#INFO");
 
 		DMDocument.selectVersion();
 
@@ -278,6 +278,7 @@ definition {
 		);
 	}
 
+	@description = "This test edits the title and description of a document. It asserts minor version increment because only its metadata was updated."
 	@priority = "5"
 	test EditDocument {
 		property app.server.types = "jboss,resin,tcserver,tomcat,weblogic,websphere,wildfly";
@@ -301,7 +302,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
-		DMDocument.viewCP(dmDocumentSize = "0KB", dmDocumentTitle = "DM Document Title");
+		DMDocument.viewCP(dmDocumentSize = "259B", dmDocumentTitle = "DM Document Title");
 
 		Navigator.openURL();
 
@@ -318,7 +319,10 @@ definition {
 			dmDocumentTitleEdit = "DM Document Title Edit"
 		);
 
-		DMDocument.viewEditCP(dmDocumentTitleEdit = "DM Document Title Edit");
+		DMDocument.viewEditCP(
+			dmDocumentTitleEdit = "DM Document Title Edit",
+			dmDocumentVersionNumber = "1.1"
+		);
 	}
 
 	@priority = "5"
@@ -380,7 +384,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
-		DMDocument.viewCP(dmDocumentSize = "0KB", dmDocumentTitle = "DM Document Title");
+		DMDocument.viewCP(dmDocumentSize = "259B", dmDocumentTitle = "DM Document Title");
 
 		Navigator.openURL();
 
@@ -448,7 +452,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
-		DMDocument.viewCP(dmDocumentSize = "0KB", dmDocumentTitle = "DM Document Title");
+		DMDocument.viewCP(dmDocumentSize = "259B", dmDocumentTitle = "DM Document Title");
 	}
 
 	@priority = "4"

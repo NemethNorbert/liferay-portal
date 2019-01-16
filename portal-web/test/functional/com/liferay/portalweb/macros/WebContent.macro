@@ -81,7 +81,8 @@ definition {
 
 		RelatedAssets.selectAsset(
 			assetTitle = "${assetTitle}",
-			assetType = "${assetType}"
+			assetType = "${assetType}",
+			scopeSite = "${scopeSite}"
 		);
 
 		SelectFrame(value1 = "relative=top");

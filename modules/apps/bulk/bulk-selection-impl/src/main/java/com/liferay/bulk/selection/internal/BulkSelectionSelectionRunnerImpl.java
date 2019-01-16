@@ -20,16 +20,20 @@ import com.liferay.bulk.selection.BulkSelectionFactory;
 import com.liferay.bulk.selection.BulkSelectionRunner;
 import com.liferay.bulk.selection.internal.constants.BulkSelectionBackgroundTaskConstants;
 import com.liferay.portal.background.task.constants.BackgroundTaskContextMapConstants;
+import com.liferay.portal.kernel.backgroundtask.BackgroundTask;
+import com.liferay.portal.kernel.backgroundtask.BackgroundTaskConstants;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskManager;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.CompanyConstants;
-import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 
 import java.io.Serializable;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -41,8 +45,28 @@ import org.osgi.service.component.annotations.Reference;
 public class BulkSelectionSelectionRunnerImpl implements BulkSelectionRunner {
 
 	@Override
+	public boolean isBusy(User user) {
+		List<BackgroundTask> backgroundTasks =
+			_backgroundTaskManager.getBackgroundTasks(
+				BulkSelectionBackgroundTaskExecutor.class.getName(),
+				BackgroundTaskConstants.STATUS_IN_PROGRESS);
+
+		Stream<BackgroundTask> stream = backgroundTasks.stream();
+
+		long userId = user.getUserId();
+
+		if (stream.anyMatch(
+				backgroundTask -> backgroundTask.getUserId() == userId)) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
 	public <T> void run(
-			BulkSelection<T> bulkSelection,
+			User user, BulkSelection<T> bulkSelection,
 			BulkSelectionAction<T> bulkSelectionAction,
 			Map<String, Serializable> inputMap)
 		throws PortalException {
@@ -77,7 +101,7 @@ public class BulkSelectionSelectionRunnerImpl implements BulkSelectionRunner {
 			BackgroundTaskContextMapConstants.DELETE_ON_SUCCESS, true);
 
 		_backgroundTaskManager.addBackgroundTask(
-			PrincipalThreadLocal.getUserId(), CompanyConstants.SYSTEM,
+			user.getUserId(), CompanyConstants.SYSTEM,
 			bulkSelectionActionClass.getName(),
 			BulkSelectionBackgroundTaskExecutor.class.getName(), taskContextMap,
 			new ServiceContext());

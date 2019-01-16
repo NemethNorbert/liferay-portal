@@ -19,9 +19,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 
+import com.liferay.data.engine.web.internal.servlet.data.fetcher.DECountDataDefinitionDataFetcher;
 import com.liferay.data.engine.web.internal.servlet.data.fetcher.DEDeleteDataDefinitionDataFetcher;
 import com.liferay.data.engine.web.internal.servlet.data.fetcher.DEGetDataDefinitionDataFetcher;
+import com.liferay.data.engine.web.internal.servlet.data.fetcher.DEListDataDefinitionDataFetcher;
 import com.liferay.data.engine.web.internal.servlet.data.fetcher.DESaveDataDefinitionDataFetcher;
+import com.liferay.data.engine.web.internal.servlet.data.fetcher.DESaveModelPermissionsDataDefinitionDataFetcher;
+import com.liferay.data.engine.web.internal.servlet.data.fetcher.DESavePermissionsDataDefinitionDataFetcher;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
@@ -149,16 +153,34 @@ public class DEGraphQLServlet extends HttpServlet {
 			"MutationType",
 			typeWiring -> typeWiring.dataFetcher(
 				"deleteDataDefinition", _deDeleteDataDefinitionDataFetcher));
-
-		runtimeWiringBuilder.type(
-			"QueryType",
-			typeWiring -> typeWiring.dataFetcher(
-				"getDataDefinition", _deGetDataDefinitionDataFetcher));
-
 		runtimeWiringBuilder.type(
 			"MutationType",
 			typeWiring -> typeWiring.dataFetcher(
 				"saveDataDefinition", _deSaveDataDefinitionDataFetcher));
+		runtimeWiringBuilder.type(
+			"QueryType",
+			typeWiring -> typeWiring.dataFetcher(
+				"countDataDefinition", _deCountDataDefinitionDataFetcher));
+		runtimeWiringBuilder.type(
+			"QueryType",
+			typeWiring -> typeWiring.dataFetcher(
+				"getDataDefinition", _deGetDataDefinitionDataFetcher));
+		runtimeWiringBuilder.type(
+			"QueryType",
+			typeWiring -> typeWiring.dataFetcher(
+				"listDataDefinition", _deListDataDefinitionDataFetcher));
+
+		runtimeWiringBuilder.type(
+			"MutationType",
+			typeWiring -> typeWiring.dataFetcher(
+				"saveDataDefinitionModelPermissions",
+				_deSaveModelPermissionsDataDefinitionDataFetcher));
+
+		runtimeWiringBuilder.type(
+			"MutationType",
+			typeWiring -> typeWiring.dataFetcher(
+				"saveDataDefinitionPermissions",
+				_deSavePermissionsDataDefinitionDataFetcher));
 
 		return runtimeWiringBuilder.build();
 	}
@@ -313,6 +335,9 @@ public class DEGraphQLServlet extends HttpServlet {
 	private static final Module _JDK8_MODULE = new Jdk8Module();
 
 	@Reference
+	private DECountDataDefinitionDataFetcher _deCountDataDefinitionDataFetcher;
+
+	@Reference
 	private DEDeleteDataDefinitionDataFetcher
 		_deDeleteDataDefinitionDataFetcher;
 
@@ -320,7 +345,18 @@ public class DEGraphQLServlet extends HttpServlet {
 	private DEGetDataDefinitionDataFetcher _deGetDataDefinitionDataFetcher;
 
 	@Reference
+	private DEListDataDefinitionDataFetcher _deListDataDefinitionDataFetcher;
+
+	@Reference
 	private DESaveDataDefinitionDataFetcher _deSaveDataDefinitionDataFetcher;
+
+	@Reference
+	private DESaveModelPermissionsDataDefinitionDataFetcher
+		_deSaveModelPermissionsDataDefinitionDataFetcher;
+
+	@Reference
+	private DESavePermissionsDataDefinitionDataFetcher
+		_deSavePermissionsDataDefinitionDataFetcher;
 
 	private transient GraphQL _graphQL;
 	private final ObjectMapper _objectMapper = new ObjectMapper() {

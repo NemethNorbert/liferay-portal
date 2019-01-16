@@ -33,6 +33,8 @@ import com.liferay.apio.architect.function.throwable.ThrowableHexaFunction;
 import com.liferay.apio.architect.function.throwable.ThrowablePentaFunction;
 import com.liferay.apio.architect.identifier.Identifier;
 import com.liferay.apio.architect.internal.action.ActionSemantics;
+import com.liferay.apio.architect.internal.form.FormImpl;
+import com.liferay.apio.architect.internal.jaxrs.resource.FormResource;
 import com.liferay.apio.architect.internal.single.model.SingleModelImpl;
 import com.liferay.apio.architect.resource.Resource;
 import com.liferay.apio.architect.resource.Resource.Item;
@@ -48,6 +50,8 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
+
+import javax.ws.rs.core.UriBuilder;
 
 /**
  * @author Alejandro Hernández
@@ -129,18 +133,27 @@ public class ItemRoutesImpl<T, S> implements ItemRoutes<T, S> {
 				BiFunction<Credentials, S, Boolean> permissionBiFunction,
 				FormBuilderFunction<R> formBuilderFunction) {
 
-			Optional<Form> optionalForm = Optional.ofNullable(
-				formBuilderFunction
-			).map(
-				function -> function.apply(
-					unsafeCast(_formBuilderSupplier.get()))
-			);
+			Form form = null;
+			Class<?> bodyClass = Void.class;
 
-			Class<?> bodyClass = optionalForm.<Class<?>>map(
-				__ -> Body.class
-			).orElse(
-				Void.class
-			);
+			if (formBuilderFunction != null) {
+				form = formBuilderFunction.apply(
+					unsafeCast(_formBuilderSupplier.get()));
+
+				String uri = UriBuilder.fromResource(
+					FormResource.class
+				).path(
+					FormResource.class, "customRouteForm"
+				).build(
+					_item.getName(), customRoute.getName()
+				).toString();
+
+				FormImpl formImpl = (FormImpl)form;
+
+				formImpl.setURI(uri);
+
+				bodyClass = Body.class;
+			}
 
 			ActionSemantics createActionSemantics = ActionSemantics.ofResource(
 				_item
@@ -150,6 +163,11 @@ public class ItemRoutesImpl<T, S> implements ItemRoutes<T, S> {
 				customRoute.getMethod()
 			).returns(
 				SingleModel.class
+			).permissionFunction(
+				params -> permissionBiFunction.apply(
+					unsafeCast(params.get(0)), unsafeCast(params.get(1)))
+			).permissionProvidedClasses(
+				Credentials.class, Id.class
 			).executeFunction(
 				params -> throwableHexaFunction.andThen(
 					t -> new SingleModelImpl<>(
@@ -159,12 +177,8 @@ public class ItemRoutesImpl<T, S> implements ItemRoutes<T, S> {
 					unsafeCast(params.get(2)), unsafeCast(params.get(3)),
 					unsafeCast(params.get(4)), unsafeCast(params.get(5))
 				)
-			).bodyFunction(
-				body -> optionalForm.map(
-					form -> form.get(body)
-				).orElse(
-					null
-				)
+			).form(
+				form, Form::get
 			).receivesParams(
 				Id.class, bodyClass, aClass, bClass, cClass, dClass
 			).build();
@@ -189,6 +203,7 @@ public class ItemRoutesImpl<T, S> implements ItemRoutes<T, S> {
 				"GET"
 			).returns(
 				SingleModel.class
+			).permissionFunction(
 			).executeFunction(
 				params -> getterThrowablePentaFunction.andThen(
 					t -> new SingleModelImpl<>(t, _item.getName())
@@ -220,6 +235,11 @@ public class ItemRoutesImpl<T, S> implements ItemRoutes<T, S> {
 				"DELETE"
 			).returns(
 				Void.class
+			).permissionFunction(
+				params -> hasRemovePermissionFunction.apply(
+					unsafeCast(params.get(0)), unsafeCast(params.get(1)))
+			).permissionProvidedClasses(
+				Credentials.class, Id.class
 			).executeFunction(
 				params -> _run(
 					() -> removerThrowablePentaConsumer.accept(
@@ -246,6 +266,18 @@ public class ItemRoutesImpl<T, S> implements ItemRoutes<T, S> {
 			Form form = formBuilderFunction.apply(
 				unsafeCast(_formBuilderSupplier.get()));
 
+			String uri = UriBuilder.fromResource(
+				FormResource.class
+			).path(
+				FormResource.class, "updaterForm"
+			).build(
+				_item.getName()
+			).toString();
+
+			FormImpl formImpl = (FormImpl)form;
+
+			formImpl.setURI(uri);
+
 			ActionSemantics actionSemantics = ActionSemantics.ofResource(
 				_item
 			).name(
@@ -254,6 +286,11 @@ public class ItemRoutesImpl<T, S> implements ItemRoutes<T, S> {
 				"PUT"
 			).returns(
 				SingleModel.class
+			).permissionFunction(
+				params -> hasUpdatePermissionFunction.apply(
+					unsafeCast(params.get(0)), unsafeCast(params.get(1)))
+			).permissionProvidedClasses(
+				Credentials.class, Id.class
 			).executeFunction(
 				params -> updaterThrowableHexaFunction.andThen(
 					t -> new SingleModelImpl<>(t, _item.getName())
@@ -262,8 +299,8 @@ public class ItemRoutesImpl<T, S> implements ItemRoutes<T, S> {
 					unsafeCast(params.get(2)), unsafeCast(params.get(3)),
 					unsafeCast(params.get(4)), unsafeCast(params.get(5))
 				)
-			).bodyFunction(
-				form::get
+			).form(
+				form, Form::get
 			).receivesParams(
 				Id.class, Body.class, aClass, bClass, cClass, dClass
 			).build();

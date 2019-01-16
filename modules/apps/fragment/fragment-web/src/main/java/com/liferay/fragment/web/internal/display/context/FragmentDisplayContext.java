@@ -26,10 +26,11 @@ import com.liferay.fragment.service.FragmentEntryServiceUtil;
 import com.liferay.fragment.web.internal.configuration.FragmentPortletConfiguration;
 import com.liferay.fragment.web.internal.constants.FragmentWebKeys;
 import com.liferay.fragment.web.internal.security.permission.resource.FragmentPermission;
-import com.liferay.fragment.web.internal.util.SoyContextFactoryUtil;
 import com.liferay.fragment.web.util.FragmentPortletUtil;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemList;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorCriterion;
 import com.liferay.item.selector.ItemSelectorReturnType;
@@ -51,6 +52,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.template.soy.utils.SoyContext;
+import com.liferay.portal.template.soy.utils.SoyContextFactoryUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,8 +88,6 @@ public class FragmentDisplayContext {
 				FragmentPortletConfiguration.class.getName());
 		_itemSelector = (ItemSelector)_request.getAttribute(
 			FragmentWebKeys.ITEM_SELECTOR);
-		_resolvedModuleName = (String)_request.getAttribute(
-			FragmentWebKeys.RESOLVED_MODULE_NAME);
 		_themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 	}
@@ -443,10 +443,6 @@ public class FragmentDisplayContext {
 		return _jsContent;
 	}
 
-	public String getModuleName() {
-		return _resolvedModuleName;
-	}
-
 	public String getName() {
 		if (Validator.isNotNull(_name)) {
 			return _name;
@@ -471,6 +467,32 @@ public class FragmentDisplayContext {
 		_navigation = ParamUtil.getString(_request, "navigation", "all");
 
 		return _navigation;
+	}
+
+	public List<NavigationItem> getNavigationItems() {
+		return new NavigationItemList() {
+			{
+				add(
+					navigationItem -> {
+						navigationItem.setActive(
+							Objects.equals(_getTabs1(), "fragments"));
+						navigationItem.setHref(
+							_getPortletURL(), "tabs1", "fragments");
+						navigationItem.setLabel(
+							LanguageUtil.get(_request, "fragments"));
+					});
+
+				add(
+					navigationItem -> {
+						navigationItem.setActive(
+							Objects.equals(_getTabs1(), "resources"));
+						navigationItem.setHref(
+							_getPortletURL(), "tabs1", "resources");
+						navigationItem.setLabel(
+							LanguageUtil.get(_request, "resources"));
+					});
+			}
+		};
 	}
 
 	public String getOrderByType() {
@@ -528,13 +550,11 @@ public class FragmentDisplayContext {
 	}
 
 	public boolean isViewResources() {
-		if (_viewResources != null) {
-			return _viewResources;
+		if (Objects.equals(_getTabs1(), "resources")) {
+			return true;
 		}
 
-		_viewResources = ParamUtil.getBoolean(_request, "viewResources");
-
-		return _viewResources;
+		return false;
 	}
 
 	private String _getFragmentEntryRenderURL(
@@ -604,6 +624,16 @@ public class FragmentDisplayContext {
 		return portletURL;
 	}
 
+	private String _getTabs1() {
+		if (_tabs1 != null) {
+			return _tabs1;
+		}
+
+		_tabs1 = ParamUtil.getString(_request, "tabs1", "fragments");
+
+		return _tabs1;
+	}
+
 	private String _cssContent;
 	private FragmentCollection _fragmentCollection;
 	private Long _fragmentCollectionId;
@@ -624,8 +654,7 @@ public class FragmentDisplayContext {
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
 	private final HttpServletRequest _request;
-	private final String _resolvedModuleName;
+	private String _tabs1;
 	private final ThemeDisplay _themeDisplay;
-	private Boolean _viewResources;
 
 }

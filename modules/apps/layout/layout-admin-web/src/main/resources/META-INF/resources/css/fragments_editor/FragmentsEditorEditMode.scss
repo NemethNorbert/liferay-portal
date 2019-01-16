@@ -1,10 +1,12 @@
-@import "./DraggableItem";
+@import "./DragDrop";
 
-@import "./ElementTopper.scss";
+@import "./ElementTopper";
+
+@import "./FloatingToolbar";
 
 @import "./FragmentEntryLink";
 
-@import "./FragmentEntryLinkList.scss";
+@import "./FragmentEntryLinkList";
 
 @import "./FragmentEntryLinkEditables";
 
@@ -39,16 +41,8 @@
 	background-color: rgba(255, 255, 255, 0.4);
 }
 
-.fragments-editor-toolbar {
-	transition: padding ease 0.5s;
-
-	&__add-fragment-button {
-		display: none;
-	}
-
-	body.open-admin-panel & {
-		padding-right: $sidebarWidth;
-	}
+.fragments-editor-toolbar__add-fragment-button {
+	display: none;
 }
 
 .has-control-menu.has-edit-mode-menu #wrapper {
@@ -62,6 +56,7 @@
 .fragment-entry-link-list-wrapper {
 	padding: 0 $sidebarButtonsWidth 0 0;
 	transition: padding-right ease $productMenuTransitionDuration;
+	will-change: padding-right;
 
 	&--padded {
 		padding-right: $sidebarWidth;

@@ -20,15 +20,18 @@ import static com.liferay.apio.architect.internal.action.Predicates.isAction;
 import static com.liferay.apio.architect.internal.action.Predicates.isActionBy;
 import static com.liferay.apio.architect.internal.action.Predicates.isActionByDELETE;
 import static com.liferay.apio.architect.internal.action.Predicates.isActionByGET;
+import static com.liferay.apio.architect.internal.action.Predicates.isActionByPATCH;
 import static com.liferay.apio.architect.internal.action.Predicates.isActionByPOST;
 import static com.liferay.apio.architect.internal.action.Predicates.isActionByPUT;
 import static com.liferay.apio.architect.internal.action.Predicates.isActionFor;
+import static com.liferay.apio.architect.internal.action.Predicates.isActionForAny;
 import static com.liferay.apio.architect.internal.action.Predicates.isActionNamed;
 import static com.liferay.apio.architect.internal.action.Predicates.isCreateAction;
 import static com.liferay.apio.architect.internal.action.Predicates.isRemoveAction;
 import static com.liferay.apio.architect.internal.action.Predicates.isReplaceAction;
 import static com.liferay.apio.architect.internal.action.Predicates.isRetrieveAction;
 import static com.liferay.apio.architect.internal.action.Predicates.isRootCollectionAction;
+import static com.liferay.apio.architect.internal.action.Predicates.isUpdateAction;
 import static com.liferay.apio.architect.internal.action.Predicates.returnsAnyOf;
 
 import static java.util.Collections.singletonList;
@@ -106,6 +109,12 @@ public class PredicatesTest {
 	}
 
 	@Test
+	public void testIsActionByPATCH() {
+		assertTrue(isActionByPATCH.test(_actionSemantics.withMethod("PATCH")));
+		assertFalse(isActionByPATCH.test(_actionSemantics));
+	}
+
+	@Test
 	public void testIsActionByPOST() {
 		assertTrue(isActionByPOST.test(_actionSemantics.withMethod("POST")));
 		assertFalse(isActionByPOST.test(_actionSemantics));
@@ -115,6 +124,18 @@ public class PredicatesTest {
 	public void testIsActionByPUT() {
 		assertTrue(isActionByPUT.test(_actionSemantics.withMethod("PUT")));
 		assertFalse(isActionByPUT.test(_actionSemantics));
+	}
+
+	@Test
+	public void testIsActionForAnyResource() {
+		Predicate<ActionSemantics> truePredicate = isActionForAny(
+			Item.of("Name"), Paged.of("Name"));
+
+		Predicate<ActionSemantics> falsePredicate = isActionForAny(
+			Paged.of("NotName"), Item.of("Name"));
+
+		assertTrue(truePredicate.test(_actionSemantics));
+		assertFalse(falsePredicate.test(_actionSemantics));
 	}
 
 	@Test
@@ -194,6 +215,15 @@ public class PredicatesTest {
 	}
 
 	@Test
+	public void testIsUpdateAction() {
+		ActionSemantics actionSemantics = _actionSemantics.withMethod("PATCH");
+
+		assertTrue(isUpdateAction.test(actionSemantics.withName("update")));
+
+		assertFalse(isUpdateAction.test(_actionSemantics));
+	}
+
+	@Test
 	public void testReturnsAnyOf() {
 		Predicate<ActionSemantics> truePredicate = returnsAnyOf(
 			String.class, Page.class);
@@ -215,6 +245,7 @@ public class PredicatesTest {
 			"GET"
 		).returns(
 			Page.class
+		).permissionFunction(
 		).executeFunction(
 			__ -> null
 		).receivesParams(

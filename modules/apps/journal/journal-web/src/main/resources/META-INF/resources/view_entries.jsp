@@ -135,9 +135,12 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 							</h6>
 						</liferay-ui:search-container-column-text>
 
-						<liferay-ui:search-container-column-jsp
-							path="/article_action.jsp"
-						/>
+						<liferay-ui:search-container-column-text>
+							<clay:dropdown-actions
+								defaultEventHandler="<%= journalDisplayContext.getDefaultEventHandler() %>"
+								dropdownItems="<%= journalDisplayContext.getArticleActionDropdownItems(curArticle) %>"
+							/>
+						</liferay-ui:search-container-column-text>
 					</c:when>
 					<c:when test='<%= displayStyle.equals("icon") %>'>
 
@@ -149,34 +152,46 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 
 							<%
 							String articleImageURL = curArticle.getArticleImageURL(themeDisplay);
+
+							RowChecker rowChecker = articleSearchContainer.getRowChecker();
+
+							Date createDate = curArticle.getModifiedDate();
+
+							String modifiedDateDescription = LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - createDate.getTime(), true);
 							%>
 
 							<c:choose>
 								<c:when test="<%= Validator.isNotNull(articleImageURL) %>">
-									<liferay-frontend:vertical-card
-										actionJsp="/article_action.jsp"
-										actionJspServletContext="<%= application %>"
-										imageUrl="<%= HtmlUtil.escape(articleImageURL) %>"
-										resultRow="<%= row %>"
-										rowChecker="<%= articleSearchContainer.getRowChecker() %>"
+									<clay:image-card
+										actionDropdownItems="<%= journalDisplayContext.getArticleActionDropdownItems(curArticle) %>"
+										defaultEventHandler="<%= journalDisplayContext.getDefaultEventHandler() %>"
+										disabled="<%= rowChecker.isDisabled(curArticle) %>"
+										href="<%= editURL %>"
+										imageSrc="<%= HtmlUtil.escape(articleImageURL) %>"
+										inputName="<%= rowChecker.getRowIds() + JournalArticle.class.getSimpleName() %>"
+										inputValue="<%= HtmlUtil.escape(curArticle.getArticleId()) %>"
+										labels="<%= journalDisplayContext.getArticleLabels(curArticle) %>"
+										selectable="<%= true %>"
+										selected="<%= rowChecker.isChecked(curArticle) %>"
+										subtitle='<%= LanguageUtil.format(request, "x-modified-x-ago", new String[] {HtmlUtil.escape(curArticle.getUserName()), modifiedDateDescription}) %>'
 										title="<%= title %>"
-										url="<%= editURL %>"
-									>
-										<%@ include file="/article_vertical_card.jspf" %>
-									</liferay-frontend:vertical-card>
+									/>
 								</c:when>
 								<c:otherwise>
-									<liferay-frontend:icon-vertical-card
-										actionJsp="/article_action.jsp"
-										actionJspServletContext="<%= application %>"
+									<clay:file-card
+										actionDropdownItems="<%= journalDisplayContext.getArticleActionDropdownItems(curArticle) %>"
+										defaultEventHandler="<%= journalDisplayContext.getDefaultEventHandler() %>"
+										disabled="<%= rowChecker.isDisabled(curArticle) %>"
+										href="<%= editURL %>"
 										icon="web-content"
-										resultRow="<%= row %>"
-										rowChecker="<%= articleSearchContainer.getRowChecker() %>"
+										inputName="<%= rowChecker.getRowIds() + JournalArticle.class.getSimpleName() %>"
+										inputValue="<%= HtmlUtil.escape(curArticle.getArticleId()) %>"
+										labels="<%= journalDisplayContext.getArticleLabels(curArticle) %>"
+										selectable="<%= true %>"
+										selected="<%= rowChecker.isChecked(curArticle) %>"
+										subtitle='<%= LanguageUtil.format(request, "x-modified-x-ago", new String[] {HtmlUtil.escape(curArticle.getUserName()), modifiedDateDescription}) %>'
 										title="<%= title %>"
-										url="<%= editURL %>"
-									>
-										<%@ include file="/article_vertical_card.jspf" %>
-									</liferay-frontend:icon-vertical-card>
+									/>
 								</c:otherwise>
 							</c:choose>
 						</liferay-ui:search-container-column-text>
@@ -249,9 +264,12 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 							value="<%= HtmlUtil.escape(title) %>"
 						/>
 
-						<liferay-ui:search-container-column-jsp
-							path="/article_action.jsp"
-						/>
+						<liferay-ui:search-container-column-text>
+							<clay:dropdown-actions
+								defaultEventHandler="<%= journalDisplayContext.getDefaultEventHandler() %>"
+								dropdownItems="<%= journalDisplayContext.getArticleActionDropdownItems(curArticle) %>"
+							/>
+						</liferay-ui:search-container-column-text>
 					</c:otherwise>
 				</c:choose>
 			</c:when>
@@ -308,33 +326,36 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 							</h6>
 						</liferay-ui:search-container-column-text>
 
-						<liferay-ui:search-container-column-jsp
-							path="/folder_action.jsp"
-						/>
+						<liferay-ui:search-container-column-text>
+							<clay:dropdown-actions
+								defaultEventHandler="<%= journalDisplayContext.getDefaultEventHandler() %>"
+								dropdownItems="<%= journalDisplayContext.getFolderActionDropdownItems(curFolder) %>"
+							/>
+						</liferay-ui:search-container-column-text>
 					</c:when>
 					<c:when test='<%= displayStyle.equals("icon") %>'>
 
 						<%
 						row.setCssClass("entry-card lfr-asset-folder " + row.getCssClass());
+
+						RowChecker rowChecker = articleSearchContainer.getRowChecker();
 						%>
 
 						<liferay-ui:search-container-column-text
 							colspan="<%= 2 %>"
 						>
-							<liferay-frontend:horizontal-card
-								actionJsp="/folder_action.jsp"
-								actionJspServletContext="<%= application %>"
-								resultRow="<%= row %>"
-								rowChecker="<%= articleSearchContainer.getRowChecker() %>"
-								text="<%= HtmlUtil.escape(curFolder.getName()) %>"
-								url="<%= rowURL.toString() %>"
-							>
-								<liferay-frontend:horizontal-card-col>
-									<liferay-frontend:horizontal-card-icon
-										icon="folder"
-									/>
-								</liferay-frontend:horizontal-card-col>
-							</liferay-frontend:horizontal-card>
+							<clay:horizontal-card
+								actionDropdownItems="<%= journalDisplayContext.getFolderActionDropdownItems(curFolder) %>"
+								defaultEventHandler="<%= journalDisplayContext.getDefaultEventHandler() %>"
+								disabled="<%= rowChecker.isDisabled(curFolder) %>"
+								href="<%= rowURL.toString() %>"
+								icon="folder"
+								inputName="<%= rowChecker.getRowIds() + JournalFolder.class.getSimpleName() %>"
+								inputValue="<%= String.valueOf(curFolder.getFolderId()) %>"
+								selectable="<%= true %>"
+								selected="<%= rowChecker.isChecked(curFolder) %>"
+								title="<%= HtmlUtil.escape(curFolder.getName()) %>"
+							/>
 						</liferay-ui:search-container-column-text>
 					</c:when>
 					<c:otherwise>
@@ -387,9 +408,12 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 							value='<%= LanguageUtil.get(request, "folder") %>'
 						/>
 
-						<liferay-ui:search-container-column-jsp
-							path="/folder_action.jsp"
-						/>
+						<liferay-ui:search-container-column-text>
+							<clay:dropdown-actions
+								defaultEventHandler="<%= journalDisplayContext.getDefaultEventHandler() %>"
+								dropdownItems="<%= journalDisplayContext.getFolderActionDropdownItems(curFolder) %>"
+							/>
+						</liferay-ui:search-container-column-text>
 					</c:otherwise>
 				</c:choose>
 			</c:when>
@@ -403,3 +427,19 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 		searchContainer="<%= articleSearchContainer %>"
 	/>
 </liferay-ui:search-container>
+
+<aui:script require='<%= npmResolvedPackageName + "/js/ElementsDefaultEventHandler.es as ElementsDefaultEventHandler" %>'>
+	Liferay.component(
+		'<%= journalDisplayContext.getDefaultEventHandler() %>',
+		new ElementsDefaultEventHandler.default(
+			{
+				namespace: '<%= renderResponse.getNamespace() %>',
+				trashEnabled: <%= trashHelper.isTrashEnabled(scopeGroupId) %>
+			}
+		),
+		{
+			destroyOnNavigate: true,
+			portletId: '<%= HtmlUtil.escapeJS(portletDisplay.getId()) %>'
+		}
+	);
+</aui:script>

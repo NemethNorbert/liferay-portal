@@ -20,12 +20,15 @@ import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.segments.criteria.Criteria;
 import com.liferay.segments.criteria.contributor.SegmentsCriteriaContributor;
 import com.liferay.segments.criteria.contributor.SegmentsCriteriaContributorRegistry;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
@@ -49,14 +52,6 @@ public class SegmentsCriteriaContributorRegistryImpl
 		List<SegmentsCriteriaContributor> segmentsCriteriaContributors =
 			new ArrayList<>();
 
-		List<SegmentsCriteriaContributor> generalSegmentsCriteriaContributors =
-			_serviceTrackerMap.getService("*");
-
-		if (!ListUtil.isEmpty(generalSegmentsCriteriaContributors)) {
-			segmentsCriteriaContributors.addAll(
-				generalSegmentsCriteriaContributors);
-		}
-
 		if (Validator.isNotNull(className)) {
 			List<SegmentsCriteriaContributor>
 				classNameSegmentsCriteriaContributors =
@@ -68,7 +63,33 @@ public class SegmentsCriteriaContributorRegistryImpl
 			}
 		}
 
+		List<SegmentsCriteriaContributor> generalSegmentsCriteriaContributors =
+			_serviceTrackerMap.getService("*");
+
+		if (!ListUtil.isEmpty(generalSegmentsCriteriaContributors)) {
+			segmentsCriteriaContributors.addAll(
+				generalSegmentsCriteriaContributors);
+		}
+
 		return segmentsCriteriaContributors;
+	}
+
+	@Override
+	public List<SegmentsCriteriaContributor> getSegmentsCriteriaContributors(
+		String className, Criteria.Type type) {
+
+		List<SegmentsCriteriaContributor> segmentsCriteriaContributors =
+			getSegmentsCriteriaContributors(className);
+
+		Stream<SegmentsCriteriaContributor> stream =
+			segmentsCriteriaContributors.stream();
+
+		return stream.filter(
+			segmentsCriteriaContributor ->
+				type.equals(segmentsCriteriaContributor.getType())
+		).collect(
+			Collectors.toList()
+		);
 	}
 
 	@Activate

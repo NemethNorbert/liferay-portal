@@ -328,6 +328,18 @@ public class JournalArticleAssetRenderer
 	}
 
 	@Override
+	public String getUrlTitle(Locale locale) {
+		try {
+			return _article.getUrlTitle(locale);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+
+		return getUrlTitle();
+	}
+
+	@Override
 	public PortletURL getURLViewDiffs(
 			LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse)
@@ -390,7 +402,7 @@ public class JournalArticleAssetRenderer
 				themeDisplay,
 				groupFriendlyURL.concat(
 					JournalArticleConstants.CANONICAL_URL_SEPARATOR).concat(
-						_article.getUrlTitle()));
+						_article.getUrlTitle(themeDisplay.getLocale())));
 		}
 
 		String hitLayoutURL = getHitLayoutURL(

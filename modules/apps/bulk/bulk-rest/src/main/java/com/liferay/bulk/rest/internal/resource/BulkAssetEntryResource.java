@@ -18,10 +18,12 @@ import com.liferay.asset.kernel.service.AssetTagLocalService;
 import com.liferay.bulk.rest.internal.model.BulkActionResponseModel;
 import com.liferay.bulk.rest.internal.model.BulkAssetEntryCommonTagsActionModel;
 import com.liferay.bulk.rest.internal.model.BulkAssetEntryCommonTagsModel;
+import com.liferay.bulk.rest.internal.model.BulkAssetEntryUpdateCategoriesActionModel;
 import com.liferay.bulk.rest.internal.model.BulkAssetEntryUpdateTagsActionModel;
 import com.liferay.bulk.selection.BulkSelection;
 import com.liferay.bulk.selection.BulkSelectionFactory;
 import com.liferay.bulk.selection.BulkSelectionRunner;
+import com.liferay.document.library.bulk.selection.EditCategoriesBulkSelectionAction;
 import com.liferay.document.library.bulk.selection.EditTagsBulkSelectionAction;
 import com.liferay.document.library.kernel.model.DLFileEntryConstants;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -74,7 +76,7 @@ public class BulkAssetEntryResource {
 	@Path("/tags/{classNameId}/common")
 	@POST
 	@Produces(ContentTypes.APPLICATION_JSON)
-	public BulkAssetEntryCommonTagsModel getAssetEntryCommonTags(
+	public BulkAssetEntryCommonTagsModel getBulkAssetEntryCommonTagsModel(
 		@Context User user, @Context Locale locale,
 		@PathParam("classNameId") long classNameId,
 		BulkAssetEntryCommonTagsActionModel
@@ -88,7 +90,8 @@ public class BulkAssetEntryResource {
 			Stream<FileEntry> stream = bulkSelection.stream();
 
 			Set<String> commonTags = stream.map(
-				_getFileEntryTagsSet(PermissionCheckerFactoryUtil.create(user))
+				_getFileEntryTagsFunction(
+					PermissionCheckerFactoryUtil.create(user))
 			).reduce(
 				SetUtil::intersect
 			).orElse(
@@ -104,53 +107,87 @@ public class BulkAssetEntryResource {
 	}
 
 	@Consumes(ContentTypes.APPLICATION_JSON)
-	@Path("/tags/{classNameId}")
+	@Path("/categories/{classNameId}")
 	@POST
 	@Produces(ContentTypes.APPLICATION_JSON)
-	public BulkActionResponseModel updateAssetEntryTags(
-		@Context User user, @PathParam("classNameId") long classNameId,
-		BulkAssetEntryUpdateTagsActionModel
-			bulkAssetEntryUpdateTagsActionModel) {
+	public BulkActionResponseModel
+		updateBulkAssetEntryUpdateCategoriesActionModel(
+			@Context User user, @PathParam("classNameId") long classNameId,
+			BulkAssetEntryUpdateCategoriesActionModel
+				bulkAssetEntryUpdateCategoriesActionModel) {
 
 		try {
-			return _editTags(user, bulkAssetEntryUpdateTagsActionModel);
+			BulkSelection<FileEntry> bulkSelection =
+				_bulkSelectionFactory.create(
+					bulkAssetEntryUpdateCategoriesActionModel.
+						getParameterMap());
+
+			_bulkSelectionRunner.run(
+				user, bulkSelection, _editCategoriesBulkSelectionAction,
+				new HashMap<String, Serializable>() {
+					{
+						put(
+							"append",
+							bulkAssetEntryUpdateCategoriesActionModel.
+								getAppend());
+						put(
+							"toAddCategoryIds",
+							bulkAssetEntryUpdateCategoriesActionModel.
+								getToAddCategoryIds());
+						put(
+							"toRemoveCategoryIds",
+							bulkAssetEntryUpdateCategoriesActionModel.
+								getToRemoveCategoryIds());
+					}
+				});
+
+			return BulkActionResponseModel.SUCCESS;
 		}
 		catch (Exception e) {
 			return new BulkActionResponseModel(e);
 		}
 	}
 
-	private BulkActionResponseModel _editTags(
-			User user,
-			BulkAssetEntryUpdateTagsActionModel
-				bulkAssetEntryUpdateTagsActionModel)
-		throws Exception {
+	@Consumes(ContentTypes.APPLICATION_JSON)
+	@Path("/tags/{classNameId}")
+	@POST
+	@Produces(ContentTypes.APPLICATION_JSON)
+	public BulkActionResponseModel updateBulkAssetEntryUpdateTagsActionModel(
+		@Context User user, @PathParam("classNameId") long classNameId,
+		BulkAssetEntryUpdateTagsActionModel
+			bulkAssetEntryUpdateTagsActionModel) {
 
-		BulkSelection<FileEntry> bulkSelection = _bulkSelectionFactory.create(
-			bulkAssetEntryUpdateTagsActionModel.getParameterMap());
+		try {
+			BulkSelection<FileEntry> bulkSelection =
+				_bulkSelectionFactory.create(
+					bulkAssetEntryUpdateTagsActionModel.getParameterMap());
 
-		_bulkSelectionRunner.run(
-			bulkSelection, _editTagsBulkSelectionAction,
-			new HashMap<String, Serializable>() {
-				{
-					put(
-						"append",
-						bulkAssetEntryUpdateTagsActionModel.getAppend());
-					put(
-						"toAddTagNames",
-						bulkAssetEntryUpdateTagsActionModel.getToAddTagNames());
-					put(
-						"toRemoveTagNames",
-						bulkAssetEntryUpdateTagsActionModel.
-							getToRemoveTagNames());
-					put("userId", user.getUserId());
-				}
-			});
+			_bulkSelectionRunner.run(
+				user, bulkSelection, _editTagsBulkSelectionAction,
+				new HashMap<String, Serializable>() {
+					{
+						put(
+							"append",
+							bulkAssetEntryUpdateTagsActionModel.getAppend());
+						put(
+							"toAddTagNames",
+							bulkAssetEntryUpdateTagsActionModel.
+								getToAddTagNames());
+						put(
+							"toRemoveTagNames",
+							bulkAssetEntryUpdateTagsActionModel.
+								getToRemoveTagNames());
+					}
+				});
 
-		return BulkActionResponseModel.SUCCESS;
+			return BulkActionResponseModel.SUCCESS;
+		}
+		catch (Exception e) {
+			return new BulkActionResponseModel(e);
+		}
 	}
 
-	private Function<FileEntry, Set<String>> _getFileEntryTagsSet(
+	private Function<FileEntry, Set<String>> _getFileEntryTagsFunction(
 		PermissionChecker permissionChecker) {
 
 		return fileEntry -> {
@@ -189,6 +226,10 @@ public class BulkAssetEntryResource {
 
 	@Reference
 	private BulkSelectionRunner _bulkSelectionRunner;
+
+	@Reference
+	private EditCategoriesBulkSelectionAction
+		_editCategoriesBulkSelectionAction;
 
 	@Reference
 	private EditTagsBulkSelectionAction _editTagsBulkSelectionAction;

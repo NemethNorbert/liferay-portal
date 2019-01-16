@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.model.ModelHintsConstants;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
@@ -44,6 +45,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.service.permission.PortletPermissionUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortletKeys;
@@ -65,6 +67,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -225,14 +228,44 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 						"there-is-no-widget-available-for-alias-x", alias));
 			}
 
-			if (Validator.isNotNull(element.id()) &&
-				!Validator.isAlphanumericName(element.id())) {
+			String id = element.id();
 
+			if (Validator.isNotNull(id) && !Validator.isAlphanumericName(id)) {
 				throw new FragmentEntryContentException(
 					LanguageUtil.format(
 						_resourceBundle,
 						"widget-id-must-contain-only-alphanumeric-characters",
 						alias));
+			}
+
+			if (Validator.isNotNull(id)) {
+				Elements elements = document.select("#" + id);
+
+				if (elements.size() > 1) {
+					throw new FragmentEntryContentException(
+						LanguageUtil.get(
+							_resourceBundle, "widget-id-must-be-unique"));
+				}
+
+				if (id.length() > GetterUtil.getInteger(
+						ModelHintsConstants.TEXT_MAX_LENGTH)) {
+
+					throw new FragmentEntryContentException(
+						LanguageUtil.format(
+							_resourceBundle,
+							"widget-id-cannot-exceed-x-characters",
+							ModelHintsConstants.TEXT_MAX_LENGTH));
+				}
+			}
+
+			Elements elements = document.select(htmlTagName);
+
+			if ((elements.size() > 1) && Validator.isNull(id)) {
+				throw new FragmentEntryContentException(
+					LanguageUtil.get(
+						_resourceBundle,
+						"duplicate-widgets-within-the-same-fragment-must-" +
+							"have-an-id"));
 			}
 		}
 	}

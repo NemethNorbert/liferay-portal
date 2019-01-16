@@ -24,11 +24,14 @@ import com.liferay.apio.architect.alias.routes.permission.HasNestedAddingPermiss
 import com.liferay.apio.architect.annotation.GenericParentId;
 import com.liferay.apio.architect.annotation.ParentId;
 import com.liferay.apio.architect.batch.BatchResult;
+import com.liferay.apio.architect.credentials.Credentials;
 import com.liferay.apio.architect.form.Body;
 import com.liferay.apio.architect.form.Form;
 import com.liferay.apio.architect.function.throwable.ThrowableFunction;
 import com.liferay.apio.architect.function.throwable.ThrowableHexaFunction;
 import com.liferay.apio.architect.internal.action.ActionSemantics;
+import com.liferay.apio.architect.internal.form.FormImpl;
+import com.liferay.apio.architect.internal.jaxrs.resource.FormResource;
 import com.liferay.apio.architect.internal.pagination.PageImpl;
 import com.liferay.apio.architect.internal.single.model.SingleModelImpl;
 import com.liferay.apio.architect.pagination.Page;
@@ -37,6 +40,7 @@ import com.liferay.apio.architect.pagination.Pagination;
 import com.liferay.apio.architect.resource.Resource;
 import com.liferay.apio.architect.resource.Resource.GenericParent;
 import com.liferay.apio.architect.resource.Resource.Id;
+import com.liferay.apio.architect.resource.Resource.Item;
 import com.liferay.apio.architect.resource.Resource.Nested;
 import com.liferay.apio.architect.routes.NestedCollectionRoutes;
 import com.liferay.apio.architect.single.model.SingleModel;
@@ -46,6 +50,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
+
+import javax.ws.rs.core.UriBuilder;
 
 /**
  * @author Alejandro Hernández
@@ -146,6 +152,29 @@ public class NestedCollectionRoutesImpl<T, S, U>
 			Form form = formBuilderFunction.apply(
 				unsafeCast(_formBuilderSupplier.get()));
 
+			String parent;
+
+			if (_resource instanceof Nested) {
+				Item parentItem = ((Nested)_resource).getParentItem();
+
+				parent = parentItem.getName();
+			}
+			else {
+				parent = ((GenericParent)_resource).getParentName();
+			}
+
+			String uri = UriBuilder.fromResource(
+				FormResource.class
+			).path(
+				FormResource.class, "nestedCreatorForm"
+			).build(
+				parent, _resource.getName()
+			).toString();
+
+			FormImpl formImpl = (FormImpl)form;
+
+			formImpl.setURI(uri);
+
 			ActionSemantics batchCreateActionSemantics =
 				ActionSemantics.ofResource(
 					_resource
@@ -155,6 +184,13 @@ public class NestedCollectionRoutesImpl<T, S, U>
 					"POST"
 				).returns(
 					BatchResult.class
+				).permissionFunction(
+					params ->
+						hasNestedAddingPermissionFunction.apply(
+							unsafeCast(params.get(0)),
+							unsafeCast(params.get(1)))
+				).permissionProvidedClasses(
+					Credentials.class, _getIdClass()
 				).executeFunction(
 					params -> batchCreatorThrowableHexaFunction.andThen(
 						t -> new BatchResult<>(t, _resource.getName())
@@ -163,8 +199,8 @@ public class NestedCollectionRoutesImpl<T, S, U>
 						unsafeCast(params.get(2)), unsafeCast(params.get(3)),
 						unsafeCast(params.get(4)), unsafeCast(params.get(5))
 					)
-				).bodyFunction(
-					form::getList
+				).form(
+					form, Form::getList
 				).receivesParams(
 					_getIdClass(), Body.class, aClass, bClass, cClass, dClass
 				).build();
@@ -179,6 +215,11 @@ public class NestedCollectionRoutesImpl<T, S, U>
 				"POST"
 			).returns(
 				SingleModel.class
+			).permissionFunction(
+				params -> hasNestedAddingPermissionFunction.apply(
+					unsafeCast(params.get(0)), unsafeCast(params.get(1)))
+			).permissionProvidedClasses(
+				Credentials.class, _getIdClass()
 			).executeFunction(
 				params -> creatorThrowableHexaFunction.andThen(
 					t -> new SingleModelImpl<>(t, _resource.getName())
@@ -187,8 +228,8 @@ public class NestedCollectionRoutesImpl<T, S, U>
 					unsafeCast(params.get(2)), unsafeCast(params.get(3)),
 					unsafeCast(params.get(4)), unsafeCast(params.get(5))
 				)
-			).bodyFunction(
-				form::get
+			).form(
+				form, Form::get
 			).receivesParams(
 				_getIdClass(), Body.class, aClass, bClass, cClass, dClass
 			).build();
@@ -213,6 +254,7 @@ public class NestedCollectionRoutesImpl<T, S, U>
 				"GET"
 			).returns(
 				Page.class
+			).permissionFunction(
 			).executeFunction(
 				params -> getterThrowableHexaFunction.andThen(
 					pageItems -> new PageImpl<>(

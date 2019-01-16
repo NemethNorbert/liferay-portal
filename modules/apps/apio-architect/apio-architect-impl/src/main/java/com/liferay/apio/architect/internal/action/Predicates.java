@@ -58,6 +58,14 @@ public class Predicates {
 		"GET");
 
 	/**
+	 * Checks if an action's method is {@code PATCH}.
+	 *
+	 * @review
+	 */
+	public static final Predicate<ActionSemantics> isActionByPATCH = isActionBy(
+		"PATCH");
+
+	/**
 	 * Checks if an action's method is {@code POST}.
 	 *
 	 * @review
@@ -122,6 +130,15 @@ public class Predicates {
 		).and(
 			isActionFor(Paged.class)
 		);
+
+	/**
+	 * Checks if an action's method is {@code PATCH} and its name is {@code
+	 * update}.
+	 *
+	 * @review
+	 */
+	public static final Predicate<ActionSemantics> isUpdateAction =
+		isActionByPATCH.and(isActionNamed("update"));
 
 	/**
 	 * Transforms the object under testing with the provided function and checks
@@ -203,7 +220,23 @@ public class Predicates {
 	 * @review
 	 */
 	public static Predicate<ActionSemantics> isActionFor(Resource resource) {
-		return areEquals(ActionSemantics::getResource, resource);
+		return isActionForAny(resource);
+	}
+
+	/**
+	 * Returns a predicate that checks if the action's resource is equals to any
+	 * of the provided.
+	 *
+	 * @review
+	 */
+	public static Predicate<ActionSemantics> isActionForAny(
+		Resource... resources) {
+
+		return actionSemantics -> Stream.of(
+			resources
+		).anyMatch(
+			resource -> resource.equals(actionSemantics.getResource())
+		);
 	}
 
 	/**

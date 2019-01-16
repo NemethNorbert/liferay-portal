@@ -840,7 +840,7 @@ public class DLFileEntryLocalServiceImpl
 				StringBundler.concat(
 					"Unable to delete version for file entry ",
 					String.valueOf(fileEntryId), " because version number ",
-					version, " is not valid"));
+					version, " is invalid"));
 		}
 
 		if (version.equals(DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION)) {
@@ -869,17 +869,16 @@ public class DLFileEntryLocalServiceImpl
 						version, " for file entry ",
 						String.valueOf(fileEntryId)));
 			}
-			else {
-				int count = dlFileVersionPersistence.countByF_S(
-					fileEntryId, WorkflowConstants.STATUS_APPROVED);
 
-				if (count <= 1) {
-					throw new InvalidFileVersionException(
-						StringBundler.concat(
-							"Unable to delete the only approved file version ",
-							version, " for file entry ",
-							String.valueOf(fileEntryId)));
-				}
+			int count = dlFileVersionPersistence.countByF_S(
+				fileEntryId, WorkflowConstants.STATUS_APPROVED);
+
+			if (count <= 1) {
+				throw new InvalidFileVersionException(
+					StringBundler.concat(
+						"Unable to delete the only approved file version ",
+						version, " for file entry ",
+						String.valueOf(fileEntryId)));
 			}
 
 			dlFileVersionPersistence.remove(dlFileVersion);
@@ -1736,7 +1735,7 @@ public class DLFileEntryLocalServiceImpl
 			throw new InvalidFileVersionException(
 				StringBundler.concat(
 					"Unable to revert file entry ", String.valueOf(fileEntryId),
-					" to version ", version, " because it is not valid"));
+					" to version ", version, " because it is invalid"));
 		}
 
 		if (version.equals(DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION)) {
@@ -2481,7 +2480,7 @@ public class DLFileEntryLocalServiceImpl
 					"Unable to increase version number for file entry ",
 					String.valueOf(dlFileEntry.getFileEntryId()),
 					" because original version number ", version,
-					" is not valid"));
+					" is invalid"));
 		}
 
 		int[] versionParts = StringUtil.split(version, StringPool.PERIOD, 0);

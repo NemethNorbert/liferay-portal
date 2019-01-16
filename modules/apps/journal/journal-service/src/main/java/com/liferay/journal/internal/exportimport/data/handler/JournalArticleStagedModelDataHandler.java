@@ -1093,11 +1093,15 @@ public class JournalArticleStagedModelDataHandler
 
 		Group group = _groupLocalService.fetchGroup(groupId);
 
+		if (group == null) {
+			return null;
+		}
+
 		long companyId = group.getCompanyId();
 
 		while (group != null) {
 			JournalArticle article = fetchExistingArticle(
-				articleUuid, articleResourceUuid, groupId, articleId,
+				articleUuid, articleResourceUuid, group.getGroupId(), articleId,
 				newArticleId, version, preloaded);
 
 			if (article != null) {

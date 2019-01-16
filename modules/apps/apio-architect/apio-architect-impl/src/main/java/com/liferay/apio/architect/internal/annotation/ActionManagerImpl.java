@@ -21,6 +21,7 @@ import static com.liferay.apio.architect.internal.action.Predicates.isRemoveActi
 import static com.liferay.apio.architect.internal.action.Predicates.isReplaceAction;
 import static com.liferay.apio.architect.internal.action.Predicates.isRetrieveAction;
 import static com.liferay.apio.architect.internal.action.Predicates.isRootCollectionAction;
+import static com.liferay.apio.architect.internal.action.Predicates.isUpdateAction;
 import static com.liferay.apio.architect.internal.action.converter.EntryPointConverter.getEntryPointFrom;
 import static com.liferay.apio.architect.internal.body.JSONToBodyConverter.jsonToBody;
 import static com.liferay.apio.architect.internal.body.MultipartToBodyConverter.multipartToBody;
@@ -93,23 +94,6 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service = ActionManager.class)
 public class ActionManagerImpl implements ActionManager {
 
-	/**
-	 * Returns all of the action semantics collected by the different routers.
-	 *
-	 * @review
-	 */
-	public Stream<ActionSemantics> actionSemantics() {
-		return Stream.of(
-			_actionRouterManager.getActionSemantics(),
-			_itemRouterManager.getActionSemantics(),
-			_collectionRouterManager.getActionSemantics(),
-			_reusableNestedCollectionRouterManager.getActionSemantics(),
-			_nestedCollectionRouterManager.getActionSemantics()
-		).flatMap(
-			identity()
-		);
-	}
-
 	@Override
 	public Either<Action.Error, Action> getAction(
 		String method, List<String> params) {
@@ -142,6 +126,9 @@ public class ActionManagerImpl implements ActionManager {
 			if (item != null) {
 				if ("DELETE".equals(method)) {
 					return _getAction(item, isRemoveAction);
+				}
+				else if ("PATCH".equals(method)) {
+					return _getAction(item, isUpdateAction);
 				}
 				else if ("PUT".equals(method)) {
 					return _getAction(item, isReplaceAction);
@@ -215,14 +202,40 @@ public class ActionManagerImpl implements ActionManager {
 
 	@Override
 	public Stream<ActionSemantics> getActionSemantics(
-		Resource resource, Credentials credentials) {
+		Resource resource, Credentials credentials,
+		HttpServletRequest httpServletRequest) {
 
-		Stream<ActionSemantics> stream = actionSemantics();
+		Stream<ActionSemantics> stream = getActionSemanticsStream();
 
 		return stream.filter(
 			isActionFor(resource)
 		).map(
 			actionSemantics -> actionSemantics.withResource(resource)
+		).filter(
+			actionSemantics -> Try.of(
+				() -> {
+					List<Object> params = actionSemantics.getPermissionParams(
+						clazz -> _provide(
+							actionSemantics, httpServletRequest, clazz));
+
+					return actionSemantics.checkPermissions(params);
+				}
+			).getOrElse(
+				false
+			)
+		);
+	}
+
+	@Override
+	public Stream<ActionSemantics> getActionSemanticsStream() {
+		return Stream.of(
+			_actionRouterManager.getActionSemantics(),
+			_itemRouterManager.getActionSemantics(),
+			_collectionRouterManager.getActionSemantics(),
+			_reusableNestedCollectionRouterManager.getActionSemantics(),
+			_nestedCollectionRouterManager.getActionSemantics()
+		).flatMap(
+			identity()
 		);
 	}
 
@@ -242,7 +255,7 @@ public class ActionManagerImpl implements ActionManager {
 			() -> providerManager.provideOptional(
 				httpServletRequest, ApplicationURL.class);
 
-		Stream<ActionSemantics> stream = actionSemantics();
+		Stream<ActionSemantics> stream = getActionSemanticsStream();
 
 		Stream<Resource> resourceStream = stream.map(
 			ActionSemantics::getResource
@@ -251,13 +264,13 @@ public class ActionManagerImpl implements ActionManager {
 		return new Documentation(
 			apiTitleSupplier, apiDescriptionSupplier, applicationUrlSupplier,
 			() -> _representableManager.getRepresentors(), resourceStream,
-			resource -> getActionSemantics(resource, null),
+			resource -> getActionSemantics(resource, null, null),
 			() -> _customDocumentationManager.getCustomDocumentation());
 	}
 
 	@Override
 	public EntryPoint getEntryPoint() {
-		return getEntryPointFrom(actionSemantics());
+		return getEntryPointFrom(getActionSemanticsStream());
 	}
 
 	@Override
@@ -267,7 +280,7 @@ public class ActionManagerImpl implements ActionManager {
 		return Either.narrow(
 			_getAction(item, isRetrieveAction)
 		).map(
-			action -> action.apply(request)
+			action -> action.execute(request)
 		).map(
 			object -> object instanceof Try ? ((Try)object).get() : object
 		).toJavaOptional(
@@ -287,7 +300,8 @@ public class ActionManagerImpl implements ActionManager {
 	private Either<Action.Error, Action> _getAction(
 		Resource resource, Predicate<ActionSemantics> predicate) {
 
-		Stream<ActionSemantics> actionSemanticsStream = actionSemantics();
+		Stream<ActionSemantics> actionSemanticsStream =
+			getActionSemanticsStream();
 
 		Optional<ActionSemantics> optionalActionSemantics =
 			actionSemanticsStream.filter(

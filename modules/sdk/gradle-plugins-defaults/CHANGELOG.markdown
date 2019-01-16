@@ -5323,6 +5323,68 @@ version 2.0.8.
 - [LPS-87479]: Update the [Liferay Gradle Plugins JSDoc] dependency to version
 2.0.13.
 
+## 5.5.161 - 2019-01-08
+
+### Changed
+- [LPS-88823]: Update the [Liferay Gradle Plugins] dependency to version
+3.13.52.
+
+## 5.5.162 - 2019-01-08
+
+### Removed
+- [LPS-88859]: Remove the logic that sets the `baseline.onlyIf` property to `false`
+when there is no previous published version for the project.
+
+## 5.5.163 - 2019-01-08
+
+### Changed
+- [LPS-88903]: Update the [Liferay Gradle Plugins] dependency to version
+3.13.53.
+- [LPS-88903]: Update the [Liferay Gradle Plugins Baseline] dependency to
+version 2.0.9.
+
+## 5.5.164 - 2019-01-08
+
+### Changed
+- [LPS-84119]: Update the [Liferay Gradle Plugins] dependency to version
+3.13.54.
+
+## 5.5.165 - 2019-01-09
+
+### Changed
+- [LPS-88909]: Update the [Liferay Gradle Plugins] dependency to version
+3.13.55.
+- [LPS-88909]: Update the [Liferay Gradle Plugins JSDoc] dependency to version
+2.0.14.
+
+## 5.5.166 - 2019-01-09
+
+### Changed
+- [LPS-87479]: Update the [Liferay Gradle Plugins] dependency to version
+3.13.56.
+- [LPS-87479]: Update the [Liferay Gradle Plugins JSDoc] dependency to version
+2.0.15.
+
+## 5.5.167 - 2019-01-11
+
+### Changed
+- [LPS-84119]: Update the [Liferay Gradle Plugins] dependency to version
+3.13.57.
+
+## 5.5.168 - 2019-01-13
+
+### Changed
+- [LPS-86806]: Update the [Liferay Gradle Plugins] dependency to version
+3.13.58.
+
+## 5.5.169 - 2019-01-14
+
+### Changed
+- [LPS-89126]: Update the [Liferay Gradle Plugins] dependency to version
+3.13.59.
+- [LPS-89126]: Update the [Liferay Gradle Plugins JSDoc] dependency to version
+2.0.16.
+
 [Find Security Bugs]: https://github.com/liferay/liferay-portal/tree/master/modules/third-party/com-h3xstream-findsecbugs
 [Gradle Dependency Management]: https://github.com/spring-gradle-plugins/dependency-management-plugin
 [Gradle License Report]: https://github.com/jk1/Gradle-License-Report
@@ -5863,6 +5925,11 @@ version 2.0.8.
 [LPS-88382]: https://issues.liferay.com/browse/LPS-88382
 [LPS-88552]: https://issues.liferay.com/browse/LPS-88552
 [LPS-88588]: https://issues.liferay.com/browse/LPS-88588
+[LPS-88823]: https://issues.liferay.com/browse/LPS-88823
+[LPS-88859]: https://issues.liferay.com/browse/LPS-88859
+[LPS-88903]: https://issues.liferay.com/browse/LPS-88903
+[LPS-88909]: https://issues.liferay.com/browse/LPS-88909
+[LPS-89126]: https://issues.liferay.com/browse/LPS-89126
 [LRDOCS-2594]: https://issues.liferay.com/browse/LRDOCS-2594
 [LRDOCS-2841]: https://issues.liferay.com/browse/LRDOCS-2841
 [LRDOCS-2981]: https://issues.liferay.com/browse/LRDOCS-2981
