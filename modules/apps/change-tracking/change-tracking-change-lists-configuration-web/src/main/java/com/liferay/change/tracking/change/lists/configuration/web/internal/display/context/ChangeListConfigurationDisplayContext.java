@@ -46,7 +46,7 @@ public class ChangeListConfigurationDisplayContext {
 	public SoyContext getConfigurationDisplayContext() {
 		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
 
-		soyContext.put("companyId", _themeDisplay.getCompanyId());
+		soyContext.put("urlChangeListConfigApi", _themeDisplay.getPortalURL() + "/o/change-tracking/configurations/" + _themeDisplay.getCompanyId());
 		soyContext.put("portletNamespace", _renderResponse.getNamespace());
 		soyContext.put("portalURL", _themeDisplay.getPortalURL());
 		soyContext.put(

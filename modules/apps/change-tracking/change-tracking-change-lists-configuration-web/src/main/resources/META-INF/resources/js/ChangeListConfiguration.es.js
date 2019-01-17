@@ -1,5 +1,6 @@
 import Component from 'metal-component';
 import Soy from 'metal-soy';
+import {Config} from 'metal-state';
 
 import templates from './ChangeListConfiguration.soy';
 
@@ -81,24 +82,17 @@ ChangeListConfiguration.STATE = {
 		// You can, instead of the `value` option above, use a function to
 		// return the initial value for the state.
 		// valueFn: val => 0,
+ChangeListConfiguration.STATE = {
 
-		// It's also possible to define that a property can only receive a
-		// value once, and later behave as read-only.
+	urlChangeListConfigApi: Config.string().required(),
 
-		writeOnce: false
-	},
+	changeTrackingEnabled: Config.bool(),
 
-	portalURL: {
-		writeOnce: false
-	},
+	portalURL: Config.sting().required(),
 
-	spritemap: {
-		writeOnce: true
-	},
+	spritemap: Config.stirng().required(),
 
-	tooltip: {
-		writeOnce: false
-	}
+	tooltip: Config.array()
 };
 
 Soy.register(ChangeListConfiguration, templates);
