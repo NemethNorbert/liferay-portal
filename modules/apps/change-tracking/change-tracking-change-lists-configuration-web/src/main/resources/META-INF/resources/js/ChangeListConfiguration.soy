@@ -10,7 +10,7 @@
 	{@param? handleCheck: any}
 	{@param? save: any}
 	{@param? saveAndGoToOverview: any}
-	{@param? tooltip: list<string>}
+	{@param? tooltipBody: list<string>}
 
 	<div class="change-lists-configuration-sheet sheet sheet-lg">
 		<div class="sheet-header">
@@ -24,9 +24,9 @@
 				<div class="tooltip clay-tooltip-bottom" role="tooltip">
 					<div class="arrow"></div>
 					<div class="tooltip-inner">
-						{if $tooltip}
-							{foreach $string in $tooltip}
-								<div> {$string} </div>
+						{if $tooltipBody}
+							{foreach $item in $tooltipBody}
+								<div> {$item} </div>
 							{/foreach}
 						{/if}
 					</div>

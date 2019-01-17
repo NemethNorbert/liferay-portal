@@ -17,7 +17,7 @@ class ChangeListConfiguration extends Component {
 				if (response) {
 					this.setState({
 						changeTrackingEnabled: response.changeTrackingEnabled,
-						tooltip: response.supportedContentTypes
+						tooltipBody: response.supportedContentTypes
 					});
 				}
 			}
@@ -134,6 +134,7 @@ ChangeListConfiguration.STATE = {
 	spritemap: Config.stirng().required(),
 
 	tooltip: Config.array()
+	tooltipBody: Config.array()
 };
 
 Soy.register(ChangeListConfiguration, templates);
