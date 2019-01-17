@@ -4,41 +4,22 @@ import {Config} from 'metal-state';
 
 import templates from './ChangeListConfiguration.soy';
 
-// const axios = require('axios');
 /**
- * ChangeListConfiguration
- *
+ * Turns Change Lists on/off
+ * ...
  */
-
 class ChangeListConfiguration extends Component {
 
-	attached() {
-		fetch(
-			this.portalURL + '/o/change-tracking/configurations/' + this.companyId,
-			{
-				credentials: 'include',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				method: 'GET'
-			}
-		)
-			.then(
-				response => response.json()
-			)
-			.then(
-				json => console.log(json)
-			);
-
-		const mockUpData = {
-			'changeTrackingEnabled': false,
-			'tooltip': ['Web Content', 'Documents and Media', 'Forms', 'Blogs', 'Pages'],
-			'userId': 20141
-		};
-
-		this.setState(
-			{
-				tooltip: mockUpData.tooltip
+	created() {
+		this._getDataRequest(
+			this.urlChangeListConfigApi,
+			response => {
+				if (response) {
+					this.setState({
+						changeTrackingEnabled: response.changeTrackingEnabled,
+						tooltip: response.supportedContentTypes
+					});
+				}
 			}
 		);
 	}
@@ -50,38 +31,98 @@ class ChangeListConfiguration extends Component {
 	}
 
 	save(event) {
-		console.log(this.changeTrackingEnabled);
+		event.preventDefault();
+
+		let data = {
+			changeTrackingEnabled: this.changeTrackingEnabled
+		};
+
+		this._putDataRequest(
+			this.urlChangeListConfigApi,
+			data,
+			response => {
+				//TODO open toast success
+				console.log(response);
+			}
+		);
 	}
 
 	saveAndGoToOverview(event) {
-		console.log(this.changeTrackingEnabled);
+		let data = {
+			changeTrackingEnabled: this.changeTrackingEnabled
+		};
+
+		this._putDataRequest(
+			this.urlChangeListConfigApi,
+			data,
+			response => {
+				if (response) {
+					//TODO redirect to overview
+					console.log('Ready to navigate!');
+				}
+			}
+		);
 	}
 
+	_getDataRequest(url, callback) {
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+
+		const request = {
+			credentials: 'include',
+			headers,
+			method: 'GET'
+		};
+
+		fetch(url, request)
+			.then(
+				response => response.json()
+			)
+			.then(
+				response => {
+					callback(response)
+				}
+			)
+			.catch(
+				(err) => {
+					//TODO open toast error
+					console.log(err);
+					throw err;
+				}
+			);
+	}
+	_putDataRequest(url, bodyData, callback) {
+		let body = JSON.stringify(bodyData);
+
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+
+		const request = {
+			body,
+			credentials: 'include',
+			headers,
+			method: 'PUT'
+		};
+
+		fetch(url, request)
+			.then(
+				response => response.json()
+			)
+			.then(
+				response => {
+					callback(response)
+				}
+			)
+			.catch(
+				(err) => {
+					//TODO open toast error
+					console.log(err);
+					throw err;
+				}
+			);
+	}
 }
 
-ChangeListConfiguration.STATE = {
-
-	companyId: {
-		writeOnce: false
-	},
-
-	changeTrackingEnabled: {
-
-		// Called whenever a new value is set. Useful when normalizing your
-		// state data.
-		// setter: 'setIt',
-
-		// Accepts either number or string types. If the validator check fails,
-		// the new value is discarded, and the current value kept.
-		// validator: val => core.isBool(),
-
-		// Initial value
-
-		value: false,
-
-		// You can, instead of the `value` option above, use a function to
-		// return the initial value for the state.
-		// valueFn: val => 0,
 ChangeListConfiguration.STATE = {
 
 	urlChangeListConfigApi: Config.string().required(),
