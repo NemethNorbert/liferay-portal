@@ -122,18 +122,46 @@ class ChangeListConfiguration extends Component {
 			);
 	}
 }
-
+/**
+ * State definition.
+ * @ignore
+ * @static
+ * @type {!Object}
+ */
 ChangeListConfiguration.STATE = {
-
+	/**
+	 * api url
+	 *
+	 * @type {String}
+	 */
 	urlChangeListConfigApi: Config.string().required(),
 
+	/**
+	 * change tracking on/off
+	 *
+	 * @type {Boolean}
+	 */
 	changeTrackingEnabled: Config.bool(),
 
-	portalURL: Config.sting().required(),
+	/**
+	 * PortalURL
+	 *
+	 * @type {String}
+	 */
+	portalURL: Config.string().required(),
 
-	spritemap: Config.stirng().required(),
+	/**
+	 * Path to images.
+	 * 
+	 * @type {String}
+	 */
+	spritemap: Config.string().required(),
 
-	tooltip: Config.array()
+	/**
+	 * Lists of supported content types that are used up in tooltipBody
+	 * 
+	 * @type {List<String>}
+	 */
 	tooltipBody: Config.array()
 };
 
