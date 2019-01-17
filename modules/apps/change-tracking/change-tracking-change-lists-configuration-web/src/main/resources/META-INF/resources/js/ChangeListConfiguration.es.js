@@ -15,10 +15,12 @@ class ChangeListConfiguration extends Component {
 			this.urlChangeListConfigApi,
 			response => {
 				if (response) {
-					this.setState({
-						changeTrackingEnabled: response.changeTrackingEnabled,
-						tooltipBody: response.supportedContentTypes
-					});
+					this.setState(
+						{
+							changeTrackingEnabled: response.changeTrackingEnabled,
+							tooltipBody: response.supportedContentTypes
+						}
+					);
 				}
 			}
 		);
@@ -41,7 +43,7 @@ class ChangeListConfiguration extends Component {
 			this.urlChangeListConfigApi,
 			data,
 			response => {
-				//TODO open toast success
+				// TODO open toast success
 				console.log(response);
 			}
 		);
@@ -57,7 +59,7 @@ class ChangeListConfiguration extends Component {
 			data,
 			response => {
 				if (response) {
-					//TODO redirect to overview
+					// TODO redirect to overview
 					console.log('Ready to navigate!');
 				}
 			}
@@ -80,12 +82,12 @@ class ChangeListConfiguration extends Component {
 			)
 			.then(
 				response => {
-					callback(response)
+					callback(response);
 				}
 			)
 			.catch(
 				(err) => {
-					//TODO open toast error
+					// TODO open toast error
 					console.log(err);
 					throw err;
 				}
@@ -110,12 +112,12 @@ class ChangeListConfiguration extends Component {
 			)
 			.then(
 				response => {
-					callback(response)
+					callback(response);
 				}
 			)
 			.catch(
 				(err) => {
-					//TODO open toast error
+					// TODO open toast error
 					console.log(err);
 					throw err;
 				}
@@ -152,14 +154,14 @@ ChangeListConfiguration.STATE = {
 
 	/**
 	 * Path to images.
-	 * 
+	 *
 	 * @type {String}
 	 */
 	spritemap: Config.string().required(),
 
 	/**
 	 * Lists of supported content types that are used up in tooltip
-	 * 
+	 *
 	 * @type {List<String>}
 	 */
 	tooltipBody: Config.array()
