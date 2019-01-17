@@ -158,7 +158,7 @@ ChangeListConfiguration.STATE = {
 	spritemap: Config.string().required(),
 
 	/**
-	 * Lists of supported content types that are used up in tooltipBody
+	 * Lists of supported content types that are used up in tooltip
 	 * 
 	 * @type {List<String>}
 	 */
