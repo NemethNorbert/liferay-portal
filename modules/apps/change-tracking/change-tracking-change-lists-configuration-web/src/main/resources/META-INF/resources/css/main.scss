@@ -9,10 +9,12 @@
 	font-size: 14px;
 	line-height: 25px;
 	text-align: right;
-
 	color: #272833;
 }
-.changelist-helper:hover .tooltip{
+.changelist-helper .lexicon-icon {
+	margin-right: 0.5rem;
+}
+.changelist-helper:hover .tooltip {
 	opacity: 1
 }
 .tooltip:hover .tooltip{
