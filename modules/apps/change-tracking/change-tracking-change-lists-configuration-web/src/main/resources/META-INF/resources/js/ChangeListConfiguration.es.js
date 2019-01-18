@@ -1,4 +1,4 @@
-import Component from 'metal-component';
+import PortletBase from 'frontend-js-web/liferay/PortletBase.es';
 import Soy from 'metal-soy';
 import {Config} from 'metal-state';
 import {openToast} from 'frontend-js-web/liferay/toast/commands/OpenToast.es';
@@ -9,7 +9,7 @@ import templates from './ChangeListConfiguration.soy';
  * Turns Change Lists on/off
  * ...
  */
-class ChangeListConfiguration extends Component {
+class ChangeListConfiguration extends PortletBase {
 
 	created() {
 		this._getDataRequest(
