@@ -1,6 +1,7 @@
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 import {Config} from 'metal-state';
+import {openToast} from 'frontend-js-web/liferay/toast/commands/OpenToast.es';
 
 import templates from './ChangeListConfiguration.soy';
 
@@ -45,7 +46,15 @@ class ChangeListConfiguration extends Component {
 			data,
 			response => {
 				// TODO open toast success
-				console.log(response);
+				const message = "saved!"
+
+					openToast(
+						{
+							message,
+							title: Liferay.Language.get('success'),
+							type: 'success'
+						}
+					);
 			}
 		);
 	}
@@ -61,7 +70,15 @@ class ChangeListConfiguration extends Component {
 			response => {
 				if (response) {
 					// TODO redirect to overview
-					console.log('Ready to navigate!');
+					const message = "saved and navigate!"
+
+					openToast(
+						{
+							message,
+							title: Liferay.Language.get('success'),
+							type: 'success'
+						}
+					);
 				}
 			}
 		);
@@ -89,8 +106,17 @@ class ChangeListConfiguration extends Component {
 			.catch(
 				(err) => {
 					// TODO open toast error
-					console.log(err);
-					throw err;
+					const message = typeof error === 'string' ?
+						error :
+						Liferay.Language.get('error');
+
+					openToast(
+						{
+							message,
+							title: Liferay.Language.get('error'),
+							type: 'danger'
+						}
+					);
 				}
 			);
 	}
@@ -119,8 +145,17 @@ class ChangeListConfiguration extends Component {
 			.catch(
 				(err) => {
 					// TODO open toast error
-					console.log(err);
-					throw err;
+					const message = typeof error === 'string' ?
+						error :
+						Liferay.Language.get('error');
+
+					openToast(
+						{
+							message,
+							title: Liferay.Language.get('error'),
+							type: 'danger'
+						}
+					);
 				}
 			);
 	}
