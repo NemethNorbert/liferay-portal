@@ -45,18 +45,14 @@
 
 		<div class="form-group">
 			<label class="toggle-switch">
-
-				{if $changeTrackingEnabled}
-					<input class="toggle-switch-check" data-onchange="{$handleCheck}" checked type="checkbox"/>
-				{else}
-					<input class="toggle-switch-check" data-onchange="{$handleCheck}" type="checkbox" />
-				{/if}
-
+				<input class="toggle-switch-check" data-onchange="{$handleCheck}" {if $changeTrackingEnabled}checked{/if} type="checkbox"/>
 				<span aria-hidden="true" class="toggle-switch-bar">
 					<span class="toggle-switch-handle"></span>
 				</span>
 				<span class="toggle-label-text">
-					<span class="custom-control-label-text">Yes</span>
+					<span class="custom-control-label-text">
+						{msg desc=""}Yes{/msg}
+					</span>
 				</span>
 			</label>
 		</div>
@@ -64,11 +60,13 @@
 		<div class="sheet-footer sheet-footer-btn-block-sm-down">
 			<div class="btn-group">
 				<div class="btn-group-item">
-					<button class="btn btn-primary" data-onclick="{$save}" type="button">Save</button>
+					<button class="btn btn-primary" data-onclick="{$save}" type="button">
+						{msg desc=""}Save{/msg}
+					</button>
 				</div>
 
 				<div class="btn-group-item">
-					<button class="btn btn-primary" data-onclick="{$saveAndGoToOverview}" type="button">{$translations['save-and-go-to-overview']}</button>
+					<button class="btn btn-primary" data-onclick="{$saveAndGoToOverview}" {if not $changeTrackingEnabled}disabled{/if} type="button">{$translations['save-and-go-to-overview']}</button>
 				</div>
 			</div>
 		</div>

@@ -46,15 +46,15 @@ class ChangeListConfiguration extends PortletBase {
 			data,
 			response => {
 				// TODO open toast success
-				const message = "saved!"
+				const message = "saved!";
 
-					openToast(
-						{
-							message,
-							title: Liferay.Language.get('success'),
-							type: 'success'
-						}
-					);
+				openToast(
+					{
+						message,
+						title: Liferay.Language.get('success'),
+						type: 'success'
+					}
+				);
 			}
 		);
 	}
@@ -70,7 +70,7 @@ class ChangeListConfiguration extends PortletBase {
 			response => {
 				if (response) {
 					// TODO redirect to overview
-					const message = "saved and navigate!"
+					const message = "saved and navigate!";
 
 					openToast(
 						{
