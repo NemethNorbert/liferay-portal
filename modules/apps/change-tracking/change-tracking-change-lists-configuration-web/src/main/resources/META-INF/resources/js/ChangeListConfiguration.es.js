@@ -18,7 +18,8 @@ class ChangeListConfiguration extends Component {
 					this.setState(
 						{
 							changeTrackingEnabled: response.changeTrackingEnabled,
-							tooltipBody: response.supportedContentTypes
+							tooltipBody: response.supportedContentTypes,
+							initFetch: true
 						}
 					);
 				}
@@ -126,11 +127,17 @@ class ChangeListConfiguration extends Component {
 }
 /**
  * State definition.
- * @ignore
+ *
  * @static
  * @type {!Object}
  */
 ChangeListConfiguration.STATE = {
+	/**
+	 * Initial fetch happend?
+	 *
+	 * @type {Boolean}
+	 */
+	initFetch: Config.bool().value(false),
 	/**
 	 * api url
 	 *
