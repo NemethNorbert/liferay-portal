@@ -13,10 +13,10 @@ class ChangeList extends PortletBase {
 			response => {
 				if (response) {
 					this.changes = {
-                        added: 42,
-                        deleted: 2,
-                        modified: 6
-                    };
+						added: 42,
+						deleted: 2,
+						modified: 6
+					};
 					this.description = response.description;
 					this.initFetch = true;
 					this.headerDropDownMenu = [
@@ -78,21 +78,21 @@ class ChangeList extends PortletBase {
 ChangeList.STATE = {
 
 	/**
-	 * Changes 
+	 * Changes
 	 * @default
 	 * @instance
 	 * @memberOf ChangeList
 	 * @review
 	 * @type {Object}
 	 */
-    changes: Config.shapeOf(
-        {
-            added: Config.number(),
-            deleted: Config.number(),
-            modified: Config.number()
-        }
-    ),
-	
+	changes: Config.shapeOf(
+		{
+			added: Config.number(),
+			deleted: Config.number(),
+			modified: Config.number()
+		}
+	),
+
 	/**
 	 * Card description
 	 * @default
@@ -103,7 +103,7 @@ ChangeList.STATE = {
 	 */
 	description: Config.string(),
 
-	/** 
+	/**
 	 * List of drop down menu items
 	 * @default []
  	 * @instance
@@ -119,7 +119,7 @@ ChangeList.STATE = {
 			}
 		)
 	),
-	
+
 	/**
 	 * Card header title
 	 * @default
