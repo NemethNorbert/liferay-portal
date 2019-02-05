@@ -132,6 +132,30 @@ public class ChangeListsDisplayContext {
 		return _orderByType;
 	}
 
+	public SoyContext getSelectChangeListContext() {
+		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
+
+		soyContext.put(
+			"spritemap",
+			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg");
+
+		soyContext.put(
+			"urlCreateChangeList",
+			StringBundler.concat(
+				_themeDisplay.getPortalURL(),
+				"/o/change-tracking/collections?companyId=",
+				_themeDisplay.getCompanyId(), "&userId=",
+				_themeDisplay.getUserId()));
+		soyContext.put(
+			"urlCollections",
+			StringBundler.concat(
+				_themeDisplay.getPortalURL(),
+				"/o/change-tracking/collections?companyId=",
+				_themeDisplay.getCompanyId()));
+
+		return soyContext;
+	}
+
 	public String getSortingURL() {
 		PortletURL sortingURL = _getPortletURL();
 

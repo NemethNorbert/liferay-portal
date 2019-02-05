@@ -16,4 +16,8 @@
 
 <%@ include file="/init.jsp" %>
 
-<liferay-util:include page="/overview.jsp" servletContext="<%= application %>" />
+<soy:component-renderer
+	context="<%= changeListsDisplayContext.getSelectChangeListContext() %>"
+	module="js/SelectChangeList.es"
+	templateNamespace="com.liferay.change.tracking.change.lists.web.SelectChangeList.render"
+/>

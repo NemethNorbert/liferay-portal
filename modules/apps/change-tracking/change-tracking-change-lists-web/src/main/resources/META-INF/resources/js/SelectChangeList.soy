@@ -1,0 +1,78 @@
+{namespace com.liferay.change.tracking.change.lists.web.SelectChangeList}
+
+/**
+ * Renders the Overview screen
+ */
+{template .render}
+	{@param spritemap: string}
+	{@param urlCreateChangeList: string}
+	{@param urlCollections: string}
+	{@param? _handleCreationButtonClicked: any}
+
+	{call ClayManagementToolbar.render}
+		{param spritemap: $spritemap /}
+		{param _handleCreationButtonClicked: $_handleCreationButtonClicked /}
+		{param filterItems: [
+			[
+				'active': false,
+				'checked': false,
+				'disabled': false,
+				'inputName': '',
+				'inputValue': '',
+				'items': [
+					[
+						'active': false,
+						'checked': false,
+						'disabled': false,
+						'inputName': 'filter-by-group',
+						'inputValue': 'all',
+						'label': 'All',
+						'separator': false,
+						'type': 'radio'
+					],
+					[
+						'active': false,
+						'checked': false,
+						'disabled': false,
+						'inputName': 'filter-by-group',
+						'inputValue': 'active',
+						'label': 'Active',
+						'separator': false,
+						'type': 'radio'
+					]
+				],
+				'label': 'Filter By Status',
+				'separator': false,
+				'type': 'group'
+			]
+		] /}
+		{param showCreationMenu: true /}
+		{param showSearch: true /}
+		{param sortingOrder: 'asc' /}
+		{param sortingURL: '' /}
+		{param viewTypes: [
+			[
+				'active': false,
+				'disabled': false,
+				'href': '#',
+				'icon': 'list',
+				'label': 'List'
+			],
+			[
+				'active': true,
+				'disabled': false,
+				'href': '#',
+				'icon': 'cards2',
+				'label': 'Card'
+			]
+		] /}
+	{/call}
+
+	<div id="modal-block"></div>
+
+	<div class="container-fluid-1280">
+		{$urlCollections}
+
+		{$urlCreateChangeList}
+	</div>
+{/template}
