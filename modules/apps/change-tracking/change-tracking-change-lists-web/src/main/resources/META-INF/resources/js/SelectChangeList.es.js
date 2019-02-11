@@ -1,21 +1,16 @@
-import Soy from 'metal-soy';
-import PortletBase from 'frontend-js-web/liferay/PortletBase.es';
+import './RestManagementToolbar.es';
 import {Config} from 'metal-state';
+import Component from 'metal-component';
 import {openToast} from 'frontend-js-web/liferay/toast/commands/OpenToast.es';
 import {openSimpleInputModal} from 'frontend-js-web/liferay/modal/commands/OpenSimpleInputModal.es';
-import 'clay-management-toolbar';
-import {ClayModal} from 'clay-modal';
-
+import Soy from 'metal-soy';
 import templates from './SelectChangeList.soy';
 
 /**
  * Component for the Overview configuration screen
  * @review
  */
-class SelectChangeList extends PortletBase {
-
-	created() {
-	}
+class SelectChangeList extends Component {
 
 	_handleCreationButtonClicked(event) {
 		openSimpleInputModal(
@@ -31,6 +26,39 @@ class SelectChangeList extends PortletBase {
 		);
 	}
 
+	_handleActionItemClicked(event) {
+		console.log(event);
+	}
+	_handleCreationMenuMoreButtonClicked(event) {
+		console.log(event);
+	}
+	_handleFilterDoneButtonClick(event) {
+		console.log(event);
+	}
+	_handleFilterItemClicked(event) {
+		console.log(event);
+	}
+	_handleFilterLabelCloseClicke(event) {
+		console.log(event);
+	}
+	_handleInfoButtonClicked(event) {
+		console.log(event);
+	}
+	_handleQuickActionClicked(event) {
+		console.log(event);
+	}
+	_handleSearchSearchClick(event) {
+		console.log(event);
+	}
+	_handleSelectPageCheckboxChanged(event) {
+		console.log(event);
+	}
+	_handleSortingButtonClicked(event) {
+		console.log(event);
+	}
+	_handleViewTypeClicked(event) {
+		console.log(event);
+	}
 	_handleSave(event) {
 		console.log('Saved....');
 	}
@@ -38,6 +66,7 @@ class SelectChangeList extends PortletBase {
 	_handleCancel(event) {
 		console.log('Cancelled....');
 	}
+	
 }
 
 /**

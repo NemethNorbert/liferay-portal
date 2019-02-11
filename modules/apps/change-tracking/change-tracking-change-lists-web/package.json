@@ -3,7 +3,8 @@
 		"clay-management-toolbar": "^2.7.0",
 		"clay-modal": "^2.7.0",
 		"metal": "^2.5.18",
-		"metal-component": "^2.16.3",
+		"metal-component": "^2.16.5",
+		"metal-events": "^2.16.5",
 		"metal-soy": "^2.13.2",
 		"metal-state": "^2.13.2"
 	},
@@ -14,7 +15,7 @@
 		"cross-env": "^5.2.0",
 		"liferay-npm-bundler": "^2.5.1",
 		"liferay-npm-bundler-preset-liferay-dev": "^1.1.0",
-		"metal-tools-soy": "^6.0.0",
+		"metal-tools-soy": "^4.0.0",
 		"rimraf": "^2.6.2"
 	},
 	"name": "change-tracking-change-lists-web",
