@@ -26,39 +26,6 @@ class SelectChangeList extends Component {
 		);
 	}
 
-	_handleActionItemClicked(event) {
-		console.log(event);
-	}
-	_handleCreationMenuMoreButtonClicked(event) {
-		console.log(event);
-	}
-	_handleFilterDoneButtonClick(event) {
-		console.log(event);
-	}
-	_handleFilterItemClicked(event) {
-		console.log(event);
-	}
-	_handleFilterLabelCloseClicke(event) {
-		console.log(event);
-	}
-	_handleInfoButtonClicked(event) {
-		console.log(event);
-	}
-	_handleQuickActionClicked(event) {
-		console.log(event);
-	}
-	_handleSearchSearchClick(event) {
-		console.log(event);
-	}
-	_handleSelectPageCheckboxChanged(event) {
-		console.log(event);
-	}
-	_handleSortingButtonClicked(event) {
-		console.log(event);
-	}
-	_handleViewTypeClicked(event) {
-		console.log(event);
-	}
 	_handleSave(event) {
 		console.log('Saved....');
 	}
