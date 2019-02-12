@@ -7,34 +7,38 @@
 	{@param spritemap: string}
 	{@param urlCreateChangeList: string}
 	{@param urlCollections: string}
-	//{@param? _handleActionItemClicked: any}
-    //{@param? _handleCreationButtonClicked: any}
+	{@param? _handleActionItemClicked: any}
+    {@param? _handleCreationButtonClicked: any}
     {@param? _handleCreationMenuMoreButtonClicked: any}
-    // {@param? _handleFilterDoneButtonClick: any}
-    // {@param? _handleFilterItemClicked: any}
-    // {@param? _handleFilterLabelCloseClicked: any}
-    // {@param? _handleInfoButtonClicked: any}
-    // {@param? _handleQuickActionClicked: any}
-    // {@param? _handleSearchSearchClick: any}
-    // {@param? _handleSelectPageCheckboxChanged: any}
-    // {@param? _handleSortingButtonClicked: any}
-    // {@param? _handleViewTypeClicked: any}
+	{@param? _handleFilterDoneButtonClick: any}
+	{@param? _handleFilterItemClicked: any}
+	{@param? _handleFilterLabelCloseClicked: any}
+	{@param? _handleInfoButtonClicked: any}
+	{@param? _handleOnFormSubmit: any}
+	{@param? _handleQuickActionClicked: any}
+	{@param? _handleSearchSearchClick: any}
+	{@param? _handleSelectPageCheckboxChanged: any}
+	{@param? _handleSortingButtonClicked: any}
+	{@param? _handleViewTypeClicked: any}
 
 	<div class="container">
 		{call com.liferay.change.tracking.change.lists.web.RestManagementToolbar.render}
 			{param spritemap: $spritemap /}
-			// {param _handleActionItemClicked: $_handleActionItemClicked /}
-			// {param _handleCreationButtonClicked: $_handleCreationButtonClicked /}
+			{param _handleActionItemClicked: $_handleActionItemClicked /}
+			{param _handleCreationButtonClicked: $_handleCreationButtonClicked /}
 			{param _handleCreationMenuMoreButtonClicked: $_handleCreationMenuMoreButtonClicked /}
-			// {param _handleFilterDoneButtonClick: $_handleFilterDoneButtonClick /}
-			// {param _handleFilterItemClicked: $_handleFilterItemClicked /}
-			// {param _handleFilterLabelCloseClicked: $_handleFilterLabelCloseClicked /}
-			// {param _handleInfoButtonClicked: $_handleInfoButtonClicked /}
-			// {param _handleQuickActionClicked: $_handleQuickActionClicked /}
-			// {param _handleSearchSearchClick: $_handleSearchSearchClick /}
-			// {param _handleSelectPageCheckboxChanged: $_handleSelectPageCheckboxChanged /}
-			// {param _handleSortingButtonClicked: $_handleSortingButtonClicked /}
-			// {param _handleViewTypeClicked: $_handleViewTypeClicked /}
+			{param _handleFilterDoneButtonClick: $_handleFilterDoneButtonClick /}
+			{param _handleFilterItemClicked: $_handleFilterItemClicked /}
+			{param _handleFilterLabelCloseClicked: $_handleFilterLabelCloseClicked /}
+			{param _handleInfoButtonClicked: $_handleInfoButtonClicked /}
+			{param events: [
+				'onFormSubmit': $_handleOnFormSubmit,
+				'sortingButtonClicked': $_handleSortingButtonClicked,
+			] /}
+			{param _handleQuickActionClicked: $_handleQuickActionClicked /}
+			{param _handleSearchSearchClick: $_handleSearchSearchClick /}
+			{param _handleSelectPageCheckboxChanged: $_handleSelectPageCheckboxChanged /}
+			{param _handleViewTypeClicked: $_handleViewTypeClicked /}
 			{param actionItems: [[
 				'disabled': false,
 				'href': '#11',

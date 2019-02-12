@@ -1,4 +1,4 @@
-import './RestManagementToolbar.es';
+import './modules/RestManagementBar/RestManagementToolbar.es';
 import {Config} from 'metal-state';
 import Component from 'metal-component';
 import {openToast} from 'frontend-js-web/liferay/toast/commands/OpenToast.es';
@@ -26,6 +26,54 @@ class SelectChangeList extends Component {
 		);
 	}
 
+	_handleActionItemClicked(event) {
+		console.log('_handleActionItemClicked');
+		console.log(event);
+	}
+	_handleCreationMenuMoreButtonClicked(event) {
+		console.log('_handleCreationMenuMoreButtonClicked');
+		console.log(event);
+	}
+	_handleFilterDoneButtonClick(event) {
+		console.log('_handleFilterDoneButtonClick');
+		console.log(event);
+	}
+	_handleFilterItemClicked(event) {
+		console.log('_handleFilterItemClicked');
+		console.log(event);
+	}
+	_handleFilterLabelCloseClicke(event) {
+		console.log('_handleFilterLabelCloseClicke');
+		console.log(event);
+	}
+	_handleInfoButtonClicked(event) {
+		console.log('_handleInfoButtonClicked');
+		console.log(event);
+	}
+	_handleOnFormSubmit(event) {
+		console.log('_handleOnFormSubmit');
+		console.log(event);
+	}
+	_handleQuickActionClicked(event) {
+		console.log('_handleQuickActionClicked');
+		console.log(event);
+	}
+	_handleSelectPageCheckboxChanged(event) {
+		console.log('_handleSelectPageCheckboxChanged');
+		console.log(event);
+	}
+	_handleSearchSearchClick(event) {
+		console.log('_handleSearchSearchClick')
+		console.log(event);
+	}
+	_handleSortingButtonClicked(event) {
+		console.log('_handleSortingButtonClicked');
+		console.log(event);
+	}
+	_handleViewTypeClicked(event) {
+		this.viewType = event.data.item.label
+		console.log('_handleViewTypeClicked ' + this.viewType);
+	}
 	_handleSave(event) {
 		console.log('Saved....');
 	}
