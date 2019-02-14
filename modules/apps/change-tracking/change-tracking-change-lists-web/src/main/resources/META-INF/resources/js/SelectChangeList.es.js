@@ -1,8 +1,10 @@
 import './modules/RestManagementBar/RestManagementToolbar.es';
 import {Config} from 'metal-state';
+import {orderItemsValidator} from './modules/RestManagementBar/validators.es';
 import Component from 'metal-component';
 import {openToast} from 'frontend-js-web/liferay/toast/commands/OpenToast.es';
 import {openSimpleInputModal} from 'frontend-js-web/liferay/modal/commands/OpenSimpleInputModal.es';
+import {orders, FilterDropDownList} from './MockupData';
 import Soy from 'metal-soy';
 import templates from './SelectChangeList.soy';
 
@@ -12,6 +14,10 @@ import templates from './SelectChangeList.soy';
  */
 class SelectChangeList extends Component {
 
+	created() {
+		this.orders = orders;
+		this.filterDropDownList = FilterDropDownList;
+	}
 	_handleCreationButtonClicked(event) {
 		openSimpleInputModal(
 			{
@@ -40,7 +46,24 @@ class SelectChangeList extends Component {
 	}
 	_handleFilterItemClicked(event) {
 		console.log('_handleFilterItemClicked');
-		console.log(event);
+		const currentFilter = event.data.item.label;
+
+		this.currentFilter = currentFilter;
+		this.filters = this.filters.map(
+			filter => {
+				return Object.assign(
+					{},
+					filter,
+					{
+						checked: filter.label === currentFilter
+					}
+				);
+			}
+		);
+
+		const dropdown = event.target.refs.filtersDropdown.refs.portal.element;
+		const item = dropdown.querySelector(`li[data-value="${currentFilter}"]`);
+		console.log(item);
 	}
 	_handleFilterLabelCloseClicke(event) {
 		console.log('_handleFilterLabelCloseClicke');
@@ -50,9 +73,28 @@ class SelectChangeList extends Component {
 		console.log('_handleInfoButtonClicked');
 		console.log(event);
 	}
+	_handleOnFiltersSubmit(event) {
+		console.log('_handleOnFiltersSubmit');
+		console.log(event);
+	}
 	_handleOnFormSubmit(event) {
 		console.log('_handleOnFormSubmit');
 		console.log(event);
+		let url = event.data.searchActionURL
+		let method = event.data.searchFormMethod.toUpperCase();
+		this.searchValue = event.data.searchValue
+
+		this.totalItems = 5;
+
+		this._fetchDataRequest(url,
+			method,
+			this.searchValue,
+			response => {
+				this.state.searchResults = response.data;
+			})
+	}
+	_handleShowFiltersBar() {
+		this.showRestFiltersBar = !this.showRestFiltersBar;
 	}
 	_handleQuickActionClicked(event) {
 		console.log('_handleQuickActionClicked');
@@ -81,7 +123,39 @@ class SelectChangeList extends Component {
 	_handleCancel(event) {
 		console.log('Cancelled....');
 	}
-	
+
+	_fetchDataRequest(url, method, bodyData, callback) {
+		let body = JSON.stringify(bodyData);
+
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+
+		const request = {
+			body,
+			credentials: 'include',
+			headers,
+			method: method
+		};
+
+		fetch(url, request)
+			.then(response => response.json())
+			.then(response => callback(response))
+			.catch(
+				(error) => {
+					const message = typeof error === 'string' ?
+						error :
+						Liferay.Language.get('an-error-occured-while-saving-configuration');
+
+					openToast(
+						{
+							message,
+							title: Liferay.Language.get('error'),
+							type: 'danger'
+						}
+					);
+				}
+			);
+	}
 }
 
 /**
@@ -96,6 +170,17 @@ SelectChangeList.STATE = {
 
 	urlCollections: Config.string().required(),
 
+	currentFilter: Config.string(),
+
+	orders: orderItemsValidator,
+
+	filterDropDownList: Config.any(),
+
+	searchValue: Config.string(),
+
+	showRestFiltersBar: Config.bool().value(false),
+
+	totalItems: Config.number(),
 	/**
 	 * Path of the available icons.
 	 * @default undefined

@@ -1,4 +1,5 @@
 import './RestResultsBar.es';
+import './RestFiltersBar.es';
 import 'clay-button';
 import 'clay-checkbox';
 import 'clay-icon';
@@ -17,7 +18,7 @@ import Soy from 'metal-soy';
 import {
 	actionItemsValidator,
 	creationMenuItemsValidator,
-	filterItemsValidator,
+	orderItemsValidator,
 	filterLabelsValidator,
 } from './validators.es';
 import templates from './RestManagementToolbar.soy';
@@ -166,7 +167,7 @@ class RestManagementToolbar extends ClayComponent {
 				searchActionURL: searchActionUrl,
 				searchFormMethod: searchFormMethod
 			},
-			name: 'onFormSubmit',
+			name: 'searchSubmit',
 			originalEvent: event,
 		});
 	}
@@ -377,7 +378,7 @@ RestManagementToolbar.STATE = {
 	 * @memberof RestManagementToolbar
 	 * @type {?(array|undefined)}
 	 */
-	filterItems: filterItemsValidator,
+	orderItems: orderItemsValidator,
 
 	/**
 	 * List of filter label items.

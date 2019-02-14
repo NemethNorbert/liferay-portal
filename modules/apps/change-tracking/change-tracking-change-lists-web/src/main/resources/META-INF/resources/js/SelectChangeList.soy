@@ -14,31 +14,46 @@
 	{@param? _handleFilterItemClicked: any}
 	{@param? _handleFilterLabelCloseClicked: any}
 	{@param? _handleInfoButtonClicked: any}
+	{@param? _handleOnFiltersSubmit: any}
 	{@param? _handleOnFormSubmit: any}
+	{@param? _handleShowFiltersBar: any}
 	{@param? _handleQuickActionClicked: any}
 	{@param? _handleSearchSearchClick: any}
 	{@param? _handleSelectPageCheckboxChanged: any}
 	{@param? _handleSortingButtonClicked: any}
 	{@param? _handleViewTypeClicked: any}
+	{@param? totalItems: number}
+	{@param? orders: list<?>}
+	{@param? filterDropDownList: list<?>}
+	{@param? searchResults: any}
+	{@param? searchValue: string}
+	{@param? showRestFiltersBar: bool}
 
 	<div class="container">
 		{call com.liferay.change.tracking.change.lists.web.RestManagementToolbar.render}
 			{param spritemap: $spritemap /}
-			{param _handleActionItemClicked: $_handleActionItemClicked /}
+			//{param _handleActionItemClicked: $_handleActionItemClicked /}
 			{param _handleCreationButtonClicked: $_handleCreationButtonClicked /}
 			{param _handleCreationMenuMoreButtonClicked: $_handleCreationMenuMoreButtonClicked /}
 			{param _handleFilterDoneButtonClick: $_handleFilterDoneButtonClick /}
-			{param _handleFilterItemClicked: $_handleFilterItemClicked /}
-			{param _handleFilterLabelCloseClicked: $_handleFilterLabelCloseClicked /}
+			//{param _handleFilterItemClicked: $_handleFilterItemClicked /}
+			//{param _handleFilterLabelCloseClicked: $_handleFilterLabelCloseClicked /}
 			{param _handleInfoButtonClicked: $_handleInfoButtonClicked /}
 			{param events: [
-				'onFormSubmit': $_handleOnFormSubmit,
+				'actionItemClicked': $_handleActionItemClicked,
+				'filterItemClicked': $_handleFilterItemClicked,
+				'filterLabelCloseClicked': $_handleFilterLabelCloseClicked,
+				'search': $_handleSearchSearchClick,
+				'searchSubmit': $_handleOnFormSubmit,
 				'sortingButtonClicked': $_handleSortingButtonClicked,
+				'viewTypeItemClicked': $_handleViewTypeClicked,
 			] /}
+			{param _handleOnFiltersSubmit: $_handleOnFiltersSubmit /}
 			{param _handleQuickActionClicked: $_handleQuickActionClicked /}
-			{param _handleSearchSearchClick: $_handleSearchSearchClick /}
+			//{param _handleSearchSearchClick: $_handleSearchSearchClick /}
 			{param _handleSelectPageCheckboxChanged: $_handleSelectPageCheckboxChanged /}
-			{param _handleViewTypeClicked: $_handleViewTypeClicked /}
+			//{param _handleViewTypeClicked: $_handleViewTypeClicked /}
+			{param _handleShowFiltersBar: $_handleShowFiltersBar /}
 			{param actionItems: [[
 				'disabled': false,
 				'href': '#11',
@@ -48,47 +63,18 @@
 				'separator': false,
 				'type': 'item'
 			]] /}
-			{param filterItems: [
-				[
-					'active': false,
-					'checked': false,
-					'disabled': false,
-					'inputName': '',
-					'inputValue': '',
-					'items': [
-						[
-							'active': false,
-							'checked': false,
-							'disabled': false,
-							'inputName': 'filter-by-group',
-							'inputValue': 'all',
-							'label': 'All',
-							'separator': false,
-							'type': 'radio'
-						],
-						[
-							'active': false,
-							'checked': false,
-							'disabled': false,
-							'inputName': 'filter-by-group',
-							'inputValue': 'active',
-							'label': 'Active',
-							'separator': false,
-							'type': 'radio'
-						]
-					],
-					'label': 'Filter By Status',
-					'separator': false,
-					'type': 'group'
-				]
-			] /}
+			{param orderItems: $orders/}
+			{param filterDropDownList: $filterDropDownList /}
 			{param searchActionURL: $urlCreateChangeList /}
-			{param searchFormMethod: 'GET' /}
+			{param searchFormMethod: 'POST' /}
 			{param searchFormName: 'mySearchForm' /}
+			{param searchValue: $searchValue /}
 			{param showCreationMenu: true /}
+			{param showRestFiltersBar: $showRestFiltersBar /}
 			{param showSearch: true /}
 			{param sortingOrder: 'asc' /}
 			{param sortingURL: '' /}
+			{param totalItems: $totalItems /}
 			{param viewTypes: [
 				[
 					'active': false,
@@ -113,6 +99,8 @@
 			{$urlCollections}
 
 			{$urlCreateChangeList}
+
+			{$searchResults}
 		</div>
 	</div>
 {/template}

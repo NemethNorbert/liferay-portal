@@ -152,6 +152,10 @@ public class ChangeListsDisplayContext {
 				_themeDisplay.getPortalURL(),
 				"/o/change-tracking/collections?companyId=",
 				_themeDisplay.getCompanyId()));
+		soyContext.put(
+			"filters",
+			getFilterDropdownItems()
+		);
 
 		return soyContext;
 	}

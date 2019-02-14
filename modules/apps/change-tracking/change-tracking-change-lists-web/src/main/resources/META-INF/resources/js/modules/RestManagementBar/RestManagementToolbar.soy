@@ -16,7 +16,9 @@
 	{@param? _handleFilterLabelCloseClicked: any}
 	{@param? _handleInfoButtonClicked: any}
 	{@param? _handleOpenMobileSearchClick: any}
+	{@param? _handleOnFiltersSubmit: any}
 	{@param? _handleOnFormSubmit: any}
+	{@param? _handleShowFiltersBar: any}
 	{@param? _handleQuickActionClicked: any}
 	{@param? _handleSearchSearchClick: any}
 	{@param? _handleSelectPageCheckboxChanged: any}
@@ -66,26 +68,8 @@
 	{@param? customData: ?}
 	{@param? disabled: bool}
 	{@param? elementClasses: string}
-	{@param? filterItems: list<[
-		active: bool,
-		checked: bool,
-		disabled: bool,
-		inputName: string,
-		inputValue: string,
-		items: list<[
-			active: bool,
-			checked: bool,
-			disabled: bool,
-			inputName: string,
-			inputValue: string,
-			label: string,
-			separator: bool,
-			type: string
-		]>,
-		label: string,
-		separator: bool,
-		type: string
-	]>}
+	{@param? orderItems: list<?>}
+	{@param? filterDropDownList: list<?>}
 	{@param? filterLabels: list<[
 		closeable: bool,
 		label: html|string
@@ -103,6 +87,7 @@
 	{@param? showCreationMenu: bool}
 	{@param? showFiltersDoneButton: bool}
 	{@param? showInfoButton: bool}
+	{@param? showRestFiltersBar: bool}
 	{@param? showSearch: bool}
 	{@param? sortingOrder: string}
 	{@param? sortingURL: string}
@@ -152,6 +137,7 @@
 				{param _handleInfoButtonClicked: $_handleInfoButtonClicked /}
 				{param _handleOnFormSubmit: $_handleOnFormSubmit /}
 				{param _handleOpenMobileSearchClick: $_handleOpenMobileSearchClick /}
+				{param _handleShowFiltersBar: $_handleShowFiltersBar /}
 				{param _handleSearchSearchClick: $_handleSearchSearchClick /}
 				{param _handleSelectPageCheckboxChanged: $_handleSelectPageCheckboxChanged /}
 				{param _handleSortingButtonClicked: $_handleSortingButtonClicked /}
@@ -161,7 +147,8 @@
 				{param creationMenu: $creationMenu /}
 				{param customData: $customData /}
 				{param disabled: $disabled /}
-				{param filterItems: $filterItems /}
+				{param filterDropDownList: $filterDropDownList /}
+				{param orderItems: $orderItems /}
 				{param searchActionURL: $searchActionURL /}
 				{param searchFormMethod: $searchFormMethod /}
 				{param searchFormName: $searchFormName /}
@@ -179,6 +166,13 @@
 				{param spritemap: $spritemap /}
 				{param viewTypes: $viewTypes /}
 			{/call}
+			{if $filterDropDownList and $showRestFiltersBar}
+				{call RestFiltersBar.render}
+					{param items: $filterDropDownList /}
+					{param spritemap: $spritemap /}
+					{param _handleOnFiltersSubmit: $_handleOnFiltersSubmit /}
+				{/call}
+			{/if}
 		{/if}
 
 		{let $isResultsBar: isNonnull($totalItems) and ($searchValue or ($filterLabels and length($filterLabels) > 0)) /}
@@ -416,13 +410,14 @@
 	{@param? _handleCreationButtonClicked: any}
 	{@param? _handleCreationMenuItemClicked: any}
 	{@param? _handleCreationMenuMoreButtonClicked: any}
-	{@param? _handleFilterDoneButtonClick: any}
-	{@param? _handleFilterItemClicked: any}
+	//{@param? _handleFilterDoneButtonClick: any}
+	//{@param? _handleFilterItemClicked: any}
 	{@param? _handleInfoButtonClicked: any}
 	{@param? _handleOnFormSubmit: any}
 	{@param? _handleOpenMobileSearchClick: any}
+	{@param? _handleShowFiltersBar: any}
 	{@param? _handleSearchSearchClick: any}
-	{@param? _handleSelectPageCheckboxChanged: any}
+	//{@param? _handleSelectPageCheckboxChanged: any}
 	{@param? _handleSortingButtonClicked: any}
 	{@param? _handleViewTypeClicked: any}
 	{@param? _showSearchMobile: bool}
@@ -458,26 +453,8 @@
 	]}
 	{@param? customData: ?}
 	{@param? disabled: bool}
-	{@param? filterItems: list<[
-		active: bool,
-		checked: bool,
-		disabled: bool,
-		inputName: string,
-		inputValue: string,
-		items: list<[
-			active: bool,
-			checked: bool,
-			disabled: bool,
-			inputName: string,
-			inputValue: string,
-			label: string,
-			separator: bool,
-			type: string
-		]>,
-		label: string,
-		separator: bool,
-		type: string
-	]>}
+	{@param? filterDropDownList: list<?>}
+	{@param? orderItems: list<?>}
 	{@param? searchActionURL: string}
 	{@param? searchFormMethod: string}
 	{@param? searchFormName: string}
@@ -487,7 +464,7 @@
 	{@param? selectable: bool}
 	{@param? showAdvancedSearch: bool}
 	{@param? showCreationMenu: bool}
-	{@param? showFiltersDoneButton: bool}
+	//{@param? showFiltersDoneButton: bool}
 	{@param? showInfoButton: bool}
 	{@param? showSearch: bool}
 	{@param? sortingOrder: string}
@@ -501,47 +478,27 @@
 	]>}
 
 	<nav class="management-bar management-bar-light navbar navbar-expand-md">
-		{let $onlySearch: $showSearch and not $creationMenu and not $selectable and not $filterItems and not $sortingOrder and not $viewTypes /}
+		{let $onlySearch: $showSearch and not $creationMenu and not $selectable and not $filterDropDownList and not $sortingOrder and not $viewTypes /}
 
 		<div class="container-fluid container-fluid-max-xl">
 			<ul class="navbar-nav">
-				{if $selectable}
-					<li class="nav-item">
-						{call ClayCheckbox.render}
-							{param disabled: $disabled /}
-							{param events: ['change': $_handleSelectPageCheckboxChanged] /}
-							{param label kind="text"}
-								{msg desc="Select items checkbox label"}
-									select-items
-								{/msg}
-							{/param}
-
-							{param ref: 'selectPageCheckbox' /}
-							{param showLabel: not $filterItems and not $sortingOrder and not $showSearch /}
-						{/call}
-					</li>
-				{/if}
-
-				{if $filterItems}
+				{if $filterDropDownList}
 					{let $filtersTrigger kind="html"}
-						<span class="navbar-breakpoint-down-d-none">
-							{msg desc="Filters and order dropdown trigger label"}
-								filter-and-order
-							{/msg}
+						<div class="dropdown">
+							<button class="dropdown-toggle btn btn-unstyled">
+								<span class="navbar-breakpoint-down-d-none" onclick="{$_handleShowFiltersBar}">
+									{msg desc="Filters and order dropdown trigger label"}
+										filter
+									{/msg}
 
-							{call ClayIcon.render}
-								{param elementClasses: 'inline-item inline-item-after' /}
-								{param spritemap: $spritemap /}
-								{param symbol: 'caret-bottom' /}
-							{/call}
-						</span>
-
-						<span class="navbar-breakpoint-d-none">
-							{call ClayIcon.render}
-								{param spritemap: $spritemap /}
-								{param symbol: 'filter' /}
-							{/call}
-						</span>
+									{call ClayIcon.render}
+										{param elementClasses: 'inline-item inline-item-after' /}
+										{param spritemap: $spritemap /}
+										{param symbol: 'caret-bottom' /}
+									{/call}
+								</span>
+							</button>
+						</div>
 					{/let}
 
 					<li class="dropdown nav-item">
@@ -551,25 +508,28 @@
 							{/msg}
 						{/let}
 
-						{call ClayDropdownBase.render}
-							{param button: $showFiltersDoneButton ? [
-								'label': $doneString
-							] : null /}
-							{param disabled: $disabled /}
-							{param events: [
-								'buttonClicked': $_handleFilterDoneButtonClick,
-								'itemClicked': $_handleFilterItemClicked,
-							] /}
-							{param items: $filterItems /}
-							{param label: $filtersTrigger /}
-							{param ref: 'filtersDropdown' /}
-							{param spritemap: $spritemap /}
-							{param triggerClasses: 'nav-link' /}
-						{/call}
+						{$filtersTrigger}
 					</li>
 				{/if}
 
 				{if $sortingOrder}
+					{let $orderTrigger kind="html"}
+						<span class="navbar-breakpoint-down-d-none">
+							{msg desc="Order dropdown trigger label"}
+								Order
+							{/msg}
+						</span>
+					{/let}
+					{if $orderItems}
+						<li class="dropdown nav-item">
+							{call ClayDropdown.render}
+								{param contentRenderer: $contentRenderer /}
+								{param items: $orderItems /}
+								{param label: $orderTrigger /}
+								{param spritemap: $spritemap /}
+							{/call}
+						</li>
+					{/if}
 					<li class="nav-item">
 						{let $sortingClasses kind="text"}
 							nav-link nav-link-monospaced
@@ -586,6 +546,7 @@
 								{param events: ['click': $_handleSortingButtonClicked] /}
 								{param href: $sortingURL /}
 								{param icon: 'order-arrow' /}
+								{param label: $orderTrigger /}
 								{param ref: 'sortingButton' /}
 								{param spritemap: $spritemap /}
 								{param title kind="text"}

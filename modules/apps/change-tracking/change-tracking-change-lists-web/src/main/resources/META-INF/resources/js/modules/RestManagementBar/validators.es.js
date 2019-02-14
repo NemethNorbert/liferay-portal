@@ -37,19 +37,28 @@ let filterItemShape = {
 	active: Config.bool().value(false),
 	checked: Config.bool().value(false),
 	disabled: Config.bool().value(false),
-	href: Config.string(),
-	id: Config.string(),
 	inputName: Config.string(),
 	inputValue: Config.string(),
 	label: Config.string().required(),
 	separator: Config.bool().value(false),
-	title: Config.string(),
-	type: Config.oneOf(['checkbox', 'group', 'item', 'radiogroup']),
+	type: Config.oneOf(['checkbox', 'group', 'item', 'radio']),
 };
 
-const filterItemsValidator = Config.arrayOf(Config.shapeOf(filterItemShape));
+let filterShape = {
+	active: Config.bool().value(false),
+	checked: Config.bool().value(false),
+	disabled: Config.bool().value(false),
+    inputName: Config.string(),
+	inputValue: Config.string(),
+    label: Config.string(),
+	separator: Config.bool().value(false),
+	type: Config.oneOf(['checkbox', 'group', 'item', 'radio']),
+}
 
-filterItemShape.items = filterItemsValidator;
+const orderItemsValidator = Config.arrayOf(Config.shapeOf(filterItemShape));
+
+const filtersValidator = Config.arrayOf(Config.shapeOf(filterShape));
+
 
 const filterLabelsValidator = Config.arrayOf(
 	Config.shapeOf({
@@ -62,6 +71,7 @@ const filterLabelsValidator = Config.arrayOf(
 export {
 	actionItemsValidator,
 	creationMenuItemsValidator,
-	filterItemsValidator,
+	orderItemsValidator,
 	filterLabelsValidator,
+	filtersValidator,
 };
