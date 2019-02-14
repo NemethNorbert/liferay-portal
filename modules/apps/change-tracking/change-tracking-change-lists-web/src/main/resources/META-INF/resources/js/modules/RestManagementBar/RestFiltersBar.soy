@@ -9,17 +9,31 @@
 			<ul class="tbar-nav tbar-nav-wrap">
                 {for $index in range(length($items))}
                     {let $item: $items[$index] /}
+                    {let $itemLabel: $items[$index].label /}
                     {if $index == length($items) - 1}
                         <li class="tbar-item tbar-item-expand">
                     {else}
                         <li class="tbar-item">
                     {/if}
+                        {let $filtersTriggerLabel kind="html"}
+                            <div class="dropdown">
+                                <button class="dropdown-toggle btn-secondary">
+
+                                        {$itemLabel}
+
+                                    {call ClayIcon.render}
+                                        {param spritemap: $spritemap /}
+                                        {param symbol: 'caret-double-l' /}
+                                    {/call}
+                                </button>
+                            </div>
+                        {/let}
                         <div class="tbar-section"> 
                             {call ClayDropdownBase.render}
                                 {param items: $item.items /}
                                 {param searchable: $item.searchable /}
-                                {param label: $item.label/}
-                                {param icon: 'caret-double-l' /}
+                                {param label: $filtersTriggerLabel /}
+                                {param triggerTitle: $item.label /}
                                 {param spritemap: $spritemap /}
                             {/call}
                         </div>
