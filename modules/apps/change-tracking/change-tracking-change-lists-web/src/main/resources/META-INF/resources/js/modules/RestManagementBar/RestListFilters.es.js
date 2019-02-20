@@ -1,22 +1,21 @@
 import 'clay-dropdown';
-import './RestListFilters.es';
 import {Config} from 'metal-state';
 import ClayComponent from 'clay-component';
 import Soy from 'metal-soy';
 
-import templates from './RestFiltersBar.soy';
+import templates from './RestListFilters.soy';
 
-class RestFiltersBar extends ClayComponent {
-	_handleItemClick(event) {
-		return !this.emit({
+class RestListFilters extends ClayComponent {
+    _handleFilterItemClick(event) {
+        return !this.emit({
 			data: event.data,
-			name: 'itemClicked',
+			name: 'filterItemClicked',
 			originalEvent: event,
 		});
-	}
+    }
 }
 
-RestFiltersBar.STATE = {
+RestListFilters.STATE = {
     /**
 	 * The path to the SVG spritemap file containing the icons.
 	 * @default undefined
@@ -27,7 +26,7 @@ RestFiltersBar.STATE = {
 	spritemap: Config.string().required(),
 }
 
-Soy.register(RestFiltersBar, templates);
+Soy.register(RestListFilters, templates);
 
-export default RestFiltersBar;
-export {RestFiltersBar};
+export default RestListFilters;
+export {RestListFilters};

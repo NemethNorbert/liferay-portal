@@ -16,7 +16,7 @@ class SelectChangeList extends Component {
 
 	created() {
 		this.orders = orders;
-		this.filterDropDownList = FilterDropDownList;
+		this.filterDropdownList = FilterDropDownList;
 	}
 	_handleCreationButtonClicked(event) {
 		openSimpleInputModal(
@@ -32,51 +32,66 @@ class SelectChangeList extends Component {
 		);
 	}
 
-	_handleActionItemClicked(event) {
-		console.log('_handleActionItemClicked');
-		console.log(event);
-	}
-	_handleCreationMenuMoreButtonClicked(event) {
-		console.log('_handleCreationMenuMoreButtonClicked');
-		console.log(event);
-	}
-	_handleFilterDoneButtonClick(event) {
-		console.log('_handleFilterDoneButtonClick');
-		console.log(event);
-	}
-	_handleFilterItemClicked(event) {
+	// _handleActionItemClicked(event) {
+	// 	console.log('_handleActionItemClicked');
+	// 	console.log(event);
+	// }
+	// _handleCreationMenuMoreButtonClicked(event) {
+	// 	console.log('_handleCreationMenuMoreButtonClicked');
+	// 	console.log(event);
+	// }
+	// _handleFilterDoneButtonClick(event) {
+	// 	console.log('_handleFilterDoneButtonClick');
+	// 	console.log(event);
+	// }
+	_handleFilterListItemClicked(event) {
 		console.log('_handleFilterItemClicked');
 		const currentFilter = event.data.item.label;
 
 		this.currentFilter = currentFilter;
-		this.filters = this.filters.map(
-			filter => {
+		this.filterDropdownList = this.filterDropdownList.map(
+			filterList => {
 				return Object.assign(
 					{},
-					filter,
+					filterList,
 					{
-						checked: filter.label === currentFilter
+						items: filterList.items.map(
+							filter => {
+								if (filter.label === currentFilter) {
+									return Object.assign(
+										{},
+										filter,
+										{
+											checked: !filter.checked
+										}
+									);
+								}
+								else {
+									return Object.assign(
+										{},
+										filter
+									);
+								}
+							}
+						)
 					}
 				);
 			}
 		);
-
-		const dropdown = event.target.refs.filtersDropdown.refs.portal.element;
-		const item = dropdown.querySelector(`li[data-value="${currentFilter}"]`);
-		console.log(item);
+		return false;
 	}
-	_handleFilterLabelCloseClicke(event) {
-		console.log('_handleFilterLabelCloseClicke');
-		console.log(event);
-	}
-	_handleInfoButtonClicked(event) {
-		console.log('_handleInfoButtonClicked');
-		console.log(event);
-	}
-	_handleOnFiltersSubmit(event) {
-		console.log('_handleOnFiltersSubmit');
-		console.log(event);
-	}
+	// _handleFilterLabelCloseClicked(event) {
+	// 	console.log('_handleFilterLabelCloseClicke');
+	// 	console.log(event);
+	// }
+	// _handleInfoButtonClicked(event) {
+	// 	console.log('_handleInfoButtonClicked');
+	// 	console.log(event);
+	// }
+	// _handleOnFiltersSubmit(event) {
+	// 	console.log('_handleOnFiltersSubmit ');
+	// 	console.log(event);
+	// }
 	_handleOnFormSubmit(event) {
 		console.log('_handleOnFormSubmit');
 		console.log(event);
@@ -93,29 +108,46 @@ class SelectChangeList extends Component {
 				this.state.searchResults = response.data;
 			})
 	}
+	_handleOrderItemClicked(event) {
+		console.log('_handleOrderItemClicked');
+		const currentOrder = event.data.item.label;
+
+		this.currentOrder = currentOrder;
+		this.orders = this.orders.map(
+			item => {
+				return Object.assign(
+					{},
+					item,
+					{
+						checked: item.label === currentOrder
+					}
+				);
+			}
+		);
+	}
 	_handleShowFiltersBar() {
 		this.showRestFiltersBar = !this.showRestFiltersBar;
 	}
-	_handleQuickActionClicked(event) {
-		console.log('_handleQuickActionClicked');
-		console.log(event);
-	}
-	_handleSelectPageCheckboxChanged(event) {
-		console.log('_handleSelectPageCheckboxChanged');
-		console.log(event);
-	}
-	_handleSearchSearchClick(event) {
-		console.log('_handleSearchSearchClick')
-		console.log(event);
-	}
-	_handleSortingButtonClicked(event) {
-		console.log('_handleSortingButtonClicked');
-		console.log(event);
-	}
-	_handleViewTypeClicked(event) {
-		this.viewType = event.data.item.label
-		console.log('_handleViewTypeClicked ' + this.viewType);
-	}
+	// _handleQuickActionClicked(event) {
+	// 	console.log('_handleQuickActionClicked');
+	// 	console.log(event);
+	// }
+	// _handleSelectPageCheckboxChanged(event) {
+	// 	console.log('_handleSelectPageCheckboxChanged');
+	// 	console.log(event);
+	// }
+	// _handleSearchSearchClick(event) {
+	// 	console.log('_handleSearchSearchClick')
+	// 	console.log(event);
+	// }
+	// _handleSortingButtonClicked(event) {
+	// 	console.log('_handleSortingButtonClicked');
+	// 	console.log(event);
+	// }
+	// _handleViewTypeClicked(event) {
+	// 	this.viewType = event.data.item.label
+	// 	console.log('_handleViewTypeClicked ' + this.viewType);
+	// }
 	_handleSave(event) {
 		console.log('Saved....');
 	}
@@ -170,11 +202,11 @@ SelectChangeList.STATE = {
 
 	urlCollections: Config.string().required(),
 
-	currentFilter: Config.string(),
+	currentOrder: Config.string(),
 
 	orders: orderItemsValidator,
 
-	filterDropDownList: Config.any(),
+	filterDropdownList: Config.any(),
 
 	searchValue: Config.string(),
 

@@ -11,11 +11,12 @@
     {@param? _handleCreationButtonClicked: any}
     {@param? _handleCreationMenuMoreButtonClicked: any}
 	{@param? _handleFilterDoneButtonClick: any}
-	{@param? _handleFilterItemClicked: any}
+	{@param? _handleFilterListItemClicked: any}
 	{@param? _handleFilterLabelCloseClicked: any}
 	{@param? _handleInfoButtonClicked: any}
 	{@param? _handleOnFiltersSubmit: any}
 	{@param? _handleOnFormSubmit: any}
+	{@param? _handleOrderItemClicked: any}
 	{@param? _handleShowFiltersBar: any}
 	{@param? _handleQuickActionClicked: any}
 	{@param? _handleSearchSearchClick: any}
@@ -24,7 +25,7 @@
 	{@param? _handleViewTypeClicked: any}
 	{@param? totalItems: number}
 	{@param? orders: list<?>}
-	{@param? filterDropDownList: list<?>}
+	{@param? filterDropdownList: list<?>}
 	{@param? searchResults: any}
 	{@param? searchValue: string}
 	{@param? showRestFiltersBar: bool}
@@ -36,19 +37,19 @@
 			{param _handleCreationButtonClicked: $_handleCreationButtonClicked /}
 			{param _handleCreationMenuMoreButtonClicked: $_handleCreationMenuMoreButtonClicked /}
 			{param _handleFilterDoneButtonClick: $_handleFilterDoneButtonClick /}
-			//{param _handleFilterItemClicked: $_handleFilterItemClicked /}
 			//{param _handleFilterLabelCloseClicked: $_handleFilterLabelCloseClicked /}
 			{param _handleInfoButtonClicked: $_handleInfoButtonClicked /}
 			{param events: [
 				'actionItemClicked': $_handleActionItemClicked,
-				'filterItemClicked': $_handleFilterItemClicked,
 				'filterLabelCloseClicked': $_handleFilterLabelCloseClicked,
+				'filterListItemClicked': $_handleFilterListItemClicked,
 				'search': $_handleSearchSearchClick,
 				'searchSubmit': $_handleOnFormSubmit,
 				'sortingButtonClicked': $_handleSortingButtonClicked,
 				'viewTypeItemClicked': $_handleViewTypeClicked,
 			] /}
 			{param _handleOnFiltersSubmit: $_handleOnFiltersSubmit /}
+			{param _handleOrderItemClicked: $_handleOrderItemClicked /}
 			{param _handleQuickActionClicked: $_handleQuickActionClicked /}
 			//{param _handleSearchSearchClick: $_handleSearchSearchClick /}
 			{param _handleSelectPageCheckboxChanged: $_handleSelectPageCheckboxChanged /}
@@ -64,7 +65,7 @@
 				'type': 'item'
 			]] /}
 			{param orderItems: $orders/}
-			{param filterDropDownList: $filterDropDownList /}
+			{param filterDropdownList: $filterDropdownList /}
 			{param searchActionURL: $urlCreateChangeList /}
 			{param searchFormMethod: 'POST' /}
 			{param searchFormName: 'mySearchForm' /}

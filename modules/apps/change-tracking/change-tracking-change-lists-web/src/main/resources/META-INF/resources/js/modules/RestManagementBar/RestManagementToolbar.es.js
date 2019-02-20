@@ -125,7 +125,7 @@ class RestManagementToolbar extends ClayComponent {
 	_handleFilterItemClicked(event) {
 		return !this.emit({
 			data: event.data,
-			name: 'filterItemClicked',
+			name: 'filterListItemClicked',
 			originalEvent: event,
 		});
 	}

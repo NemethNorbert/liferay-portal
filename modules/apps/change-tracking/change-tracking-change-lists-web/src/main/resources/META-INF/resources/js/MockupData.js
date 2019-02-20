@@ -37,20 +37,23 @@ const FilterDropDownList =
         'items': [
             {
                 'active': true,
-                'label': 'Selected Option',
+                'checked': false,
+                'label': 'Selected Option1',
                 'inputValue': '1',
                 'inputName': 'item1checkbox',
                 'type': 'checkbox'
             },
             {
-                'label': 'Normal Option',
+                'checked': false,
+                'label': 'Normal Option1',
                 'inputValue': '2',
                 'inputName': 'item2checkbox',
                 'type': 'checkbox'
             },
             {
+                'checked': false,
                 'disabled': true,
-                'label': 'Disabled Option',
+                'label': 'Disabled Option1',
                 'inputName': 'item3checkbox',
                 'inputValue': '3',
                 'type': 'checkbox'
@@ -64,21 +67,23 @@ const FilterDropDownList =
         'items': [
             {
                 'checked': true,
-                'label': 'Selected Option',
-                'inputValue': '1',
+                'label': 'Selected Option2',
+                'inputValue': '21',
                 'type': 'checkbox',
                 'inputName': 'item1radio',
             },
             {
-                'label': 'Normal Option',
-                'inputValue': '2',
+                'checked': false,
+                'label': 'Normal Option2',
+                'inputValue': '22',
                 'type': 'checkbox',
                 'inputName': 'item2radio',
             },
             {
+                'checked': false,
                 'disabled': true,
-                'label': 'Disabled Option',
-                'inputValue': '3',
+                'label': 'Disabled Option2',
+                'inputValue': '23',
                 'type': 'checkbox',
                 'inputName': 'item3radio',
             }
@@ -91,22 +96,25 @@ const FilterDropDownList =
         'items': [
             {
                 'active': true,
-                'label': 'Selected Option',
-                'inputValue': '1',
+                'checked': false,
+                'label': 'Selected Option3',
+                'inputValue': '31',
                 'inputName': 'item1checkbox',
                 'type': 'checkbox'
             },
             {
-                'label': 'Normal Option',
-                'inputValue': '2',
+                'checked': false,
+                'label': 'Normal Option3',
+                'inputValue': '32',
                 'inputName': 'item2checkbox',
                 'type': 'checkbox'
             },
             {
+                'checked': false,
                 'disabled': true,
-                'label': 'Disabled Option',
+                'label': 'Disabled Option3',
                 'inputName': 'item3checkbox',
-                'inputValue': '3',
+                'inputValue': '33',
                 'type': 'checkbox'
             }
         ],
@@ -118,22 +126,25 @@ const FilterDropDownList =
         'items': [
             {
                 'active': true,
-                'label': 'Selected Option',
-                'inputValue': '1',
+                'checked': false,
+                'label': 'Selected Option4',
+                'inputValue': '41',
                 'inputName': 'item1checkbox',
                 'type': 'checkbox'
             },
             {
-                'label': 'Normal Option',
-                'inputValue': '2',
+                'label': 'Normal Option4',
+                'checked': false,
+                'inputValue': '42',
                 'inputName': 'item2checkbox',
                 'type': 'checkbox'
             },
             {
                 'disabled': true,
-                'label': 'Disabled Option',
+                'checked': false,
+                'label': 'Disabled Option4',
                 'inputName': 'item3checkbox',
-                'inputValue': '3',
+                'inputValue': '43',
                 'type': 'checkbox'
             }
         ],
@@ -145,6 +156,7 @@ const FilterDropDownList =
         'items': [
             {
                 'active': true,
+                'checked': false,
                 'label': 'Selected Option',
                 'inputValue': '1',
                 'inputName': 'item1checkbox',
@@ -152,12 +164,14 @@ const FilterDropDownList =
             },
             {
                 'label': 'Normal Option',
+                'checked': false,
                 'inputValue': '2',
                 'inputName': 'item2checkbox',
                 'type': 'checkbox'
             },
             {
                 'disabled': true,
+                'checked': false,
                 'label': 'Disabled Option',
                 'inputName': 'item3checkbox',
                 'inputValue': '3',

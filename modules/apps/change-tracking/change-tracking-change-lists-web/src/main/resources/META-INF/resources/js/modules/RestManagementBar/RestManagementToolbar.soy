@@ -18,6 +18,7 @@
 	{@param? _handleOpenMobileSearchClick: any}
 	{@param? _handleOnFiltersSubmit: any}
 	{@param? _handleOnFormSubmit: any}
+	{@param? _handleOrderItemClicked: any}
 	{@param? _handleShowFiltersBar: any}
 	{@param? _handleQuickActionClicked: any}
 	{@param? _handleSearchSearchClick: any}
@@ -69,7 +70,7 @@
 	{@param? disabled: bool}
 	{@param? elementClasses: string}
 	{@param? orderItems: list<?>}
-	{@param? filterDropDownList: list<?>}
+	{@param? filterDropdownList: list<?>}
 	{@param? filterLabels: list<[
 		closeable: bool,
 		label: html|string
@@ -133,10 +134,10 @@
 				{param _handleCreationMenuItemClicked: $_handleCreationMenuItemClicked /}
 				{param _handleCreationMenuMoreButtonClicked: $_handleCreationMenuMoreButtonClicked /}
 				{param _handleFilterDoneButtonClick: $_handleFilterDoneButtonClick /}
-				{param _handleFilterItemClicked: $_handleFilterItemClicked /}
 				{param _handleInfoButtonClicked: $_handleInfoButtonClicked /}
 				{param _handleOnFormSubmit: $_handleOnFormSubmit /}
 				{param _handleOpenMobileSearchClick: $_handleOpenMobileSearchClick /}
+				{param _handleOrderItemClicked: $_handleOrderItemClicked /}
 				{param _handleShowFiltersBar: $_handleShowFiltersBar /}
 				{param _handleSearchSearchClick: $_handleSearchSearchClick /}
 				{param _handleSelectPageCheckboxChanged: $_handleSelectPageCheckboxChanged /}
@@ -147,7 +148,7 @@
 				{param creationMenu: $creationMenu /}
 				{param customData: $customData /}
 				{param disabled: $disabled /}
-				{param filterDropDownList: $filterDropDownList /}
+				{param filterDropdownList: $filterDropdownList /}
 				{param orderItems: $orderItems /}
 				{param searchActionURL: $searchActionURL /}
 				{param searchFormMethod: $searchFormMethod /}
@@ -166,11 +167,12 @@
 				{param spritemap: $spritemap /}
 				{param viewTypes: $viewTypes /}
 			{/call}
-			{if $filterDropDownList and $showRestFiltersBar}
+			{if $filterDropdownList and $showRestFiltersBar}
 				{call RestFiltersBar.render}
-					{param items: $filterDropDownList /}
+					{param items: $filterDropdownList /}
 					{param spritemap: $spritemap /}
 					{param _handleOnFiltersSubmit: $_handleOnFiltersSubmit /}
+					{param events: ['itemClicked': $_handleFilterItemClicked ]/}
 				{/call}
 			{/if}
 		{/if}
@@ -411,10 +413,10 @@
 	{@param? _handleCreationMenuItemClicked: any}
 	{@param? _handleCreationMenuMoreButtonClicked: any}
 	//{@param? _handleFilterDoneButtonClick: any}
-	//{@param? _handleFilterItemClicked: any}
 	{@param? _handleInfoButtonClicked: any}
 	{@param? _handleOnFormSubmit: any}
 	{@param? _handleOpenMobileSearchClick: any}
+	{@param? _handleOrderItemClicked: any}
 	{@param? _handleShowFiltersBar: any}
 	{@param? _handleSearchSearchClick: any}
 	//{@param? _handleSelectPageCheckboxChanged: any}
@@ -453,7 +455,7 @@
 	]}
 	{@param? customData: ?}
 	{@param? disabled: bool}
-	{@param? filterDropDownList: list<?>}
+	{@param? filterDropdownList: list<?>}
 	{@param? orderItems: list<?>}
 	{@param? searchActionURL: string}
 	{@param? searchFormMethod: string}
@@ -478,11 +480,11 @@
 	]>}
 
 	<nav class="management-bar management-bar-light navbar navbar-expand-md">
-		{let $onlySearch: $showSearch and not $creationMenu and not $selectable and not $filterDropDownList and not $sortingOrder and not $viewTypes /}
+		{let $onlySearch: $showSearch and not $creationMenu and not $selectable and not $filterDropdownList and not $sortingOrder and not $viewTypes /}
 
 		<div class="container-fluid container-fluid-max-xl">
 			<ul class="navbar-nav">
-				{if $filterDropDownList}
+				{if $filterDropdownList}
 					{let $filtersTrigger kind="html"}
 						<div class="dropdown">
 							<button class="dropdown-toggle btn btn-unstyled">
@@ -527,6 +529,7 @@
 								{param items: $orderItems /}
 								{param label: $orderTrigger /}
 								{param spritemap: $spritemap /}
+								{param _handleItemClick: $_handleOrderItemClicked /}
 							{/call}
 						</li>
 					{/if}
