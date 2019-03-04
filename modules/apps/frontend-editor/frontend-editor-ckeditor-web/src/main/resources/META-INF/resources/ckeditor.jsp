@@ -553,6 +553,7 @@ name = HtmlUtil.escapeJS(name);
 								window['<%= name %>'].onChangeCallback();
 							}
 							catch (e) {
+								console.log('uhh');
 							}
 						},
 						300

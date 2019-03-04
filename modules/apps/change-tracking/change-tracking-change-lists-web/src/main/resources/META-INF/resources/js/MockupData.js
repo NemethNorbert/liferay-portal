@@ -39,14 +39,14 @@ const FilterDropDownList =
                 'active': true,
                 'checked': false,
                 'label': 'Selected Option1',
-                'inputValue': '1',
+                'inputValue': '01',
                 'inputName': 'item1checkbox',
                 'type': 'checkbox'
             },
             {
                 'checked': false,
                 'label': 'Normal Option1',
-                'inputValue': '2',
+                'inputValue': '02',
                 'inputName': 'item2checkbox',
                 'type': 'checkbox'
             },
@@ -55,11 +55,12 @@ const FilterDropDownList =
                 'disabled': true,
                 'label': 'Disabled Option1',
                 'inputName': 'item3checkbox',
-                'inputValue': '3',
+                'inputValue': '03',
                 'type': 'checkbox'
             }
         ],
         'label': 'Collision',
+        'inputName': 'collision',
         'searchable': true,
         'type': 'group'
     },
@@ -88,7 +89,8 @@ const FilterDropDownList =
                 'inputName': 'item3radio',
             }
         ],
-        'label': 'Order by',
+        'label': 'User',
+        'inputName': 'user',
         'searchable': true,
         'type': 'User'
     },
@@ -99,26 +101,27 @@ const FilterDropDownList =
                 'checked': false,
                 'label': 'Selected Option3',
                 'inputValue': '31',
-                'inputName': 'item1checkbox',
+                'inputName': 'item11checkbox',
                 'type': 'checkbox'
             },
             {
                 'checked': false,
                 'label': 'Normal Option3',
                 'inputValue': '32',
-                'inputName': 'item2checkbox',
+                'inputName': 'item22checkbox',
                 'type': 'checkbox'
             },
             {
                 'checked': false,
                 'disabled': true,
                 'label': 'Disabled Option3',
-                'inputName': 'item3checkbox',
+                'inputName': 'item33checkbox',
                 'inputValue': '33',
                 'type': 'checkbox'
             }
         ],
         'label': 'Sites',
+        'inputName': 'site',
         'searchable': true,
         'type': 'group'
     },
@@ -129,26 +132,27 @@ const FilterDropDownList =
                 'checked': false,
                 'label': 'Selected Option4',
                 'inputValue': '41',
-                'inputName': 'item1checkbox',
+                'inputName': 'item1211checkbox',
                 'type': 'checkbox'
             },
             {
                 'label': 'Normal Option4',
                 'checked': false,
                 'inputValue': '42',
-                'inputName': 'item2checkbox',
+                'inputName': 'item2122checkbox',
                 'type': 'checkbox'
             },
             {
                 'disabled': true,
                 'checked': false,
                 'label': 'Disabled Option4',
-                'inputName': 'item3checkbox',
+                'inputName': 'item3133checkbox',
                 'inputValue': '43',
                 'type': 'checkbox'
             }
         ],
         'label': 'Content Type',
+        'inputName': 'contentType',
         'searchable': true,
         'type': 'group'
     },
@@ -159,26 +163,27 @@ const FilterDropDownList =
                 'checked': false,
                 'label': 'Selected Option',
                 'inputValue': '1',
-                'inputName': 'item1checkbox',
+                'inputName': 'item231checkbox',
                 'type': 'checkbox'
             },
             {
                 'label': 'Normal Option',
                 'checked': false,
                 'inputValue': '2',
-                'inputName': 'item2checkbox',
+                'inputName': 'item312checkbox',
                 'type': 'checkbox'
             },
             {
                 'disabled': true,
                 'checked': false,
                 'label': 'Disabled Option',
-                'inputName': 'item3checkbox',
+                'inputName': 'item3222checkbox',
                 'inputValue': '3',
                 'type': 'checkbox'
             }
         ],
         'label': 'Change type',
+        'inputName': 'changeType',
         'searchable': true,
         'type': 'group'
     }

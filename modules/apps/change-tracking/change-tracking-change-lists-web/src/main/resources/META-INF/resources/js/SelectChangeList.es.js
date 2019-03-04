@@ -7,6 +7,7 @@ import {openSimpleInputModal} from 'frontend-js-web/liferay/modal/commands/OpenS
 import {orders, FilterDropDownList} from './MockupData';
 import Soy from 'metal-soy';
 import templates from './SelectChangeList.soy';
+import { array } from 'metal';
 
 /**
  * Component for the Overview configuration screen
@@ -17,6 +18,7 @@ class SelectChangeList extends Component {
 	created() {
 		this.orders = orders;
 		this.filterDropdownList = FilterDropDownList;
+		this.fetchFilterDropdownList = FilterDropDownList;
 	}
 	_handleCreationButtonClicked(event) {
 		openSimpleInputModal(
@@ -32,6 +34,9 @@ class SelectChangeList extends Component {
 		);
 	}
 
+	_testHandler(event) {
+		console.log(event);
+	}
 	// _handleActionItemClicked(event) {
 	// 	console.log('_handleActionItemClicked');
 	// 	console.log(event);
@@ -40,36 +45,32 @@ class SelectChangeList extends Component {
 	// 	console.log('_handleCreationMenuMoreButtonClicked');
 	// 	console.log(event);
 	// }
-	// _handleFilterDoneButtonClick(event) {
-	// 	console.log('_handleFilterDoneButtonClick');
-	// 	console.log(event);
-	// }
 	_handleFilterListItemClicked(event) {
 		console.log('_handleFilterItemClicked');
-		const currentFilter = event.data.item.label;
+		let currentFilter = event.data.item.label;
+		let filterItemInputField = AUI().one('input[name="'+ event.data.item.inputName +'"]')._node;
 
-		this.currentFilter = currentFilter;
-		this.filterDropdownList = this.filterDropdownList.map(
+		this.fetchFilterDropdownList = this.fetchFilterDropdownList.map(
 			filterList => {
 				return Object.assign(
 					{},
 					filterList,
 					{
 						items: filterList.items.map(
-							filter => {
-								if (filter.label === currentFilter) {
+							item => {
+								if (item.label === currentFilter && item.checked != filterItemInputField.checked) {
 									return Object.assign(
 										{},
-										filter,
+										item,
 										{
-											checked: !filter.checked
+											checked: !item.checked
 										}
 									);
 								}
 								else {
 									return Object.assign(
 										{},
-										filter
+										item
 									);
 								}
 							}
@@ -78,7 +79,6 @@ class SelectChangeList extends Component {
 				);
 			}
 		);
-		return false;
 	}
 	// _handleFilterLabelCloseClicked(event) {
 	// 	console.log('_handleFilterLabelCloseClicke');
@@ -88,10 +88,53 @@ class SelectChangeList extends Component {
 	// 	console.log('_handleInfoButtonClicked');
 	// 	console.log(event);
 	// }
-	// _handleOnFiltersSubmit(event) {
-	// 	console.log('_handleOnFiltersSubmit ');
-	// 	console.log(event);
-	// }
+
+	_handleOnFiltersSubmit(event) {
+		let fetchUrl = [];
+		let fetchUrlData = {};
+		let url = "";
+
+		const _returnChecked = (obj) => {
+			return obj.checked === true
+		}
+
+		this.fetchFilterDropdownList.map(
+			filterList => {
+				let filterID = filterList.inputName;
+				fetchUrlData[filterID] = filterList.items.filter(_returnChecked);
+			}
+		);
+
+		for (let key in fetchUrlData) {
+			if (fetchUrlData.hasOwnProperty(key)) {
+				let x = key.toString() + "=";
+				if (fetchUrlData[key].length > 0) {
+					fetchUrl.push(x);
+					
+					fetchUrlData[key].forEach(
+						(item, index) => {
+							let y;
+							if (fetchUrlData[key].length - 1 === index){
+								y = item.inputValue.toString() + "&";
+							}
+							else {
+								y = item.inputValue.toString() + ",";
+							}
+							fetchUrl.push(y);
+						}
+					)
+				}
+			}
+		}
+		url = this.urlCollections + '&' + fetchUrl.join('') + 'sort=' + this.currentOrder + ':' + this.sortingOrder;
+
+		this._getDataRequest(url,
+			response => {
+				this.searchResults = response.data
+			});
+		this.filterDropdownList = this.fetchFilterDropdownList;
+	}
+
 	_handleOnFormSubmit(event) {
 		console.log('_handleOnFormSubmit');
 		console.log(event);
@@ -105,26 +148,28 @@ class SelectChangeList extends Component {
 			method,
 			this.searchValue,
 			response => {
-				this.state.searchResults = response.data;
-			})
+				this.searchResults = response.data;
+			});
 	}
 	_handleOrderItemClicked(event) {
-		console.log('_handleOrderItemClicked');
 		const currentOrder = event.data.item.label;
 
 		this.currentOrder = currentOrder;
+
 		this.orders = this.orders.map(
 			item => {
 				return Object.assign(
 					{},
 					item,
 					{
-						checked: item.label === currentOrder
+						checked: item.label === currentOrder,
+						active: item.label === currentOrder
 					}
 				);
 			}
 		);
 	}
+
 	_handleShowFiltersBar() {
 		this.showRestFiltersBar = !this.showRestFiltersBar;
 	}
@@ -140,10 +185,10 @@ class SelectChangeList extends Component {
 	// 	console.log('_handleSearchSearchClick')
 	// 	console.log(event);
 	// }
-	// _handleSortingButtonClicked(event) {
-	// 	console.log('_handleSortingButtonClicked');
-	// 	console.log(event);
-	// }
+	_handleSortingButtonClicked(event) {
+		console.log('_handleSortingButtonClicked');
+		this.sortingOrder = event.data.sortingOrder
+	}
 	// _handleViewTypeClicked(event) {
 	// 	this.viewType = event.data.item.label
 	// 	console.log('_handleViewTypeClicked ' + this.viewType);
@@ -154,6 +199,36 @@ class SelectChangeList extends Component {
 
 	_handleCancel(event) {
 		console.log('Cancelled....');
+	}
+
+	_getDataRequest(url, callback) {
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+
+		const request = {
+			credentials: 'include',
+			headers,
+			method: 'GET'
+		};
+
+		fetch(url, request)
+			.then(response => response.json())
+			.then(response => callback(response))
+			.catch(
+				(error) => {
+					const message = typeof error === 'string' ?
+						error :
+						Liferay.Language.get('an-error-occured-while-saving-configuration');
+
+					openToast(
+						{
+							message,
+							title: Liferay.Language.get('error'),
+							type: 'danger'
+						}
+					);
+				}
+			);
 	}
 
 	_fetchDataRequest(url, method, bodyData, callback) {
@@ -202,15 +277,19 @@ SelectChangeList.STATE = {
 
 	urlCollections: Config.string().required(),
 
-	currentOrder: Config.string(),
+	currentOrder: Config.string().value('all'),
 
 	orders: orderItemsValidator,
 
 	filterDropdownList: Config.any(),
 
+	fetchFilterDropdownList: Config.any(),
+
 	searchValue: Config.string(),
 
 	showRestFiltersBar: Config.bool().value(false),
+
+	sortingOrder: Config.string().value('asc'),
 
 	totalItems: Config.number(),
 	/**

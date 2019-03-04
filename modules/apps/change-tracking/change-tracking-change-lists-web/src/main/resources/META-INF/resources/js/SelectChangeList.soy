@@ -23,6 +23,7 @@
 	{@param? _handleSelectPageCheckboxChanged: any}
 	{@param? _handleSortingButtonClicked: any}
 	{@param? _handleViewTypeClicked: any}
+	{@param? _testHandler: any}
 	{@param? totalItems: number}
 	{@param? orders: list<?>}
 	{@param? filterDropdownList: list<?>}
@@ -47,13 +48,11 @@
 				'searchSubmit': $_handleOnFormSubmit,
 				'sortingButtonClicked': $_handleSortingButtonClicked,
 				'viewTypeItemClicked': $_handleViewTypeClicked,
+				'onFiltersSubmited': $_handleOnFiltersSubmit,
+				'orderItemClicked': $_handleOrderItemClicked,
 			] /}
-			{param _handleOnFiltersSubmit: $_handleOnFiltersSubmit /}
-			{param _handleOrderItemClicked: $_handleOrderItemClicked /}
 			{param _handleQuickActionClicked: $_handleQuickActionClicked /}
-			//{param _handleSearchSearchClick: $_handleSearchSearchClick /}
 			{param _handleSelectPageCheckboxChanged: $_handleSelectPageCheckboxChanged /}
-			//{param _handleViewTypeClicked: $_handleViewTypeClicked /}
 			{param _handleShowFiltersBar: $_handleShowFiltersBar /}
 			{param actionItems: [[
 				'disabled': false,
@@ -102,6 +101,16 @@
 			{$urlCreateChangeList}
 
 			{$searchResults}
+		</div>
+		<div class="container-fluid-1280">
+			{if $orders}
+				{call ClayDropdown.render}
+					{param items: $orders /}
+					{param label: 'Test' /}
+					{param spritemap: $spritemap /}
+					{param events: ['itemClicked': $_testHandler ] /}
+				{/call}
+			{/if}
 		</div>
 	</div>
 {/template}
