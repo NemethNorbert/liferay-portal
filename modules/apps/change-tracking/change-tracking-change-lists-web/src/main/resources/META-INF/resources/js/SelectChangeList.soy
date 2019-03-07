@@ -1,0 +1,125 @@
+{namespace com.liferay.change.tracking.change.lists.web.SelectChangeList}
+
+/**
+ * Renders the Overview screen
+ */
+{template .render}
+	{@param spritemap: string}
+	{@param? urlCreateChangeList: string}
+	{@param? urlCollections: string}
+	{@param? _handleActionItemClicked: any}
+    {@param? _handleCreationButtonClicked: any}
+    {@param? _handleCreationMenuMoreButtonClicked: any}
+	{@param? _handleFilterDoneButtonClick: any}
+	{@param? _handleFilterListItemClicked: any}
+	{@param? _handleFilterLabelCloseClicked: any}
+	{@param? _handleInfoButtonClicked: any}
+	{@param? _handleOnFiltersSubmit: any}
+	{@param? _handleOnFormSubmit: any}
+	{@param? _handleOrderItemClicked: any}
+	{@param? _handleShowFiltersBar: any}
+	{@param? _handleQuickActionClicked: any}
+	{@param? _handleSearchSearchClick: any}
+	{@param? _handleSelectPageCheckboxChanged: any}
+	{@param? _handleSortingButtonClicked: any}
+	{@param? _handleViewTypeClicked: any}
+	{@param? totalItems: number}
+	{@param? orders: list<?>}
+	{@param? filterDropdownList: list<?>}
+	{@param? searchResults: any}
+	{@param? searchValue: string}
+	{@param? showRestFiltersBar: bool}
+	{@param? cardStateColor: string}
+	{@param? headerSubTitle: any}
+	<div class="overview-card-sheet {$cardStateColor}">
+		<div class="overview-card-container overview-card-header">
+			<div class="row">
+				<div class="col-sm-12">
+					{if $headerSubTitle}
+						<h3 data-qa-id="headerSubTitle">{$headerSubTitle}</h3>
+					{/if}
+				</div>
+			</div>
+		</div>
+		<div class="overview-card-sheet-divider"></div>
+		<div class="overview-card-container overview-card-header">
+			<div class="row">
+				<div class="col-sm-12">
+					{call com.liferay.change.tracking.change.lists.web.RestManagementToolbar.render}
+						{param spritemap: $spritemap /}
+						//{param _handleActionItemClicked: $_handleActionItemClicked /}
+						{param _handleCreationButtonClicked: $_handleCreationButtonClicked /}
+						{param _handleCreationMenuMoreButtonClicked: $_handleCreationMenuMoreButtonClicked /}
+						{param _handleFilterDoneButtonClick: $_handleFilterDoneButtonClick /}
+						//{param _handleFilterLabelCloseClicked: $_handleFilterLabelCloseClicked /}
+						{param _handleInfoButtonClicked: $_handleInfoButtonClicked /}
+						{param events: [
+							'actionItemClicked': $_handleActionItemClicked,
+							'filterLabelCloseClicked': $_handleFilterLabelCloseClicked,
+							'filterListItemClicked': $_handleFilterListItemClicked,
+							'search': $_handleSearchSearchClick,
+							'searchSubmit': $_handleOnFormSubmit,
+							'sortingButtonClicked': $_handleSortingButtonClicked,
+							'viewTypeItemClicked': $_handleViewTypeClicked,
+							'onFiltersSubmited': $_handleOnFiltersSubmit,
+							'orderItemClicked': $_handleOrderItemClicked,
+						] /}
+						{param _handleQuickActionClicked: $_handleQuickActionClicked /}
+						{param _handleSelectPageCheckboxChanged: $_handleSelectPageCheckboxChanged /}
+						{param _handleShowFiltersBar: $_handleShowFiltersBar /}
+						{param actionItems: [[
+							'disabled': false,
+							'href': '#11',
+							'label': 'myActionItem',
+							'icon': '#arrow',
+							'quickAction': true,
+							'separator': false,
+							'type': 'item'
+						]] /}
+						{param orderItems: $orders/}
+						{param filterDropdownList: $filterDropdownList /}
+						{param searchActionURL: $urlCreateChangeList /}
+						{param searchFormMethod: 'POST' /}
+						{param searchFormName: 'mySearchForm' /}
+						{param searchValue: $searchValue /}
+						{param showCreationMenu: true /}
+						{param showRestFiltersBar: $showRestFiltersBar /}
+						{param showSearch: true /}
+						{param sortingOrder: 'asc' /}
+						{param sortingURL: '' /}
+						{param totalItems: $totalItems /}
+						{param viewTypes: [
+							[
+								'active': false,
+								'disabled': false,
+								'href': '#',
+								'icon': 'list',
+								'label': 'List'
+							],
+							[
+								'active': true,
+								'disabled': false,
+								'href': '#',
+								'icon': 'cards2',
+								'label': 'Card'
+							]
+						] /}
+					{/call}
+				</div>
+			</div>
+		</div>
+
+		{if not $searchResults}
+			<div class="overview-card-sheet-divider"></div>
+
+			<h3>{$searchResults}</h3>
+			<h3>{$urlCollections}</h3>
+			<h3>{$urlCreateChangeList}</h3>
+		{else}
+			<div class="sheet-text text-center text-strong empty-production-view">
+				{msg desc=""}no-change-list-has-been-published-yet{/msg}
+			</div>
+		{/if}
+		<div id="modal-block"></div>
+	</div>
+{/template}

@@ -1,0 +1,4 @@
+{
+    “ignore”: “**/__tests__“,
+    "preset": "liferay-npm-bundler-preset-liferay-dev"
+}

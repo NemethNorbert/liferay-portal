@@ -1,0 +1,49 @@
+{namespace RestFiltersBar}
+
+{template .render}
+{@param items: list<?>}
+{@param spritemap: string}
+{@param? _handleOnFiltersSubmit: any}
+{@param? _handleItemClick: any}
+    <nav class="management-bar tbar tbar-inline-xs-down subnav-tbar subnav-tbar-light">
+		<div class="container-fluid container-fluid-max-xl">
+			<ul class="tbar-nav tbar-nav-wrap">
+                {for $index in range(length($items))}
+                    {let $item: $items[$index] /}
+                    {if $index == length($items) - 1}
+                        <li class="tbar-item tbar-item-expand">
+                    {else}
+                        <li class="tbar-item">
+                    {/if}
+                        <div class="tbar-section"> 
+                            {call RestListFilters.render}
+                                {param items: $item.items /}
+                                {param searchable: $item.searchable /}
+                                {param triggerTitle: $item.label/}
+                                {param triggerSize: 'sm' /}
+                                {param spritemap: $spritemap /}
+                                {param events: ['filterItemClicked': $_handleItemClick ]/}
+                            {/call}
+                        </div>
+                    </li>
+                {/for}
+
+                <li class="tbar-item">
+                    <div class="tbar-section"> 
+                        {call ClayButton.render}
+                            {param events: ['click': $_handleOnFiltersSubmit] /}
+                            {param label: 'Apply' /}
+                            {param style: 'primary' /}
+                            {param size: 'sm' /}
+                            {param title kind="text"}
+                                {msg desc=""}
+                                    Apply
+                                {/msg}
+                            {/param}
+                        {/call}
+                    </div> 
+                </li>
+            </ul>
+        </div>
+    </nav>
+{/template}
