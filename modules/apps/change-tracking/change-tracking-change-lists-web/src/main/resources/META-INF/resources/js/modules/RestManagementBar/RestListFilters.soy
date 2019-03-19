@@ -1,0 +1,37 @@
+{namespace RestListFilters}
+
+{template .render}
+    {@param items: list<?>}
+    {@param? numOfChecked: string}
+    {@param? searchable: bool}
+    {@param spritemap: string}
+    {@param? triggerTitle: string}
+    {@param? triggerSize: string}
+    {@param? _handleFilterItemClick: any}
+
+    {let $filterTriggerLabel kind="html"}
+        <button class="dropdown-toggle btn-sm btn-secondary restDropdown">
+
+                {$triggerTitle}
+
+            {call ClaySticker.render}
+                {param elementClasses: 'restSticker' /}
+                {param label: $numOfChecked /}
+                {param shape: 'circle' /}
+                {param style: 'info' /}
+            {/call}
+            {call ClayIcon.render}
+                {param spritemap: $spritemap /}
+                {param symbol: 'caret-double-l' /}
+            {/call}
+        </button>
+    {/let}
+    {call ClayDropdownBase.render}
+        {param items: $items /}
+        {param searchable: $searchable /}
+        {param label: $filterTriggerLabel /}
+        {param triggerSize: $triggerSize /}
+        {param spritemap: $spritemap /}
+        {param events: ['itemClicked': $_handleFilterItemClick ]/}
+    {/call}
+{/template}
