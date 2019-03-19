@@ -1,4 +1,6 @@
+import './ChangeListManagementBar.es';
 import 'clay-icon';
+import {orders, filterDropdownList} from './MockupData.es';
 
 import Soy from 'metal-soy';
 import PortletBase from 'frontend-js-web/liferay/PortletBase.es';
@@ -15,6 +17,10 @@ import templates from './Overview.soy';
 class Overview extends PortletBase {
 
 	created() {
+		this.orders = orders;
+
+		this.filterDropdownList = filterDropdownList;
+
 		this._render();
 
 		this._fetchProductionCollection();
@@ -441,6 +447,9 @@ class Overview extends PortletBase {
  */
 Overview.STATE = {
 
+	oreders: Config.any(),
+
+	filterDropdownList: Config.any(),
 	/**
 	 * Contains the active CT Collection id retrieved from the REST service.
 	 * @default 0

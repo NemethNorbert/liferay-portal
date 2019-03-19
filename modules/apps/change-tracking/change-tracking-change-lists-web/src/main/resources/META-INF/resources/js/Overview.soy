@@ -31,10 +31,12 @@
 		label: string,
 		ctCollectionId: string
 	]>}
+	{@param? filterDropdownList: list<?>}
 	{@param? headerButtonDisabled: bool}
 	{@param? headerTitleActiveChangeList: string}
 	{@param? headerTitleProductionInformation: string}
 	{@param? initialFetch: bool}
+	{@param? orders: list<?>}
 	{@param? productionCTCollectionId: number}
 	{@param? productionFound: bool}
 	{@param? publishedBy: [
@@ -139,10 +141,13 @@
 
 			<div class="row">
 				<div class="col-sm-12">
-					{call .overviewCard}
-						{param cardEmpty: false /}
+					{call com.liferay.change.tracking.change.lists.web.ChangeListManagementBar.render}
+						{param orders: $orders /}
+						{param filterDropdownList: $filterDropdownList /}
+						{param urlCreateChangeList: $urlCollectionsBase /}
+						{param urlCollections: $urlCollectionsBase /}
+						{param searchResults: $changeEntries /}
 						{param cardStateColor: 'border-left-blue' /}
-						{param changeEntries: $changeEntries /}
 						{param headerSubTitle kind="text"}
 							{msg desc=""}latest-changes-in{/msg} {$headerTitleActiveChangeList}
 						{/param}
