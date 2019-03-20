@@ -3,3 +3,21 @@
 @import "change_lists_overview";
 @import "change_lists_overview_card";
 @import "change_lists_select_card";
+
+.rest-management-bar {
+	min-height: 3.125rem;
+    position: relative;
+}
+.rest.nav-item {
+	margin-right: 0.5rem;
+}
+
+.restSticker {
+    background-color: #2E5AAC;
+    color: #FFF;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+	height: 18px;
+    width: 18px;
+    font-size: 10px;
+}
