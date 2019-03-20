@@ -16,7 +16,6 @@ import ClayComponent from 'clay-component';
 import Soy from 'metal-soy';
 
 import {
-	actionItemsValidator,
 	creationMenuItemsValidator,
 	orderItemsValidator,
 	filterLabelsValidator,
@@ -28,20 +27,6 @@ import templates from './RestManagementToolbar.soy';
  * @extends ClayComponent
  */
 class RestManagementToolbar extends ClayComponent {
-	/**
-	 * Continues the propagation of the action item clicked event
-	 * @param {!Event} event
-	 * @private
-	 * @return {Boolean} If the event has been prevented or not.
-	 */
-	_handleActionItemClicked(event) {
-		return !this.emit({
-			data: event.data,
-			name: 'actionItemClicked',
-			originalEvent: event,
-		});
-	}
-
 	/**
 	 * Continues the propagation of the clear button clicked event
 	 * @param {!Event} event
@@ -193,26 +178,6 @@ class RestManagementToolbar extends ClayComponent {
 	}
 
 	/**
-	 * Continues the propagation of the action item clicked event
-	 * @param {!MouseEvent} event
-	 * @private
-	 * @return {Boolean} If the event has been prevented or not.
-	 */
-	_handleQuickActionClicked(event) {
-		let element = event.delegateTarget;
-		let elementIndex = element.getAttribute('data-quick-action-index');
-		let item = this.actionItems[elementIndex];
-
-		return !this.emit({
-			data: {
-				item: item,
-			},
-			name: 'actionItemClicked',
-			originalEvent: event,
-		});
-	}
-
-	/**
 	 * Continues the propagation of the search button clicked event
 	 * @param {!Event} event
 	 * @private
@@ -289,15 +254,6 @@ RestManagementToolbar.STATE = {
 	_showSearchMobile: Config.bool()
 		.internal()
 		.value(false),
-
-	/**
-	 * List of items to display in the actions menu on active state.
-	 * @default []
-	 * @instance
-	 * @memberof RestManagementToolbar
-	 * @type {?(array|undefined)}
-	 */
-	actionItems: actionItemsValidator,
 
 	/**
 	 * Url for clear results link.
@@ -474,15 +430,6 @@ RestManagementToolbar.STATE = {
 	 * @type {?(bool|undefined)}
 	 */
 	selectable: Config.bool().value(false),
-
-	/**
-	 * Number of selected items.
-	 * @default undefined
-	 * @instance
-	 * @memberof RestManagementToolbar
-	 * @type {?(number|undefined)}
-	 */
-	selectedItems: Config.number(),
 
 	/**
 	 * Flag to indicate if advanced search should be shown or not.

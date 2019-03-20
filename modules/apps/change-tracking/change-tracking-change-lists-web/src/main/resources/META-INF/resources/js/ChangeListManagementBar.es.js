@@ -8,6 +8,8 @@ import Component from 'metal-component';
 import {openToast} from 'frontend-js-web/liferay/toast/commands/OpenToast.es';
 import Soy from 'metal-soy';
 
+//TODO update url, finish pagination, add pagination data to url
+
 /**
  * Component for the Overview configuration screen
  * @review
@@ -18,13 +20,14 @@ class ChangeListManagementBar extends Component {
 		this.searchValue='';
 	}
 	_handleFilterListItemClicked(event) {
-		console.log('_handleFilterItemClicked');
 		let currentFilter = event.data.item.label;
+		//workaround for the double event issue -> Clay#1618
 		let filterItemInputField = AUI().one('input[name="'+ event.data.item.inputName +'"]')._node;
 
 		if (!this.fetchFilterDropdownList) {
 			this.fetchFilterDropdownList = this.filterDropdownList;
 		}
+
 		this.fetchFilterDropdownList = this.fetchFilterDropdownList.map(
 			filterList => {
 				return Object.assign(
@@ -55,6 +58,7 @@ class ChangeListManagementBar extends Component {
 			}
 		);
 	}
+
 	_handleOnFiltersSubmit(event) {
 		let fetchUrl = [];
 		let fetchUrlData = {};
@@ -73,31 +77,33 @@ class ChangeListManagementBar extends Component {
 
 		for (let key in fetchUrlData) {
 			if (fetchUrlData.hasOwnProperty(key)) {
-				let x = key.toString() + "=";
+				let dataKey = key.toString() + "=";
 				if (fetchUrlData[key].length > 0) {
-					fetchUrl.push(x);
+					fetchUrl.push(dataKey);
 					
 					fetchUrlData[key].forEach(
 						(item, index) => {
-							let y;
+							let dataValue;
 							if (fetchUrlData[key].length - 1 === index){
-								y = item.inputValue.toString() + "&";
+								dataValue = item.inputValue.toString() + "&";
 							}
 							else {
-								y = item.inputValue.toString() + ",";
+								dataValue = item.inputValue.toString() + ",";
 							}
-							fetchUrl.push(y);
+							fetchUrl.push(dataValue);
 						}
 					)
 				}
 			}
 		}
+
 		this.checkedFilters = fetchUrl;
 
 		url = this.urlCollections + '&' + fetchUrl.join('') + 'sort=' + this.currentOrder + ':' + this.sortingOrder;
 
 		this._getDataRequest(url,
 			response => {
+				// Todo pass down pagination data as well
 				this.searchResults = response.data
 			});
 
@@ -105,8 +111,7 @@ class ChangeListManagementBar extends Component {
 	}
 
 	_handleOnFormSubmit(event) {
-		console.log('_handleOnFormSubmit');
-		console.log(event);
+		// TODO put searchValue to url instead of request body
 		let url = event.data.searchActionURL
 		let method = event.data.searchFormMethod.toUpperCase();
 		this.searchValue = event.data.searchValue
@@ -117,6 +122,7 @@ class ChangeListManagementBar extends Component {
 			method,
 			this.searchValue,
 			response => {
+				// Todo pass down pagination data as well
 				this.searchResults = response.data;
 			});
 	}
@@ -140,8 +146,6 @@ class ChangeListManagementBar extends Component {
 		);
 		let url = this.urlCollections + '&' + this.checkedFilters.join('') + 'sort=' + this.currentOrder + ':' + this.sortingOrder;
 
-		console.log(url);
-
 		this._getDataRequest(url,
 			response => {
 				this.searchResults = response.data
@@ -162,20 +166,10 @@ class ChangeListManagementBar extends Component {
 
 		let url = this.urlCollections + '&' + this.checkedFilters.join('') + 'sort=' + this.currentOrder + ':' + this.sortingOrder;
 
-		console.log(url);
-
 		this._getDataRequest(url,
 			response => {
 				this.searchResults = response.data
 			});
-	}
-
-	_handleSave(event) {
-		console.log('Saved....');
-	}
-
-	_handleCancel(event) {
-		console.log('Cancelled....');
 	}
 
 	_getDataRequest(url, callback) {

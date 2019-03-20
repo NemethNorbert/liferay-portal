@@ -5,7 +5,6 @@
  */
 {template .render}
 	{@param spritemap: string}
-	{@param? _handleActionItemClicked: any}
 	{@param? _handleClearResultsClick: any}
 	{@param? _handleCloseMobileSearchClick: any}
 	{@param? _handleCreationButtonClicked: any}
@@ -20,21 +19,11 @@
 	{@param? _handleOnFormSubmit: any}
 	{@param? _handleOrderItemClicked: any}
 	{@param? _handleShowFiltersBar: any}
-	{@param? _handleQuickActionClicked: any}
 	{@param? _handleSearchSearchClick: any}
 	{@param? _handleSelectPageCheckboxChanged: any}
 	{@param? _handleSortingButtonClicked: any}
 	{@param? _handleViewTypeClicked: any}
 	{@param? _showSearchMobile: bool}
-	{@param? actionItems: list<[
-		disabled: bool,
-		href: string,
-		icon: string,
-		label: string,
-		quickAction: bool,
-		separator: bool,
-		type: string
-	]>}
 	{@param? clearResultsURL: string}
 	{@param? contentRenderer: string}
 	{@param? creationMenu: [
@@ -83,7 +72,6 @@
 	{@param? searchInputPlaceholder: string}
 	{@param? searchValue: string}
 	{@param? selectable: bool}
-	{@param? selectedItems: number}
 	{@param? showAdvancedSearch: bool}
 	{@param? showCreationMenu: bool}
 	{@param? showFiltersDoneButton: bool}
@@ -110,24 +98,9 @@
 			id="{$id}"
 		{/if}
 	{/let}
-
-	{let $isActive: $selectedItems and $selectedItems > 0 /}
-	<div id="WTF">
+	<div id="change-list-management-toolbar">
 		<div class="mbar-card-sheet-divider"></div>
 		<div {$attributes}>
-			{if $isActive}
-				{call .active}
-					{param _handleActionItemClicked: $_handleActionItemClicked /}
-					{param _handleInfoButtonClicked: $_handleInfoButtonClicked /}
-					{param _handleQuickActionClicked: $_handleQuickActionClicked /}
-					{param _handleSelectPageCheckboxChanged: $_handleSelectPageCheckboxChanged /}
-					{param actionItems: $actionItems ?: [] /}
-					{param selectedItems: $selectedItems /}
-					{param showInfoButton: $showInfoButton /}
-					{param spritemap: $spritemap /}
-					{param totalItems: $totalItems /}
-				{/call}
-			{else}
 				{call .default}
 					{param _handleClearResultsClick: $_handleClearResultsClick /}
 					{param _handleCloseMobileSearchClick: $_handleCloseMobileSearchClick /}
@@ -168,7 +141,6 @@
 					{param spritemap: $spritemap /}
 					{param viewTypes: $viewTypes /}
 				{/call}
-			{/if}
 		</div>
 		{if $filterDropdownList and $showRestFiltersBar}
 			<div class="card-sheet-divider"></div>
@@ -195,118 +167,6 @@
 			{/call}
 		{/if}
 	</div>
-{/template}
-
-/**
- * This renders the component's active content.
- */
-{template .active}
-	{@param actionItems: list<?>}
-	{@param spritemap: string}
-	{@param? _handleActionItemClicked: any}
-	{@param? _handleInfoButtonClicked: any}
-	{@param? _handleQuickActionClicked: any}
-	{@param? _handleSelectPageCheckboxChanged: any}
-	{@param? selectedItems: number}
-	{@param? showInfoButton: bool}
-	{@param? totalItems: number}
-
-	<nav class="rest-management-bar management-bar-primary navbar navbar-expand-md navbar-nowrap">
-		<div class="container-fluid container-fluid-max-xl">
-			<ul class="navbar-nav navbar-nav-expand">
-				<li class="nav-item">
-					{call ClayCheckbox.render}
-						{param checked: true /}
-						{param events: ['change': $_handleSelectPageCheckboxChanged] /}
-						{param indeterminate: $selectedItems < $totalItems /}
-						{param label kind="text"}
-							{msg desc="Select items checkbox label"}
-								select-items
-							{/msg}
-						{/param}
-
-						{param ref: 'selectPageCheckbox' /}
-						{param showLabel: false /}
-					{/call}
-				</li>
-				<li class="nav-item">
-					<span class="navbar-text">
-						{msg desc="Says how many items of the total are selected"}
-							{$selectedItems}-of-{$totalItems}
-						{/msg}
-						{sp}
-						<span class="navbar-breakpoint-down-d-none">
-							{msg desc="Items selected"}
-								items-selected
-							{/msg}
-						</span>
-					</span>
-				</li>
-			</ul>
-
-			{let $hasActionItems: length($actionItems) > 0 /}
-
-			{if $hasActionItems or $showInfoButton}
-				<ul class="navbar-nav">
-					{if $showInfoButton}
-						<li class="nav-item">
-							{call ClayButton.render}
-								{param elementClasses: 'nav-link nav-link-monospaced' /}
-								{param events: ['click': $_handleInfoButtonClicked] /}
-								{param icon: 'info-circle-open' /}
-								{param ref: 'infoButton' /}
-								{param spritemap: $spritemap /}
-								{param style: 'unstyled' /}
-								{param title kind="text"}
-									{msg desc=""}
-										info
-									{/msg}
-								{/param}
-							{/call}
-						</li>
-					{/if}
-
-					{if $hasActionItems}
-						{foreach $item in $actionItems}
-							{if $item.quickAction and $item.icon and $spritemap}
-								<li class="nav-item navbar-breakpoint-down-d-none" data-quick-action-index="{index($item)}" data-onclick="{$_handleQuickActionClicked}">
-									{if isNonnull($item.href) and (not isNonnull($item.disabled) or $item.disabled == false)}
-										{call ClayLink.render}
-											{param elementClasses: 'nav-link nav-link-monospaced' /}
-											{param href: $item.href /}
-											{param icon: $item.icon /}
-											{param ref: 'quickAction' + index($item) /}
-											{param spritemap: $spritemap /}
-											{param title: $item.label /}
-										{/call}
-									{else}
-										{call ClayButton.render}
-											{param disabled: $item.disabled /}
-											{param elementClasses: 'nav-link nav-link-monospaced' /}
-											{param icon: $item.icon /}
-											{param ref: 'quickAction' + index($item) /}
-											{param spritemap: $spritemap /}
-											{param style: 'unstyled' /}
-											{param title: $item.label /}
-										{/call}
-									{/if}
-								</li>
-							{/if}
-						{/foreach}
-
-						<li class="nav-item">
-							{call ClayActionsDropdown.render}
-								{param events: ['itemClicked': $_handleActionItemClicked] /}
-								{param items: $actionItems /}
-								{param spritemap: $spritemap /}
-								{param triggerClasses: 'nav-link nav-link-monospaced' /}
-							{/call}
-						</li>
-					{/if}
-				</ul>
-			{/if}
-		</div>
-	</nav>
 {/template}
 
 /**

@@ -5,7 +5,7 @@ import Soy from 'metal-soy';
 import templates from './PaginationBar.soy';
 
 /**
- * Metal RestFilterLabel component.
+ * Metal PaginationBar component.
  * @extends ClayComponent
  */
 class PaginationBar extends ClayComponent {
