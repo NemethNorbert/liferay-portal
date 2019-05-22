@@ -64,6 +64,7 @@ import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.servlet.MultiSessionMessages;
+import com.liferay.portal.kernel.servlet.ServletResponseConstants;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.PortletDisplay;
@@ -759,6 +760,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 				 e instanceof FileSizeException ||
 				 e instanceof LiferayFileItemException ||
 				 e instanceof NoSuchFolderException ||
+				 e instanceof RuntimeException ||
 				 e instanceof SourceFileNameException ||
 				 e instanceof StorageFieldRequiredException ||
 				 e instanceof UploadRequestSizeException) {
@@ -790,6 +792,24 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 				JSONObject jsonObject =
 					_multipleUploadResponseHandler.onFailure(
 						actionRequest, (PortalException)e);
+
+				JSONPortletResponseUtil.writeJSON(
+					actionRequest, actionResponse, jsonObject);
+			}
+
+			if (e instanceof RuntimeException) {
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)actionRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+
+				JSONObject jsonObject = JSONUtil.put(
+					"status", ServletResponseConstants.SC_FILE_CUSTOM_EXCEPTION
+				).put(
+					"message",
+					themeDisplay.translate(
+						"an-unexpected-error-occurred-while-saving-your-" +
+							"document")
+				);
 
 				JSONPortletResponseUtil.writeJSON(
 					actionRequest, actionResponse, jsonObject);
