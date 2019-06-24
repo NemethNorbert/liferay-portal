@@ -230,6 +230,13 @@ $productMenuWidth: 320px;
 					margin-bottom: 16px;
 				}
 
+				.form-control:disabled {
+					background-color: #F1F2F5;
+					border-color: #F1F2F5;
+					color: #A7A9BC;
+					cursor: not-allowed;
+				}
+			
 				.expiration-date,
 				.review-date {
 					.form-group-autofit {
