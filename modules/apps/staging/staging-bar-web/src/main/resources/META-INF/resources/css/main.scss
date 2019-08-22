@@ -113,9 +113,17 @@
 	color: #2e5aac;
 }
 
-.staging-ready {
-	padding-top: 69px;
+@media only screen and (max-width: 1179px) {
+	.staging-ready {
+		padding-top: 110px;
+	}
 }
+@media only screen and (min-width: 1180px) {
+	.staging-ready {
+		padding-top: 69px;
+	}
+}
+
 .staging-ready-level-3 {
 	padding-top: 126px;
 }
