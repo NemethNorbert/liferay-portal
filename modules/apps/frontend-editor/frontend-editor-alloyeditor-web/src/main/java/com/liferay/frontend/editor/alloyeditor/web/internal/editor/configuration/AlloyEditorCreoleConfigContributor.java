@@ -96,7 +96,8 @@ public class AlloyEditorCreoleConfigContributor
 
 		String extraPlugins = jsonObject.getString("extraPlugins");
 
-		extraPlugins = extraPlugins.concat(",creole,itemselector,media");
+		extraPlugins = 
+			extraPlugins.concat(",creole,itemselector,media,googledocs");
 
 		jsonObject.put(
 			"extraPlugins", extraPlugins
@@ -197,7 +198,8 @@ public class AlloyEditorCreoleConfigContributor
 		);
 
 		return JSONUtil.put(
-			"buttons", JSONUtil.putAll("image", buttonJSONObject, "hline")
+			"buttons",
+			JSONUtil.putAll("image", buttonJSONObject, "hline", "googleDocs")
 		).put(
 			"tabIndex", 2
 		);

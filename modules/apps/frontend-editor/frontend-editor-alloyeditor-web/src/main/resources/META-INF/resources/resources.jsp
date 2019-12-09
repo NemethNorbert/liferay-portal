@@ -30,6 +30,23 @@ String editorName = (String)request.getAttribute(AlloyEditorConstants.ATTRIBUTE_
 	%>
 
 	<script data-senna-track="temporary" type="text/javascript">
+		<%
+		DLGoogleDriveCompanyConfiguration dlGoogleDriveCompanyConfiguration =
+			ConfigurationProviderUtil.getCompanyConfiguration(
+				DLGoogleDriveCompanyConfiguration.class,
+					company.getCompanyId());
+
+		String googleAppsAPIKey = dlGoogleDriveCompanyConfiguration.pickerAPIKey();
+		String googleClientId = dlGoogleDriveCompanyConfiguration.clientId();
+		%>
+
+		Liferay.googleConfiguration = {
+			API_KEY: '<%= googleAppsAPIKey %>',
+			CLIENT_ID: '<%= googleClientId %>'
+		};
+	</script>
+
+	<script data-senna-track="temporary" type="text/javascript">
 		window.ALLOYEDITOR_BASEPATH =
 			'<%= PortalUtil.getPathProxy() + application.getContextPath() %>/alloyeditor/';
 	</script>

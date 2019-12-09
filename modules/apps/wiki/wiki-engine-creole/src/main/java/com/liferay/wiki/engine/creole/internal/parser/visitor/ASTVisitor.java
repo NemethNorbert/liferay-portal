@@ -34,6 +34,7 @@ import com.liferay.wiki.engine.creole.internal.parser.ast.UnformattedTextNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.UnorderedListItemNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.UnorderedListNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.WikiPageNode;
+import com.liferay.wiki.engine.creole.internal.parser.ast.extension.IFrameNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.extension.TableOfContentsNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.link.LinkNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.link.interwiki.C2InterwikiLinkNode;
@@ -84,6 +85,8 @@ public interface ASTVisitor {
 	public void visit(HeadingNode headingNode);
 
 	public void visit(HorizontalNode horizontalNode);
+
+	public void visit(IFrameNode iFrameNode);
 
 	public void visit(ImageNode imageNode);
 

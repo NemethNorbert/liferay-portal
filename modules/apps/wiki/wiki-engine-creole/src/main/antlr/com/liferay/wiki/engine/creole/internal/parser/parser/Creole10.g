@@ -66,6 +66,7 @@ import com.liferay.wiki.engine.creole.internal.parser.ast.UnformattedTextNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.UnorderedListItemNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.UnorderedListNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.WikiPageNode;
+import com.liferay.wiki.engine.creole.internal.parser.ast.extension.IFrameNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.extension.TableOfContentsNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.link.LinkNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.link.interwiki.C2InterwikiLinkNode;
@@ -264,6 +265,7 @@ text_first_inlineelement  returns [ASTNode element = null]
 		l=link {$element = $l.link;}
 	|	i = image {$element = $i.image;}
 	|	e= extension {$element = $e.node;}
+	|	ifr = iframe {$element = $ifr.iframe;}
 	;
 text_first_unformattedelement returns [ASTNode item = null]
 	:	tfu = text_first_unformatted {$item = new UnformattedTextNode($tfu.items);}
@@ -286,6 +288,7 @@ text_first_unformmatted_text returns [StringBundler text = new StringBundler()]
 			|	IMAGE_OPEN
 			|	NOWIKI_OPEN
 			|	EXTENSION
+			|	IFRAME
 			|	FORCED_LINEBREAK
 			|	ESCAPE
 			|	NEWLINE
@@ -310,6 +313,7 @@ text_unformated_text returns [StringBundler text = new StringBundler()]
 			|	IMAGE_OPEN
 			|	NOWIKI_OPEN
 			|	EXTENSION
+			|	IFRAME
 			|	FORCED_LINEBREAK
 			|	ESCAPE
 			|	NEWLINE
@@ -779,6 +783,7 @@ table_unformatted_text returns [StringBundler text = new StringBundler()]
 			|	IMAGE_OPEN
 			|	NOWIKI_OPEN
 			|	EXTENSION
+			|	IFRAME
 			|	FORCED_LINEBREAK
 			|	ESCAPE
 			|	NEWLINE
@@ -1026,6 +1031,14 @@ extension_statement
 	:	(~( EXTENSION  |  ESCAPE  |  EOF ) | escaped )*
 	;
 
+/////////////////////////////  IFRAME EXTENSION  /////////////////////////////
+
+iframe returns [IFrameNode iframe = new IFrameNode()]
+	:	iframe_markup src = iframe_src {$iframe.setLink($src.link.toString());}  iframe_markup
+	;
+iframe_src returns [StringBundler link = new StringBundler()]
+	:	( c = ~( IFRAME | NEWLINE | EOF ) {$link.append($c.text); } )+
+	;
 
 /////////////////////////////  TABLE OF CONTENTS EXTENSION  /////////////////////////////
 
@@ -1135,6 +1148,9 @@ image_alternative_markup
 extension_markup
 	:	EXTENSION
 	;
+iframe_markup
+	:	IFRAME
+	;
 forced_linebreak
 	:	FORCED_LINEBREAK
 	;
@@ -1174,6 +1190,7 @@ DASH					: '-';
 STAR					: '*';
 SLASH					: '/';
 EXTENSION				: '@@';
+IFRAME					: '$$';
 DOUBLE_LESS_THAN		: '<<';
 
 INSIGNIFICANT_CHAR		: .;

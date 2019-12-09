@@ -65,10 +65,10 @@ public class AlloyEditorConfigContributor
 		String extraPlugins = jsonObject.getString("extraPlugins");
 
 		if (Validator.isNotNull(extraPlugins)) {
-			extraPlugins += ",itemselector,media,embedurl";
+			extraPlugins += ",itemselector,media,embedurl,googledocs";
 		}
 		else {
-			extraPlugins = "itemselector,media,embedurl";
+			extraPlugins = "itemselector,media,embedurl,googledocs";
 		}
 
 		jsonObject.put(
@@ -175,7 +175,8 @@ public class AlloyEditorConfigContributor
 
 	protected JSONObject getToolbarsAddJSONObject() {
 		return JSONUtil.put(
-			"buttons", toJSONArray("['image', 'embedVideo', 'table', 'hline']")
+			"buttons", toJSONArray("['image', 'embedVideo', " +
+				"'table', 'hline', 'googleDocs']")
 		).put(
 			"tabIndex", 2
 		);
@@ -199,7 +200,7 @@ public class AlloyEditorConfigContributor
 
 	protected JSONObject getToolbarsStylesSelectionsEmbedURLJSONObject() {
 		return JSONUtil.put(
-			"buttons", toJSONArray("['imageLeft', 'imageCenter', 'imageRight']")
+			"buttons", toJSONArray("['imageLeft', 'imageCenter', 'imageRight', 'googleDocs']")
 		).put(
 			"name", "embedurl"
 		).put(
@@ -266,7 +267,7 @@ public class AlloyEditorConfigContributor
 			"buttons",
 			JSONUtil.putAll(
 				getStyleFormatsJSONObject(locale), "bold", "italic",
-				"underline", "ol", "ul", "linkBrowse")
+				"underline", "ol", "ul", "linkBrowse", "googleDocs")
 		).put(
 			"name", "text"
 		).put(

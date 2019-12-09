@@ -301,6 +301,8 @@
 					instance._handleEm(element, listTagsIn, listTagsOut);
 				} else if (tagName == 'img') {
 					instance._handleImage(element, listTagsIn, listTagsOut);
+				} else if (tagName == 'iframe') {
+					instance._handleIFrame(element, listTagsIn, listTagsOut);
 				} else if (tagName == TAG_UNORDERED_LIST) {
 					instance._handleUnorderedList(
 						element,
@@ -372,6 +374,18 @@
 			}
 
 			listTagsIn.push('----', NEW_LINE);
+		},
+
+		_handleIFrame(element, listTagsIn, listTagsOut) {
+			var attrSrc = element.getAttribute('src');
+
+			if (!REGEX_URL_PREFIX.test(attrSrc)) {
+				attrSrc = decodeURIComponent(attrSrc);
+			}
+
+			listTagsIn.push('$$', attrSrc);
+
+			listTagsOut.push('$$');
 		},
 
 		_handleImage(element, listTagsIn, listTagsOut) {

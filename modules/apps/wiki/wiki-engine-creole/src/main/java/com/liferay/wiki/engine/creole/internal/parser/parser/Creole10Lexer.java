@@ -1,4 +1,4 @@
-// $ANTLR 3.0 Creole10.g 2018-06-07 14:26:04
+// $ANTLR 3.0 Creole10.g 2018-10-29 15:15:59
 
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
@@ -23,14 +23,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Creole10Lexer extends Lexer {
+    public static final int T83=83;
     public static final int T82=82;
     public static final int NEWLINE=15;
     public static final int T81=81;
     public static final int T80=80;
     public static final int EXTENSION=24;
-    public static final int NOWIKI_BLOCK_CLOSE=27;
-    public static final int COLON_SLASH=38;
-    public static final int DOUBLE_LESS_THAN=41;
+    public static final int NOWIKI_BLOCK_CLOSE=28;
+    public static final int COLON_SLASH=39;
+    public static final int DOUBLE_LESS_THAN=42;
     public static final int T79=79;
     public static final int T78=78;
     public static final int T77=77;
@@ -39,15 +40,15 @@ public class Creole10Lexer extends Lexer {
     public static final int T74=74;
     public static final int T73=73;
     public static final int T72=72;
-    public static final int SPACE=35;
+    public static final int SPACE=36;
     public static final int T71=71;
     public static final int T70=70;
-    public static final int NOWIKI_CLOSE=28;
+    public static final int NOWIKI_CLOSE=29;
     public static final int FORCED_END_OF_LINE=4;
     public static final int HORIZONTAL_SECTION=6;
     public static final int TEXT_NODE=11;
     public static final int T69=69;
-    public static final int LF=34;
+    public static final int LF=35;
     public static final int T68=68;
     public static final int POUND=16;
     public static final int T67=67;
@@ -59,18 +60,18 @@ public class Creole10Lexer extends Lexer {
     public static final int T62=62;
     public static final int T61=61;
     public static final int T60=60;
-    public static final int INSIGNIFICANT_CHAR=42;
+    public static final int INSIGNIFICANT_CHAR=43;
     public static final int SCAPE_NODE=10;
     public static final int WIKI=14;
     public static final int NOWIKI_SECTION=9;
     public static final int PIPE=19;
-    public static final int SLASH=40;
+    public static final int SLASH=41;
     public static final int T59=59;
     public static final int T58=58;
     public static final int T57=57;
     public static final int T56=56;
     public static final int T55=55;
-    public static final int FORCED_LINEBREAK=25;
+    public static final int FORCED_LINEBREAK=26;
     public static final int T54=54;
     public static final int T53=53;
     public static final int EQUAL=18;
@@ -80,28 +81,28 @@ public class Creole10Lexer extends Lexer {
     public static final int LIST_ITEM_PART=8;
     public static final int LINK_OPEN=21;
     public static final int STAR=17;
-    public static final int ESCAPE=26;
+    public static final int ESCAPE=27;
     public static final int T49=49;
     public static final int T48=48;
     public static final int NOWIKI_OPEN=23;
     public static final int T47=47;
     public static final int T46=46;
     public static final int T45=45;
-    public static final int ESCAPED_BRACKET=39;
+    public static final int ESCAPED_BRACKET=40;
     public static final int EOF=-1;
     public static final int T44=44;
-    public static final int T43=43;
     public static final int HEADING_SECTION=5;
-    public static final int BLANKS=31;
-    public static final int TABULATOR=36;
+    public static final int BLANKS=32;
+    public static final int TABULATOR=37;
     public static final int UNFORMATTED_TEXT=13;
-    public static final int CR=33;
-    public static final int IMAGE_CLOSE=30;
-    public static final int BRACE_CLOSE=37;
-    public static final int Tokens=83;
+    public static final int CR=34;
+    public static final int IFRAME=25;
+    public static final int IMAGE_CLOSE=31;
+    public static final int BRACE_CLOSE=38;
+    public static final int Tokens=84;
     public static final int LIST_ITEM=7;
-    public static final int LINK_CLOSE=29;
-    public static final int DASH=32;
+    public static final int LINK_CLOSE=30;
+    public static final int DASH=33;
     public static final int UNORDERED_LIST=12;
     public static final int IMAGE_OPEN=22;
     public Creole10Lexer() {;} 
@@ -110,32 +111,14 @@ public class Creole10Lexer extends Lexer {
     }
     public String getGrammarFileName() { return "Creole10.g"; }
 
-    // $ANTLR start T43
-    public final void mT43() throws RecognitionException {
-        try {
-            int _type = T43;
-            // Creole10.g:24:7: ( ':' )
-            // Creole10.g:24:7: ':'
-            {
-            match(':'); 
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T43
-
     // $ANTLR start T44
     public final void mT44() throws RecognitionException {
         try {
             int _type = T44;
-            // Creole10.g:25:7: ( 'C' )
-            // Creole10.g:25:7: 'C'
+            // Creole10.g:24:7: ( ':' )
+            // Creole10.g:24:7: ':'
             {
-            match('C'); 
+            match(':'); 
 
             }
 
@@ -150,10 +133,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT45() throws RecognitionException {
         try {
             int _type = T45;
-            // Creole10.g:26:7: ( '2' )
-            // Creole10.g:26:7: '2'
+            // Creole10.g:25:7: ( 'C' )
+            // Creole10.g:25:7: 'C'
             {
-            match('2'); 
+            match('C'); 
 
             }
 
@@ -168,10 +151,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT46() throws RecognitionException {
         try {
             int _type = T46;
-            // Creole10.g:27:7: ( 'D' )
-            // Creole10.g:27:7: 'D'
+            // Creole10.g:26:7: ( '2' )
+            // Creole10.g:26:7: '2'
             {
-            match('D'); 
+            match('2'); 
 
             }
 
@@ -186,10 +169,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT47() throws RecognitionException {
         try {
             int _type = T47;
-            // Creole10.g:28:7: ( 'o' )
-            // Creole10.g:28:7: 'o'
+            // Creole10.g:27:7: ( 'D' )
+            // Creole10.g:27:7: 'D'
             {
-            match('o'); 
+            match('D'); 
 
             }
 
@@ -204,10 +187,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT48() throws RecognitionException {
         try {
             int _type = T48;
-            // Creole10.g:29:7: ( 'k' )
-            // Creole10.g:29:7: 'k'
+            // Creole10.g:28:7: ( 'o' )
+            // Creole10.g:28:7: 'o'
             {
-            match('k'); 
+            match('o'); 
 
             }
 
@@ -222,10 +205,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT49() throws RecognitionException {
         try {
             int _type = T49;
-            // Creole10.g:30:7: ( 'u' )
-            // Creole10.g:30:7: 'u'
+            // Creole10.g:29:7: ( 'k' )
+            // Creole10.g:29:7: 'k'
             {
-            match('u'); 
+            match('k'); 
 
             }
 
@@ -240,10 +223,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT50() throws RecognitionException {
         try {
             int _type = T50;
-            // Creole10.g:31:7: ( 'W' )
-            // Creole10.g:31:7: 'W'
+            // Creole10.g:30:7: ( 'u' )
+            // Creole10.g:30:7: 'u'
             {
-            match('W'); 
+            match('u'); 
 
             }
 
@@ -258,10 +241,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT51() throws RecognitionException {
         try {
             int _type = T51;
-            // Creole10.g:32:7: ( 'i' )
-            // Creole10.g:32:7: 'i'
+            // Creole10.g:31:7: ( 'W' )
+            // Creole10.g:31:7: 'W'
             {
-            match('i'); 
+            match('W'); 
 
             }
 
@@ -276,10 +259,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT52() throws RecognitionException {
         try {
             int _type = T52;
-            // Creole10.g:33:7: ( 'F' )
-            // Creole10.g:33:7: 'F'
+            // Creole10.g:32:7: ( 'i' )
+            // Creole10.g:32:7: 'i'
             {
-            match('F'); 
+            match('i'); 
 
             }
 
@@ -294,10 +277,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT53() throws RecognitionException {
         try {
             int _type = T53;
-            // Creole10.g:34:7: ( 'l' )
-            // Creole10.g:34:7: 'l'
+            // Creole10.g:33:7: ( 'F' )
+            // Creole10.g:33:7: 'F'
             {
-            match('l'); 
+            match('F'); 
 
             }
 
@@ -312,10 +295,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT54() throws RecognitionException {
         try {
             int _type = T54;
-            // Creole10.g:35:7: ( 'c' )
-            // Creole10.g:35:7: 'c'
+            // Creole10.g:34:7: ( 'l' )
+            // Creole10.g:34:7: 'l'
             {
-            match('c'); 
+            match('l'); 
 
             }
 
@@ -330,10 +313,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT55() throws RecognitionException {
         try {
             int _type = T55;
-            // Creole10.g:36:7: ( 'r' )
-            // Creole10.g:36:7: 'r'
+            // Creole10.g:35:7: ( 'c' )
+            // Creole10.g:35:7: 'c'
             {
-            match('r'); 
+            match('c'); 
 
             }
 
@@ -348,10 +331,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT56() throws RecognitionException {
         try {
             int _type = T56;
-            // Creole10.g:37:7: ( 'G' )
-            // Creole10.g:37:7: 'G'
+            // Creole10.g:36:7: ( 'r' )
+            // Creole10.g:36:7: 'r'
             {
-            match('G'); 
+            match('r'); 
 
             }
 
@@ -366,10 +349,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT57() throws RecognitionException {
         try {
             int _type = T57;
-            // Creole10.g:38:7: ( 'g' )
-            // Creole10.g:38:7: 'g'
+            // Creole10.g:37:7: ( 'G' )
+            // Creole10.g:37:7: 'G'
             {
-            match('g'); 
+            match('G'); 
 
             }
 
@@ -384,10 +367,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT58() throws RecognitionException {
         try {
             int _type = T58;
-            // Creole10.g:39:7: ( 'e' )
-            // Creole10.g:39:7: 'e'
+            // Creole10.g:38:7: ( 'g' )
+            // Creole10.g:38:7: 'g'
             {
-            match('e'); 
+            match('g'); 
 
             }
 
@@ -402,10 +385,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT59() throws RecognitionException {
         try {
             int _type = T59;
-            // Creole10.g:40:7: ( 'J' )
-            // Creole10.g:40:7: 'J'
+            // Creole10.g:39:7: ( 'e' )
+            // Creole10.g:39:7: 'e'
             {
-            match('J'); 
+            match('e'); 
 
             }
 
@@ -420,10 +403,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT60() throws RecognitionException {
         try {
             int _type = T60;
-            // Creole10.g:41:7: ( 'S' )
-            // Creole10.g:41:7: 'S'
+            // Creole10.g:40:7: ( 'J' )
+            // Creole10.g:40:7: 'J'
             {
-            match('S'); 
+            match('J'); 
 
             }
 
@@ -438,10 +421,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT61() throws RecognitionException {
         try {
             int _type = T61;
-            // Creole10.g:42:7: ( 'P' )
-            // Creole10.g:42:7: 'P'
+            // Creole10.g:41:7: ( 'S' )
+            // Creole10.g:41:7: 'S'
             {
-            match('P'); 
+            match('S'); 
 
             }
 
@@ -456,10 +439,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT62() throws RecognitionException {
         try {
             int _type = T62;
-            // Creole10.g:43:7: ( 'M' )
-            // Creole10.g:43:7: 'M'
+            // Creole10.g:42:7: ( 'P' )
+            // Creole10.g:42:7: 'P'
             {
-            match('M'); 
+            match('P'); 
 
             }
 
@@ -474,10 +457,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT63() throws RecognitionException {
         try {
             int _type = T63;
-            // Creole10.g:44:7: ( 'a' )
-            // Creole10.g:44:7: 'a'
+            // Creole10.g:43:7: ( 'M' )
+            // Creole10.g:43:7: 'M'
             {
-            match('a'); 
+            match('M'); 
 
             }
 
@@ -492,10 +475,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT64() throws RecognitionException {
         try {
             int _type = T64;
-            // Creole10.g:45:7: ( 't' )
-            // Creole10.g:45:7: 't'
+            // Creole10.g:44:7: ( 'a' )
+            // Creole10.g:44:7: 'a'
             {
-            match('t'); 
+            match('a'); 
 
             }
 
@@ -510,10 +493,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT65() throws RecognitionException {
         try {
             int _type = T65;
-            // Creole10.g:46:7: ( 'b' )
-            // Creole10.g:46:7: 'b'
+            // Creole10.g:45:7: ( 't' )
+            // Creole10.g:45:7: 't'
             {
-            match('b'); 
+            match('t'); 
 
             }
 
@@ -528,10 +511,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT66() throws RecognitionException {
         try {
             int _type = T66;
-            // Creole10.g:47:7: ( 'd' )
-            // Creole10.g:47:7: 'd'
+            // Creole10.g:46:7: ( 'b' )
+            // Creole10.g:46:7: 'b'
             {
-            match('d'); 
+            match('b'); 
 
             }
 
@@ -546,10 +529,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT67() throws RecognitionException {
         try {
             int _type = T67;
-            // Creole10.g:48:7: ( 'n' )
-            // Creole10.g:48:7: 'n'
+            // Creole10.g:47:7: ( 'd' )
+            // Creole10.g:47:7: 'd'
             {
-            match('n'); 
+            match('d'); 
 
             }
 
@@ -564,10 +547,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT68() throws RecognitionException {
         try {
             int _type = T68;
-            // Creole10.g:49:7: ( 'O' )
-            // Creole10.g:49:7: 'O'
+            // Creole10.g:48:7: ( 'n' )
+            // Creole10.g:48:7: 'n'
             {
-            match('O'); 
+            match('n'); 
 
             }
 
@@ -582,10 +565,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT69() throws RecognitionException {
         try {
             int _type = T69;
-            // Creole10.g:50:7: ( 'm' )
-            // Creole10.g:50:7: 'm'
+            // Creole10.g:49:7: ( 'O' )
+            // Creole10.g:49:7: 'O'
             {
-            match('m'); 
+            match('O'); 
 
             }
 
@@ -600,10 +583,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT70() throws RecognitionException {
         try {
             int _type = T70;
-            // Creole10.g:51:7: ( 's' )
-            // Creole10.g:51:7: 's'
+            // Creole10.g:50:7: ( 'm' )
+            // Creole10.g:50:7: 'm'
             {
-            match('s'); 
+            match('m'); 
 
             }
 
@@ -618,10 +601,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT71() throws RecognitionException {
         try {
             int _type = T71;
-            // Creole10.g:52:7: ( 'h' )
-            // Creole10.g:52:7: 'h'
+            // Creole10.g:51:7: ( 's' )
+            // Creole10.g:51:7: 's'
             {
-            match('h'); 
+            match('s'); 
 
             }
 
@@ -636,10 +619,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT72() throws RecognitionException {
         try {
             int _type = T72;
-            // Creole10.g:53:7: ( 'p' )
-            // Creole10.g:53:7: 'p'
+            // Creole10.g:52:7: ( 'h' )
+            // Creole10.g:52:7: 'h'
             {
-            match('p'); 
+            match('h'); 
 
             }
 
@@ -654,10 +637,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT73() throws RecognitionException {
         try {
             int _type = T73;
-            // Creole10.g:54:7: ( 'R' )
-            // Creole10.g:54:7: 'R'
+            // Creole10.g:53:7: ( 'p' )
+            // Creole10.g:53:7: 'p'
             {
-            match('R'); 
+            match('p'); 
 
             }
 
@@ -672,10 +655,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT74() throws RecognitionException {
         try {
             int _type = T74;
-            // Creole10.g:55:7: ( 'x' )
-            // Creole10.g:55:7: 'x'
+            // Creole10.g:54:7: ( 'R' )
+            // Creole10.g:54:7: 'R'
             {
-            match('x'); 
+            match('R'); 
 
             }
 
@@ -690,10 +673,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT75() throws RecognitionException {
         try {
             int _type = T75;
-            // Creole10.g:56:7: ( 'T' )
-            // Creole10.g:56:7: 'T'
+            // Creole10.g:55:7: ( 'x' )
+            // Creole10.g:55:7: 'x'
             {
-            match('T'); 
+            match('x'); 
 
             }
 
@@ -708,10 +691,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT76() throws RecognitionException {
         try {
             int _type = T76;
-            // Creole10.g:57:7: ( 'y' )
-            // Creole10.g:57:7: 'y'
+            // Creole10.g:56:7: ( 'T' )
+            // Creole10.g:56:7: 'T'
             {
-            match('y'); 
+            match('T'); 
 
             }
 
@@ -726,10 +709,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT77() throws RecognitionException {
         try {
             int _type = T77;
-            // Creole10.g:58:7: ( 'U' )
-            // Creole10.g:58:7: 'U'
+            // Creole10.g:57:7: ( 'y' )
+            // Creole10.g:57:7: 'y'
             {
-            match('U'); 
+            match('y'); 
 
             }
 
@@ -744,10 +727,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT78() throws RecognitionException {
         try {
             int _type = T78;
-            // Creole10.g:59:7: ( 'X' )
-            // Creole10.g:59:7: 'X'
+            // Creole10.g:58:7: ( 'U' )
+            // Creole10.g:58:7: 'U'
             {
-            match('X'); 
+            match('U'); 
 
             }
 
@@ -762,11 +745,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT79() throws RecognitionException {
         try {
             int _type = T79;
-            // Creole10.g:60:7: ( '<<TableOfContents>>' )
-            // Creole10.g:60:7: '<<TableOfContents>>'
+            // Creole10.g:59:7: ( 'X' )
+            // Creole10.g:59:7: 'X'
             {
-            match("<<TableOfContents>>"); 
-
+            match('X'); 
 
             }
 
@@ -781,10 +763,10 @@ public class Creole10Lexer extends Lexer {
     public final void mT80() throws RecognitionException {
         try {
             int _type = T80;
-            // Creole10.g:61:7: ( '<<TableOfContents title=' )
-            // Creole10.g:61:7: '<<TableOfContents title='
+            // Creole10.g:60:7: ( '<<TableOfContents>>' )
+            // Creole10.g:60:7: '<<TableOfContents>>'
             {
-            match("<<TableOfContents title="); 
+            match("<<TableOfContents>>"); 
 
 
             }
@@ -800,10 +782,11 @@ public class Creole10Lexer extends Lexer {
     public final void mT81() throws RecognitionException {
         try {
             int _type = T81;
-            // Creole10.g:62:7: ( '\\\"' )
-            // Creole10.g:62:7: '\\\"'
+            // Creole10.g:61:7: ( '<<TableOfContents title=' )
+            // Creole10.g:61:7: '<<TableOfContents title='
             {
-            match('\"'); 
+            match("<<TableOfContents title="); 
+
 
             }
 
@@ -818,6 +801,24 @@ public class Creole10Lexer extends Lexer {
     public final void mT82() throws RecognitionException {
         try {
             int _type = T82;
+            // Creole10.g:62:7: ( '\\\"' )
+            // Creole10.g:62:7: '\\\"'
+            {
+            match('\"'); 
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T82
+
+    // $ANTLR start T83
+    public final void mT83() throws RecognitionException {
+        try {
+            int _type = T83;
             // Creole10.g:63:7: ( '>>' )
             // Creole10.g:63:7: '>>'
             {
@@ -831,14 +832,14 @@ public class Creole10Lexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end T82
+    // $ANTLR end T83
 
     // $ANTLR start ESCAPE
     public final void mESCAPE() throws RecognitionException {
         try {
             int _type = ESCAPE;
-            // Creole10.g:1148:14: ( '~' )
-            // Creole10.g:1148:14: '~'
+            // Creole10.g:1164:14: ( '~' )
+            // Creole10.g:1164:14: '~'
             {
             match('~'); 
 
@@ -855,8 +856,8 @@ public class Creole10Lexer extends Lexer {
     public final void mNOWIKI_BLOCK_CLOSE() throws RecognitionException {
         try {
             int _type = NOWIKI_BLOCK_CLOSE;
-            // Creole10.g:1149:23: ( NEWLINE '}}}' )
-            // Creole10.g:1149:23: NEWLINE '}}}'
+            // Creole10.g:1165:23: ( NEWLINE '}}}' )
+            // Creole10.g:1165:23: NEWLINE '}}}'
             {
             mNEWLINE(); 
             match("}}}"); 
@@ -875,7 +876,7 @@ public class Creole10Lexer extends Lexer {
     public final void mNEWLINE() throws RecognitionException {
         try {
             int _type = NEWLINE;
-            // Creole10.g:1150:15: ( ( CR )? LF | CR )
+            // Creole10.g:1166:15: ( ( CR )? LF | CR )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -893,15 +894,15 @@ public class Creole10Lexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1150:1: NEWLINE : ( ( CR )? LF | CR );", 2, 0, input);
+                    new NoViableAltException("1166:1: NEWLINE : ( ( CR )? LF | CR );", 2, 0, input);
 
                 throw nvae;
             }
             switch (alt2) {
                 case 1 :
-                    // Creole10.g:1150:15: ( CR )? LF
+                    // Creole10.g:1166:15: ( CR )? LF
                     {
-                    // Creole10.g:1150:15: ( CR )?
+                    // Creole10.g:1166:15: ( CR )?
                     int alt1=2;
                     int LA1_0 = input.LA(1);
 
@@ -910,7 +911,7 @@ public class Creole10Lexer extends Lexer {
                     }
                     switch (alt1) {
                         case 1 :
-                            // Creole10.g:1150:17: CR
+                            // Creole10.g:1166:17: CR
                             {
                             mCR(); 
 
@@ -924,7 +925,7 @@ public class Creole10Lexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Creole10.g:1151:9: CR
+                    // Creole10.g:1167:9: CR
                     {
                     mCR(); 
 
@@ -942,8 +943,8 @@ public class Creole10Lexer extends Lexer {
     // $ANTLR start CR
     public final void mCR() throws RecognitionException {
         try {
-            // Creole10.g:1152:18: ( '\\r' )
-            // Creole10.g:1152:18: '\\r'
+            // Creole10.g:1168:18: ( '\\r' )
+            // Creole10.g:1168:18: '\\r'
             {
             match('\r'); 
 
@@ -958,8 +959,8 @@ public class Creole10Lexer extends Lexer {
     // $ANTLR start LF
     public final void mLF() throws RecognitionException {
         try {
-            // Creole10.g:1153:18: ( '\\n' )
-            // Creole10.g:1153:18: '\\n'
+            // Creole10.g:1169:18: ( '\\n' )
+            // Creole10.g:1169:18: '\\n'
             {
             match('\n'); 
 
@@ -975,10 +976,10 @@ public class Creole10Lexer extends Lexer {
     public final void mBLANKS() throws RecognitionException {
         try {
             int _type = BLANKS;
-            // Creole10.g:1155:14: ( ( SPACE | TABULATOR )+ )
-            // Creole10.g:1155:14: ( SPACE | TABULATOR )+
+            // Creole10.g:1171:14: ( ( SPACE | TABULATOR )+ )
+            // Creole10.g:1171:14: ( SPACE | TABULATOR )+
             {
-            // Creole10.g:1155:14: ( SPACE | TABULATOR )+
+            // Creole10.g:1171:14: ( SPACE | TABULATOR )+
             int cnt3=0;
             loop3:
             do {
@@ -1030,8 +1031,8 @@ public class Creole10Lexer extends Lexer {
     // $ANTLR start SPACE
     public final void mSPACE() throws RecognitionException {
         try {
-            // Creole10.g:1156:20: ( ' ' )
-            // Creole10.g:1156:20: ' '
+            // Creole10.g:1172:20: ( ' ' )
+            // Creole10.g:1172:20: ' '
             {
             match(' '); 
 
@@ -1046,8 +1047,8 @@ public class Creole10Lexer extends Lexer {
     // $ANTLR start TABULATOR
     public final void mTABULATOR() throws RecognitionException {
         try {
-            // Creole10.g:1157:23: ( '\\t' )
-            // Creole10.g:1157:23: '\\t'
+            // Creole10.g:1173:23: ( '\\t' )
+            // Creole10.g:1173:23: '\\t'
             {
             match('\t'); 
 
@@ -1063,8 +1064,8 @@ public class Creole10Lexer extends Lexer {
     public final void mBRACE_CLOSE() throws RecognitionException {
         try {
             int _type = BRACE_CLOSE;
-            // Creole10.g:1159:18: ( NEWLINE '}' )
-            // Creole10.g:1159:18: NEWLINE '}'
+            // Creole10.g:1175:18: ( NEWLINE '}' )
+            // Creole10.g:1175:18: NEWLINE '}'
             {
             mNEWLINE(); 
             match('}'); 
@@ -1082,8 +1083,8 @@ public class Creole10Lexer extends Lexer {
     public final void mCOLON_SLASH() throws RecognitionException {
         try {
             int _type = COLON_SLASH;
-            // Creole10.g:1160:18: ( ':' '/' )
-            // Creole10.g:1160:18: ':' '/'
+            // Creole10.g:1176:18: ( ':' '/' )
+            // Creole10.g:1176:18: ':' '/'
             {
             match(':'); 
             match('/'); 
@@ -1101,8 +1102,8 @@ public class Creole10Lexer extends Lexer {
     public final void mITAL() throws RecognitionException {
         try {
             int _type = ITAL;
-            // Creole10.g:1161:12: ( '//' )
-            // Creole10.g:1161:12: '//'
+            // Creole10.g:1177:12: ( '//' )
+            // Creole10.g:1177:12: '//'
             {
             match("//"); 
 
@@ -1120,8 +1121,8 @@ public class Creole10Lexer extends Lexer {
     public final void mNOWIKI_OPEN() throws RecognitionException {
         try {
             int _type = NOWIKI_OPEN;
-            // Creole10.g:1162:18: ( '{{{' )
-            // Creole10.g:1162:18: '{{{'
+            // Creole10.g:1178:18: ( '{{{' )
+            // Creole10.g:1178:18: '{{{'
             {
             match("{{{"); 
 
@@ -1139,8 +1140,8 @@ public class Creole10Lexer extends Lexer {
     public final void mNOWIKI_CLOSE() throws RecognitionException {
         try {
             int _type = NOWIKI_CLOSE;
-            // Creole10.g:1163:18: ( '}}}' )
-            // Creole10.g:1163:18: '}}}'
+            // Creole10.g:1179:18: ( '}}}' )
+            // Creole10.g:1179:18: '}}}'
             {
             match("}}}"); 
 
@@ -1158,8 +1159,8 @@ public class Creole10Lexer extends Lexer {
     public final void mESCAPED_BRACKET() throws RecognitionException {
         try {
             int _type = ESCAPED_BRACKET;
-            // Creole10.g:1164:21: ( ESCAPE ']' )
-            // Creole10.g:1164:21: ESCAPE ']'
+            // Creole10.g:1180:21: ( ESCAPE ']' )
+            // Creole10.g:1180:21: ESCAPE ']'
             {
             mESCAPE(); 
             match(']'); 
@@ -1178,8 +1179,8 @@ public class Creole10Lexer extends Lexer {
     public final void mLINK_OPEN() throws RecognitionException {
         try {
             int _type = LINK_OPEN;
-            // Creole10.g:1165:16: ( '[[' )
-            // Creole10.g:1165:16: '[['
+            // Creole10.g:1181:16: ( '[[' )
+            // Creole10.g:1181:16: '[['
             {
             match("[["); 
 
@@ -1197,8 +1198,8 @@ public class Creole10Lexer extends Lexer {
     public final void mLINK_CLOSE() throws RecognitionException {
         try {
             int _type = LINK_CLOSE;
-            // Creole10.g:1166:17: ( ']]' )
-            // Creole10.g:1166:17: ']]'
+            // Creole10.g:1182:17: ( ']]' )
+            // Creole10.g:1182:17: ']]'
             {
             match("]]"); 
 
@@ -1216,8 +1217,8 @@ public class Creole10Lexer extends Lexer {
     public final void mIMAGE_OPEN() throws RecognitionException {
         try {
             int _type = IMAGE_OPEN;
-            // Creole10.g:1167:17: ( '{{' )
-            // Creole10.g:1167:17: '{{'
+            // Creole10.g:1183:17: ( '{{' )
+            // Creole10.g:1183:17: '{{'
             {
             match("{{"); 
 
@@ -1235,8 +1236,8 @@ public class Creole10Lexer extends Lexer {
     public final void mIMAGE_CLOSE() throws RecognitionException {
         try {
             int _type = IMAGE_CLOSE;
-            // Creole10.g:1168:18: ( '}}' )
-            // Creole10.g:1168:18: '}}'
+            // Creole10.g:1184:18: ( '}}' )
+            // Creole10.g:1184:18: '}}'
             {
             match("}}"); 
 
@@ -1254,8 +1255,8 @@ public class Creole10Lexer extends Lexer {
     public final void mFORCED_LINEBREAK() throws RecognitionException {
         try {
             int _type = FORCED_LINEBREAK;
-            // Creole10.g:1169:21: ( '\\\\\\\\' )
-            // Creole10.g:1169:21: '\\\\\\\\'
+            // Creole10.g:1185:21: ( '\\\\\\\\' )
+            // Creole10.g:1185:21: '\\\\\\\\'
             {
             match("\\\\"); 
 
@@ -1273,8 +1274,8 @@ public class Creole10Lexer extends Lexer {
     public final void mEQUAL() throws RecognitionException {
         try {
             int _type = EQUAL;
-            // Creole10.g:1170:13: ( '=' )
-            // Creole10.g:1170:13: '='
+            // Creole10.g:1186:13: ( '=' )
+            // Creole10.g:1186:13: '='
             {
             match('='); 
 
@@ -1291,8 +1292,8 @@ public class Creole10Lexer extends Lexer {
     public final void mPIPE() throws RecognitionException {
         try {
             int _type = PIPE;
-            // Creole10.g:1171:12: ( '|' )
-            // Creole10.g:1171:12: '|'
+            // Creole10.g:1187:12: ( '|' )
+            // Creole10.g:1187:12: '|'
             {
             match('|'); 
 
@@ -1309,8 +1310,8 @@ public class Creole10Lexer extends Lexer {
     public final void mPOUND() throws RecognitionException {
         try {
             int _type = POUND;
-            // Creole10.g:1172:13: ( '#' )
-            // Creole10.g:1172:13: '#'
+            // Creole10.g:1188:13: ( '#' )
+            // Creole10.g:1188:13: '#'
             {
             match('#'); 
 
@@ -1327,8 +1328,8 @@ public class Creole10Lexer extends Lexer {
     public final void mDASH() throws RecognitionException {
         try {
             int _type = DASH;
-            // Creole10.g:1173:12: ( '-' )
-            // Creole10.g:1173:12: '-'
+            // Creole10.g:1189:12: ( '-' )
+            // Creole10.g:1189:12: '-'
             {
             match('-'); 
 
@@ -1345,8 +1346,8 @@ public class Creole10Lexer extends Lexer {
     public final void mSTAR() throws RecognitionException {
         try {
             int _type = STAR;
-            // Creole10.g:1174:12: ( '*' )
-            // Creole10.g:1174:12: '*'
+            // Creole10.g:1190:12: ( '*' )
+            // Creole10.g:1190:12: '*'
             {
             match('*'); 
 
@@ -1363,8 +1364,8 @@ public class Creole10Lexer extends Lexer {
     public final void mSLASH() throws RecognitionException {
         try {
             int _type = SLASH;
-            // Creole10.g:1175:13: ( '/' )
-            // Creole10.g:1175:13: '/'
+            // Creole10.g:1191:13: ( '/' )
+            // Creole10.g:1191:13: '/'
             {
             match('/'); 
 
@@ -1381,8 +1382,8 @@ public class Creole10Lexer extends Lexer {
     public final void mEXTENSION() throws RecognitionException {
         try {
             int _type = EXTENSION;
-            // Creole10.g:1176:16: ( '@@' )
-            // Creole10.g:1176:16: '@@'
+            // Creole10.g:1192:16: ( '@@' )
+            // Creole10.g:1192:16: '@@'
             {
             match("@@"); 
 
@@ -1396,12 +1397,31 @@ public class Creole10Lexer extends Lexer {
     }
     // $ANTLR end EXTENSION
 
+    // $ANTLR start IFRAME
+    public final void mIFRAME() throws RecognitionException {
+        try {
+            int _type = IFRAME;
+            // Creole10.g:1193:14: ( '$$' )
+            // Creole10.g:1193:14: '$$'
+            {
+            match("$$"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end IFRAME
+
     // $ANTLR start DOUBLE_LESS_THAN
     public final void mDOUBLE_LESS_THAN() throws RecognitionException {
         try {
             int _type = DOUBLE_LESS_THAN;
-            // Creole10.g:1177:21: ( '<<' )
-            // Creole10.g:1177:21: '<<'
+            // Creole10.g:1194:21: ( '<<' )
+            // Creole10.g:1194:21: '<<'
             {
             match("<<"); 
 
@@ -1419,8 +1439,8 @@ public class Creole10Lexer extends Lexer {
     public final void mINSIGNIFICANT_CHAR() throws RecognitionException {
         try {
             int _type = INSIGNIFICANT_CHAR;
-            // Creole10.g:1179:23: ( . )
-            // Creole10.g:1179:23: .
+            // Creole10.g:1196:23: ( . )
+            // Creole10.g:1196:23: .
             {
             matchAny(); 
 
@@ -1434,8 +1454,8 @@ public class Creole10Lexer extends Lexer {
     // $ANTLR end INSIGNIFICANT_CHAR
 
     public void mTokens() throws RecognitionException {
-        // Creole10.g:1:10: ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR )
-        int alt4=64;
+        // Creole10.g:1:10: ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR )
+        int alt4=65;
         int LA4_0 = input.LA(1);
 
         if ( (LA4_0==':') ) {
@@ -1556,169 +1576,169 @@ public class Creole10Lexer extends Lexer {
             int LA4_37 = input.LA(2);
 
             if ( (LA4_37=='<') ) {
-                int LA4_94 = input.LA(3);
+                int LA4_95 = input.LA(3);
 
-                if ( (LA4_94=='T') ) {
-                    int LA4_116 = input.LA(4);
+                if ( (LA4_95=='T') ) {
+                    int LA4_118 = input.LA(4);
 
-                    if ( (LA4_116=='a') ) {
-                        int LA4_124 = input.LA(5);
+                    if ( (LA4_118=='a') ) {
+                        int LA4_126 = input.LA(5);
 
-                        if ( (LA4_124=='b') ) {
-                            int LA4_125 = input.LA(6);
+                        if ( (LA4_126=='b') ) {
+                            int LA4_127 = input.LA(6);
 
-                            if ( (LA4_125=='l') ) {
-                                int LA4_126 = input.LA(7);
+                            if ( (LA4_127=='l') ) {
+                                int LA4_128 = input.LA(7);
 
-                                if ( (LA4_126=='e') ) {
-                                    int LA4_127 = input.LA(8);
+                                if ( (LA4_128=='e') ) {
+                                    int LA4_129 = input.LA(8);
 
-                                    if ( (LA4_127=='O') ) {
-                                        int LA4_128 = input.LA(9);
+                                    if ( (LA4_129=='O') ) {
+                                        int LA4_130 = input.LA(9);
 
-                                        if ( (LA4_128=='f') ) {
-                                            int LA4_129 = input.LA(10);
+                                        if ( (LA4_130=='f') ) {
+                                            int LA4_131 = input.LA(10);
 
-                                            if ( (LA4_129=='C') ) {
-                                                int LA4_130 = input.LA(11);
+                                            if ( (LA4_131=='C') ) {
+                                                int LA4_132 = input.LA(11);
 
-                                                if ( (LA4_130=='o') ) {
-                                                    int LA4_131 = input.LA(12);
+                                                if ( (LA4_132=='o') ) {
+                                                    int LA4_133 = input.LA(12);
 
-                                                    if ( (LA4_131=='n') ) {
-                                                        int LA4_132 = input.LA(13);
+                                                    if ( (LA4_133=='n') ) {
+                                                        int LA4_134 = input.LA(13);
 
-                                                        if ( (LA4_132=='t') ) {
-                                                            int LA4_133 = input.LA(14);
+                                                        if ( (LA4_134=='t') ) {
+                                                            int LA4_135 = input.LA(14);
 
-                                                            if ( (LA4_133=='e') ) {
-                                                                int LA4_134 = input.LA(15);
+                                                            if ( (LA4_135=='e') ) {
+                                                                int LA4_136 = input.LA(15);
 
-                                                                if ( (LA4_134=='n') ) {
-                                                                    int LA4_135 = input.LA(16);
+                                                                if ( (LA4_136=='n') ) {
+                                                                    int LA4_137 = input.LA(16);
 
-                                                                    if ( (LA4_135=='t') ) {
-                                                                        int LA4_136 = input.LA(17);
+                                                                    if ( (LA4_137=='t') ) {
+                                                                        int LA4_138 = input.LA(17);
 
-                                                                        if ( (LA4_136=='s') ) {
-                                                                            int LA4_137 = input.LA(18);
+                                                                        if ( (LA4_138=='s') ) {
+                                                                            int LA4_139 = input.LA(18);
 
-                                                                            if ( (LA4_137==' ') ) {
+                                                                            if ( (LA4_139==' ') ) {
                                                                                 alt4=38;
                                                                             }
-                                                                            else if ( (LA4_137=='>') ) {
+                                                                            else if ( (LA4_139=='>') ) {
                                                                                 alt4=37;
                                                                             }
                                                                             else {
                                                                                 NoViableAltException nvae =
-                                                                                    new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 137, input);
+                                                                                    new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 139, input);
 
                                                                                 throw nvae;
                                                                             }
                                                                         }
                                                                         else {
                                                                             NoViableAltException nvae =
-                                                                                new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 136, input);
+                                                                                new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 138, input);
 
                                                                             throw nvae;
                                                                         }
                                                                     }
                                                                     else {
                                                                         NoViableAltException nvae =
-                                                                            new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 135, input);
+                                                                            new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 137, input);
 
                                                                         throw nvae;
                                                                     }
                                                                 }
                                                                 else {
                                                                     NoViableAltException nvae =
-                                                                        new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 134, input);
+                                                                        new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 136, input);
 
                                                                     throw nvae;
                                                                 }
                                                             }
                                                             else {
                                                                 NoViableAltException nvae =
-                                                                    new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 133, input);
+                                                                    new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 135, input);
 
                                                                 throw nvae;
                                                             }
                                                         }
                                                         else {
                                                             NoViableAltException nvae =
-                                                                new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 132, input);
+                                                                new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 134, input);
 
                                                             throw nvae;
                                                         }
                                                     }
                                                     else {
                                                         NoViableAltException nvae =
-                                                            new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 131, input);
+                                                            new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 133, input);
 
                                                         throw nvae;
                                                     }
                                                 }
                                                 else {
                                                     NoViableAltException nvae =
-                                                        new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 130, input);
+                                                        new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 132, input);
 
                                                     throw nvae;
                                                 }
                                             }
                                             else {
                                                 NoViableAltException nvae =
-                                                    new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 129, input);
+                                                    new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 131, input);
 
                                                 throw nvae;
                                             }
                                         }
                                         else {
                                             NoViableAltException nvae =
-                                                new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 128, input);
+                                                new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 130, input);
 
                                             throw nvae;
                                         }
                                     }
                                     else {
                                         NoViableAltException nvae =
-                                            new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 127, input);
+                                            new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 129, input);
 
                                         throw nvae;
                                     }
                                 }
                                 else {
                                     NoViableAltException nvae =
-                                        new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 126, input);
+                                        new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 128, input);
 
                                     throw nvae;
                                 }
                             }
                             else {
                                 NoViableAltException nvae =
-                                    new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 125, input);
+                                    new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 127, input);
 
                                 throw nvae;
                             }
                         }
                         else {
                             NoViableAltException nvae =
-                                new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 124, input);
+                                new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 126, input);
 
                             throw nvae;
                         }
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 116, input);
+                            new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 118, input);
 
                         throw nvae;
                     }
                 }
                 else {
-                    alt4=63;}
+                    alt4=64;}
             }
             else {
-                alt4=64;}
+                alt4=65;}
         }
         else if ( (LA4_0=='\"') ) {
             alt4=39;
@@ -1730,7 +1750,7 @@ public class Creole10Lexer extends Lexer {
                 alt4=40;
             }
             else {
-                alt4=64;}
+                alt4=65;}
         }
         else if ( (LA4_0=='~') ) {
             int LA4_40 = input.LA(2);
@@ -1745,12 +1765,12 @@ public class Creole10Lexer extends Lexer {
             switch ( input.LA(2) ) {
             case '\n':
                 {
-                int LA4_100 = input.LA(3);
+                int LA4_101 = input.LA(3);
 
-                if ( (LA4_100=='}') ) {
-                    int LA4_101 = input.LA(4);
+                if ( (LA4_101=='}') ) {
+                    int LA4_102 = input.LA(4);
 
-                    if ( (LA4_101=='}') ) {
+                    if ( (LA4_102=='}') ) {
                         alt4=42;
                     }
                     else {
@@ -1762,9 +1782,9 @@ public class Creole10Lexer extends Lexer {
                 break;
             case '}':
                 {
-                int LA4_101 = input.LA(3);
+                int LA4_102 = input.LA(3);
 
-                if ( (LA4_101=='}') ) {
+                if ( (LA4_102=='}') ) {
                     alt4=42;
                 }
                 else {
@@ -1779,9 +1799,9 @@ public class Creole10Lexer extends Lexer {
             int LA4_42 = input.LA(2);
 
             if ( (LA4_42=='}') ) {
-                int LA4_101 = input.LA(3);
+                int LA4_102 = input.LA(3);
 
-                if ( (LA4_101=='}') ) {
+                if ( (LA4_102=='}') ) {
                     alt4=42;
                 }
                 else {
@@ -1806,31 +1826,31 @@ public class Creole10Lexer extends Lexer {
             int LA4_45 = input.LA(2);
 
             if ( (LA4_45=='{') ) {
-                int LA4_105 = input.LA(3);
+                int LA4_106 = input.LA(3);
 
-                if ( (LA4_105=='{') ) {
+                if ( (LA4_106=='{') ) {
                     alt4=48;
                 }
                 else {
                     alt4=53;}
             }
             else {
-                alt4=64;}
+                alt4=65;}
         }
         else if ( (LA4_0=='}') ) {
             int LA4_46 = input.LA(2);
 
             if ( (LA4_46=='}') ) {
-                int LA4_106 = input.LA(3);
+                int LA4_107 = input.LA(3);
 
-                if ( (LA4_106=='}') ) {
+                if ( (LA4_107=='}') ) {
                     alt4=49;
                 }
                 else {
                     alt4=54;}
             }
             else {
-                alt4=64;}
+                alt4=65;}
         }
         else if ( (LA4_0=='[') ) {
             int LA4_47 = input.LA(2);
@@ -1839,7 +1859,7 @@ public class Creole10Lexer extends Lexer {
                 alt4=51;
             }
             else {
-                alt4=64;}
+                alt4=65;}
         }
         else if ( (LA4_0==']') ) {
             int LA4_48 = input.LA(2);
@@ -1848,7 +1868,7 @@ public class Creole10Lexer extends Lexer {
                 alt4=52;
             }
             else {
-                alt4=64;}
+                alt4=65;}
         }
         else if ( (LA4_0=='\\') ) {
             int LA4_49 = input.LA(2);
@@ -1857,7 +1877,7 @@ public class Creole10Lexer extends Lexer {
                 alt4=55;
             }
             else {
-                alt4=64;}
+                alt4=65;}
         }
         else if ( (LA4_0=='=') ) {
             alt4=56;
@@ -1881,295 +1901,304 @@ public class Creole10Lexer extends Lexer {
                 alt4=62;
             }
             else {
-                alt4=64;}
+                alt4=65;}
         }
-        else if ( ((LA4_0>='\u0000' && LA4_0<='\b')||(LA4_0>='\u000B' && LA4_0<='\f')||(LA4_0>='\u000E' && LA4_0<='\u001F')||LA4_0=='!'||(LA4_0>='$' && LA4_0<=')')||(LA4_0>='+' && LA4_0<=',')||LA4_0=='.'||(LA4_0>='0' && LA4_0<='1')||(LA4_0>='3' && LA4_0<='9')||LA4_0==';'||LA4_0=='?'||(LA4_0>='A' && LA4_0<='B')||LA4_0=='E'||(LA4_0>='H' && LA4_0<='I')||(LA4_0>='K' && LA4_0<='L')||LA4_0=='N'||LA4_0=='Q'||LA4_0=='V'||(LA4_0>='Y' && LA4_0<='Z')||(LA4_0>='^' && LA4_0<='`')||LA4_0=='f'||LA4_0=='j'||LA4_0=='q'||(LA4_0>='v' && LA4_0<='w')||LA4_0=='z'||(LA4_0>='\u007F' && LA4_0<='\uFFFE')) ) {
-            alt4=64;
+        else if ( (LA4_0=='$') ) {
+            int LA4_56 = input.LA(2);
+
+            if ( (LA4_56=='$') ) {
+                alt4=63;
+            }
+            else {
+                alt4=65;}
+        }
+        else if ( ((LA4_0>='\u0000' && LA4_0<='\b')||(LA4_0>='\u000B' && LA4_0<='\f')||(LA4_0>='\u000E' && LA4_0<='\u001F')||LA4_0=='!'||(LA4_0>='%' && LA4_0<=')')||(LA4_0>='+' && LA4_0<=',')||LA4_0=='.'||(LA4_0>='0' && LA4_0<='1')||(LA4_0>='3' && LA4_0<='9')||LA4_0==';'||LA4_0=='?'||(LA4_0>='A' && LA4_0<='B')||LA4_0=='E'||(LA4_0>='H' && LA4_0<='I')||(LA4_0>='K' && LA4_0<='L')||LA4_0=='N'||LA4_0=='Q'||LA4_0=='V'||(LA4_0>='Y' && LA4_0<='Z')||(LA4_0>='^' && LA4_0<='`')||LA4_0=='f'||LA4_0=='j'||LA4_0=='q'||(LA4_0>='v' && LA4_0<='w')||LA4_0=='z'||(LA4_0>='\u007F' && LA4_0<='\uFFFE')) ) {
+            alt4=65;
         }
         else {
             NoViableAltException nvae =
-                new NoViableAltException("1:1: Tokens : ( T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 0, input);
+                new NoViableAltException("1:1: Tokens : ( T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | ESCAPE | NOWIKI_BLOCK_CLOSE | NEWLINE | BLANKS | BRACE_CLOSE | COLON_SLASH | ITAL | NOWIKI_OPEN | NOWIKI_CLOSE | ESCAPED_BRACKET | LINK_OPEN | LINK_CLOSE | IMAGE_OPEN | IMAGE_CLOSE | FORCED_LINEBREAK | EQUAL | PIPE | POUND | DASH | STAR | SLASH | EXTENSION | IFRAME | DOUBLE_LESS_THAN | INSIGNIFICANT_CHAR );", 4, 0, input);
 
             throw nvae;
         }
         switch (alt4) {
             case 1 :
-                // Creole10.g:1:10: T43
-                {
-                mT43(); 
-
-                }
-                break;
-            case 2 :
-                // Creole10.g:1:14: T44
+                // Creole10.g:1:10: T44
                 {
                 mT44(); 
 
                 }
                 break;
-            case 3 :
-                // Creole10.g:1:18: T45
+            case 2 :
+                // Creole10.g:1:14: T45
                 {
                 mT45(); 
 
                 }
                 break;
-            case 4 :
-                // Creole10.g:1:22: T46
+            case 3 :
+                // Creole10.g:1:18: T46
                 {
                 mT46(); 
 
                 }
                 break;
-            case 5 :
-                // Creole10.g:1:26: T47
+            case 4 :
+                // Creole10.g:1:22: T47
                 {
                 mT47(); 
 
                 }
                 break;
-            case 6 :
-                // Creole10.g:1:30: T48
+            case 5 :
+                // Creole10.g:1:26: T48
                 {
                 mT48(); 
 
                 }
                 break;
-            case 7 :
-                // Creole10.g:1:34: T49
+            case 6 :
+                // Creole10.g:1:30: T49
                 {
                 mT49(); 
 
                 }
                 break;
-            case 8 :
-                // Creole10.g:1:38: T50
+            case 7 :
+                // Creole10.g:1:34: T50
                 {
                 mT50(); 
 
                 }
                 break;
-            case 9 :
-                // Creole10.g:1:42: T51
+            case 8 :
+                // Creole10.g:1:38: T51
                 {
                 mT51(); 
 
                 }
                 break;
-            case 10 :
-                // Creole10.g:1:46: T52
+            case 9 :
+                // Creole10.g:1:42: T52
                 {
                 mT52(); 
 
                 }
                 break;
-            case 11 :
-                // Creole10.g:1:50: T53
+            case 10 :
+                // Creole10.g:1:46: T53
                 {
                 mT53(); 
 
                 }
                 break;
-            case 12 :
-                // Creole10.g:1:54: T54
+            case 11 :
+                // Creole10.g:1:50: T54
                 {
                 mT54(); 
 
                 }
                 break;
-            case 13 :
-                // Creole10.g:1:58: T55
+            case 12 :
+                // Creole10.g:1:54: T55
                 {
                 mT55(); 
 
                 }
                 break;
-            case 14 :
-                // Creole10.g:1:62: T56
+            case 13 :
+                // Creole10.g:1:58: T56
                 {
                 mT56(); 
 
                 }
                 break;
-            case 15 :
-                // Creole10.g:1:66: T57
+            case 14 :
+                // Creole10.g:1:62: T57
                 {
                 mT57(); 
 
                 }
                 break;
-            case 16 :
-                // Creole10.g:1:70: T58
+            case 15 :
+                // Creole10.g:1:66: T58
                 {
                 mT58(); 
 
                 }
                 break;
-            case 17 :
-                // Creole10.g:1:74: T59
+            case 16 :
+                // Creole10.g:1:70: T59
                 {
                 mT59(); 
 
                 }
                 break;
-            case 18 :
-                // Creole10.g:1:78: T60
+            case 17 :
+                // Creole10.g:1:74: T60
                 {
                 mT60(); 
 
                 }
                 break;
-            case 19 :
-                // Creole10.g:1:82: T61
+            case 18 :
+                // Creole10.g:1:78: T61
                 {
                 mT61(); 
 
                 }
                 break;
-            case 20 :
-                // Creole10.g:1:86: T62
+            case 19 :
+                // Creole10.g:1:82: T62
                 {
                 mT62(); 
 
                 }
                 break;
-            case 21 :
-                // Creole10.g:1:90: T63
+            case 20 :
+                // Creole10.g:1:86: T63
                 {
                 mT63(); 
 
                 }
                 break;
-            case 22 :
-                // Creole10.g:1:94: T64
+            case 21 :
+                // Creole10.g:1:90: T64
                 {
                 mT64(); 
 
                 }
                 break;
-            case 23 :
-                // Creole10.g:1:98: T65
+            case 22 :
+                // Creole10.g:1:94: T65
                 {
                 mT65(); 
 
                 }
                 break;
-            case 24 :
-                // Creole10.g:1:102: T66
+            case 23 :
+                // Creole10.g:1:98: T66
                 {
                 mT66(); 
 
                 }
                 break;
-            case 25 :
-                // Creole10.g:1:106: T67
+            case 24 :
+                // Creole10.g:1:102: T67
                 {
                 mT67(); 
 
                 }
                 break;
-            case 26 :
-                // Creole10.g:1:110: T68
+            case 25 :
+                // Creole10.g:1:106: T68
                 {
                 mT68(); 
 
                 }
                 break;
-            case 27 :
-                // Creole10.g:1:114: T69
+            case 26 :
+                // Creole10.g:1:110: T69
                 {
                 mT69(); 
 
                 }
                 break;
-            case 28 :
-                // Creole10.g:1:118: T70
+            case 27 :
+                // Creole10.g:1:114: T70
                 {
                 mT70(); 
 
                 }
                 break;
-            case 29 :
-                // Creole10.g:1:122: T71
+            case 28 :
+                // Creole10.g:1:118: T71
                 {
                 mT71(); 
 
                 }
                 break;
-            case 30 :
-                // Creole10.g:1:126: T72
+            case 29 :
+                // Creole10.g:1:122: T72
                 {
                 mT72(); 
 
                 }
                 break;
-            case 31 :
-                // Creole10.g:1:130: T73
+            case 30 :
+                // Creole10.g:1:126: T73
                 {
                 mT73(); 
 
                 }
                 break;
-            case 32 :
-                // Creole10.g:1:134: T74
+            case 31 :
+                // Creole10.g:1:130: T74
                 {
                 mT74(); 
 
                 }
                 break;
-            case 33 :
-                // Creole10.g:1:138: T75
+            case 32 :
+                // Creole10.g:1:134: T75
                 {
                 mT75(); 
 
                 }
                 break;
-            case 34 :
-                // Creole10.g:1:142: T76
+            case 33 :
+                // Creole10.g:1:138: T76
                 {
                 mT76(); 
 
                 }
                 break;
-            case 35 :
-                // Creole10.g:1:146: T77
+            case 34 :
+                // Creole10.g:1:142: T77
                 {
                 mT77(); 
 
                 }
                 break;
-            case 36 :
-                // Creole10.g:1:150: T78
+            case 35 :
+                // Creole10.g:1:146: T78
                 {
                 mT78(); 
 
                 }
                 break;
-            case 37 :
-                // Creole10.g:1:154: T79
+            case 36 :
+                // Creole10.g:1:150: T79
                 {
                 mT79(); 
 
                 }
                 break;
-            case 38 :
-                // Creole10.g:1:158: T80
+            case 37 :
+                // Creole10.g:1:154: T80
                 {
                 mT80(); 
 
                 }
                 break;
-            case 39 :
-                // Creole10.g:1:162: T81
+            case 38 :
+                // Creole10.g:1:158: T81
                 {
                 mT81(); 
 
                 }
                 break;
-            case 40 :
-                // Creole10.g:1:166: T82
+            case 39 :
+                // Creole10.g:1:162: T82
                 {
                 mT82(); 
+
+                }
+                break;
+            case 40 :
+                // Creole10.g:1:166: T83
+                {
+                mT83(); 
 
                 }
                 break;
@@ -2328,14 +2357,21 @@ public class Creole10Lexer extends Lexer {
                 }
                 break;
             case 63 :
-                // Creole10.g:1:385: DOUBLE_LESS_THAN
+                // Creole10.g:1:385: IFRAME
+                {
+                mIFRAME(); 
+
+                }
+                break;
+            case 64 :
+                // Creole10.g:1:392: DOUBLE_LESS_THAN
                 {
                 mDOUBLE_LESS_THAN(); 
 
                 }
                 break;
-            case 64 :
-                // Creole10.g:1:402: INSIGNIFICANT_CHAR
+            case 65 :
+                // Creole10.g:1:409: INSIGNIFICANT_CHAR
                 {
                 mINSIGNIFICANT_CHAR(); 
 

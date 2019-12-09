@@ -38,6 +38,7 @@ import com.liferay.wiki.engine.creole.internal.parser.ast.UnformattedTextNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.UnorderedListItemNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.UnorderedListNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.WikiPageNode;
+import com.liferay.wiki.engine.creole.internal.parser.ast.extension.IFrameNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.extension.TableOfContentsNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.link.LinkNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.link.interwiki.C2InterwikiLinkNode;
@@ -151,6 +152,10 @@ public class XhtmlTranslationVisitor implements ASTVisitor {
 	@Override
 	public void visit(HorizontalNode horizontalNode) {
 		append("<hr/>");
+	}
+
+	@Override
+	public void visit(IFrameNode iFrameNode) {
 	}
 
 	@Override

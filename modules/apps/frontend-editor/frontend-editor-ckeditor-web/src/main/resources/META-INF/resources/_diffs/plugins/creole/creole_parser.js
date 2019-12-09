@@ -282,6 +282,27 @@
 
 			hr: {regex: /(^|\n)\s*----\s*(\n|$)/, tag: 'hr'},
 
+			iframe: {
+				build(node, r, options) {
+					var iframe = document.createElement('iframe');
+
+					iframe.setAttribute('frameborder', '0');
+					iframe.setAttribute('height', '300');
+					iframe.setAttribute('width', '90%');
+
+					iframe.src =
+						options && options.linkFormat
+							? formatLink(
+									r[1].replace(/~(.)/g, '$1'),
+									options.linkFormat
+							  )
+							: r[1].replace(/~(.)/g, '$1');
+
+					node.appendChild(iframe);
+				},
+				regex: '\\$\\$(' + rx.link + ')\\$\\$'
+			},
+
 			img: {
 				build(node, r, options) {
 					var imagePath = r[1];
@@ -518,7 +539,8 @@
 			g.unnamedInterwikiLink,
 			g.unnamedLink,
 			g.tt,
-			g.img
+			g.img,
+			g.iframe
 		];
 
 		g.singleLine.children = g.paragraph.children = g.text.children = g.strong.children = g.em.children = [
@@ -534,7 +556,8 @@
 			g.unnamedInterwikiLink,
 			g.unnamedLink,
 			g.tt,
-			g.img
+			g.img,
+			g.iframe
 		];
 
 		g.root = {

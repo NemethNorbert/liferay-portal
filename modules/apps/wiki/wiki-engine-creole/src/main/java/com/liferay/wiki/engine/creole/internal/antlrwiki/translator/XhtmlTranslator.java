@@ -30,6 +30,7 @@ import com.liferay.wiki.engine.creole.internal.parser.ast.CollectionNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.HeadingNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.ImageNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.WikiPageNode;
+import com.liferay.wiki.engine.creole.internal.parser.ast.extension.IFrameNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.extension.TableOfContentsNode;
 import com.liferay.wiki.engine.creole.internal.parser.ast.link.LinkNode;
 import com.liferay.wiki.engine.creole.internal.parser.visitor.XhtmlTranslationVisitor;
@@ -84,6 +85,17 @@ public class XhtmlTranslator extends XhtmlTranslationVisitor {
 		append("</h");
 		append(headingNode.getLevel());
 		append(">");
+	}
+
+	@Override
+	public void visit(IFrameNode iFrameNode) {
+		append("<iframe");
+		append(" frameborder=\"0\"");
+		append(" height=\"300\"");
+		append(" src=\"");
+		append(iFrameNode.getLink());
+		append("\" width=\"90%\"");
+		append("></iframe>");
 	}
 
 	@Override

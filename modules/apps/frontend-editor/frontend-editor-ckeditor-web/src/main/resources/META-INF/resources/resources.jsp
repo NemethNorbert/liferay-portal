@@ -35,6 +35,23 @@ String inlineEditSaveURL = GetterUtil.getString((String)request.getAttribute(CKE
 	long javaScriptLastModified = PortalWebResourcesUtil.getLastModified(PortalWebResourceConstants.RESOURCE_TYPE_EDITOR_CKEDITOR);
 	%>
 
+	<script data-senna-track="temporary" type="text/javascript">
+		<%
+		DLGoogleDriveCompanyConfiguration dlGoogleDriveCompanyConfiguration =
+			ConfigurationProviderUtil.getCompanyConfiguration(
+				DLGoogleDriveCompanyConfiguration.class,
+					company.getCompanyId());
+
+		String googleAppsAPIKey = dlGoogleDriveCompanyConfiguration.pickerAPIKey();
+		String googleClientId = dlGoogleDriveCompanyConfiguration.clientId();
+		%>
+
+		Liferay.googleConfiguration = {
+			API_KEY: '<%= googleAppsAPIKey %>',
+			CLIENT_ID: '<%= googleClientId %>'
+		};
+	</script>
+
 	<script data-senna-track="temporary" src="<%= HtmlUtil.escapeAttribute(PortalUtil.getStaticResourceURL(request, themeDisplay.getCDNHost() + PortalWebResourcesUtil.getContextPath(PortalWebResourceConstants.RESOURCE_TYPE_EDITOR_CKEDITOR) + "/ckeditor/ckeditor.js", javaScriptLastModified)) %>" type="text/javascript"></script>
 
 	<c:if test="<%= inlineEdit && Validator.isNotNull(inlineEditSaveURL) %>">
