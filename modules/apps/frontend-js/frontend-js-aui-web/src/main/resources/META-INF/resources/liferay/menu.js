@@ -714,6 +714,8 @@ AUI.add(
 					menuInstance._positionActiveMenu();
 
 					Liferay.fire('dropdownShow', {
+						id: trigger.getData().menuListContainer._node
+							.firstElementChild.id,
 						src: 'LiferayMenu',
 					});
 

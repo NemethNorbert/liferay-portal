@@ -325,7 +325,7 @@ AUI.add(
 							helpMessage = instance.getValue(defaultLanguageId);
 						}
 
-						helpMessage = Liferay.Util.escapeHTML(helpMessage);
+						helpMessage = A.Lang.String.escapeHTML(helpMessage);
 					}
 
 					instance
