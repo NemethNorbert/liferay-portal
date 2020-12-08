@@ -42,10 +42,12 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	property = {
+		"editor.name=alloyeditor", "editor.name=alloyeditor_bbcode",
 		"editor.name=ckeditor", "editor.name=ckeditor_bbcode",
 		"editor.name=ckeditor_classic",
 		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS,
-		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS_ADMIN
+		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS_ADMIN,
+		"service.ranking:Integer=102"
 	},
 	service = EditorConfigContributor.class
 )
@@ -73,9 +75,7 @@ public class MBAttachmentHTMLEditorConfigContributor
 		).put(
 			"filebrowserImageBrowseUrl", itemSelectorURL.toString()
 		).put(
-			"toolbar", "mb"
-		).put(
-			"toolbar_mb", getToolbarMBJSONArray(inputEditorTaglibAttributes)
+			"toolbar", getToolbarMBJSONArray(inputEditorTaglibAttributes)
 		);
 	}
 
@@ -98,7 +98,7 @@ public class MBAttachmentHTMLEditorConfigContributor
 			super.toJSONArray("['NumberedList', 'BulletedList']"),
 			super.toJSONArray("['Styles']"),
 			super.toJSONArray("['Link', 'Unlink']"),
-			super.toJSONArray("['Blockquote', 'ImageSelector']"));
+			super.toJSONArray("['Blockquote', 'Image']"));
 
 		if (_isShowSource(inputEditorTaglibAttributes)) {
 			jsonArray.put(toJSONArray("['Source']"));
