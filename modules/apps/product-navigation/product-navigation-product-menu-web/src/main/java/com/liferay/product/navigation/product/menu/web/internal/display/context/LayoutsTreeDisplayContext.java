@@ -179,6 +179,18 @@ public class LayoutsTreeDisplayContext {
 		).build();
 	}
 
+	public Map<String, Object> getAdministrationLinkData()
+		throws WindowStateException {
+
+		return HashMapBuilder.<String, Object>put(
+			"href", getAdministrationPortletURL()
+		).put(
+			"namespace", getNamespace()
+		).put(
+			"productMenuPortletURL", getProductMenuPortletURL()
+		).build();
+	}
+
 	public String getAdministrationPortletURL() {
 		return PortletURLBuilder.create(
 			PortalUtil.getControlPanelPortletURL(
