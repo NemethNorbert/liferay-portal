@@ -169,9 +169,10 @@ LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayCont
 	/>
 
 	<c:if test="<%= layoutsTreeDisplayContext.hasAdministrationPortletPermission() %>">
-		<div class="pages-administration-link">
-			<aui:a cssClass="ml-2" href="<%= layoutsTreeDisplayContext.getAdministrationPortletURL() %>"><%= LanguageUtil.get(request, "go-to-pages-administration") %></aui:a>
-		</div>
+		<react:component
+			module="js/PagesAdministrationLink.es"
+			props="<%= layoutsTreeDisplayContext.getAdministrationLinkData() %>"
+		/>
 	</c:if>
 </div>
 
