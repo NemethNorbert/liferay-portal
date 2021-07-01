@@ -134,6 +134,11 @@ Group group = siteAdministrationPanelCategoryDisplayContext.getGroup();
 			'<portlet:namespace />pagesTreeSidenavToggleId'
 		);
 
+		if (Liferay.currentURL.includes(
+			"com_liferay_layout_admin_web_portlet_GroupPagesPortlet")) {
+			pagesTreeToggle.classList.add('disabled');
+		}
+
 		pagesTreeToggle.addEventListener('click', (event) => {
 			Liferay.Portlet.destroy('#p_p_id<portlet:namespace />', true);
 
