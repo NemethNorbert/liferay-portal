@@ -82,3 +82,51 @@ portletDisplay.setShowStagingIcon(false);
 		</c:otherwise>
 	</c:choose>
 </aui:form>
+
+<%
+PortletURL portletURL = PortletURLBuilder.create(
+	PortletURLFactoryUtil.create(request, ProductNavigationProductMenuPortletKeys.PRODUCT_NAVIGATION_PRODUCT_MENU, RenderRequest.RENDER_PHASE)
+).setMVCPath(
+	"/portlet/product_menu.jsp"
+).setWindowState(
+	LiferayWindowState.EXCLUSIVE
+).build();
+%>
+
+<aui:script sandbox="<%= true %>">
+	Liferay.Util.Session.get(
+		'com.liferay.product.navigation.product.menu.web_pagesTreeState'
+	).then((result) => {
+		if (result === 'open') {
+			Liferay.Util.Session.set(
+				'com.liferay.product.navigation.product.menu.web_pagesTreeState',
+				'closed'
+			).then(() => {
+				Liferay.Util.fetch('<%= portletURL.toString() %>')
+					.then((response) => {
+						if (!response.ok) {
+							throw new Error(
+								'<liferay-ui:message key="an-unexpected-error-occurred" />'
+							);
+						}
+
+						return response.text();
+					})
+					.then((response) => {
+						var sidebar = document.querySelector(
+							'.lfr-product-menu-sidebar .sidebar-body'
+						);
+
+						sidebar.innerHTML = '';
+
+						var range = document.createRange();
+						range.selectNode(sidebar);
+
+						var fragment = range.createContextualFragment(response);
+
+						sidebar.appendChild(fragment);
+					});
+			});
+		}
+	});
+</aui:script>

@@ -69,6 +69,7 @@ page import="com.liferay.layout.page.template.service.LayoutPageTemplateCollecti
 page import="com.liferay.layout.page.template.service.LayoutPageTemplateCollectionServiceUtil" %><%@
 page import="com.liferay.layout.page.template.service.LayoutPageTemplateEntryLocalServiceUtil" %><%@
 page import="com.liferay.layout.page.template.service.LayoutPageTemplateEntryServiceUtil" %><%@
+page import="com.liferay.petra.portlet.url.builder.PortletURLBuilder" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
@@ -109,6 +110,7 @@ page import="com.liferay.portal.kernel.model.User" %><%@
 page import="com.liferay.portal.kernel.model.UserGroup" %><%@
 page import="com.liferay.portal.kernel.plugin.PluginPackage" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
+page import="com.liferay.portal.kernel.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.security.permission.ActionKeys" %><%@
 page import="com.liferay.portal.kernel.security.permission.ResourceActionsUtil" %><%@
 page import="com.liferay.portal.kernel.service.GroupLocalServiceUtil" %><%@
@@ -146,6 +148,7 @@ page import="com.liferay.portal.kernel.webserver.WebServerServletTokenUtil" %><%
 page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %><%@
 page import="com.liferay.portal.util.LayoutTypeControllerTracker" %><%@
 page import="com.liferay.portal.util.PropsValues" %><%@
+page import="com.liferay.product.navigation.product.menu.constants.ProductNavigationProductMenuPortletKeys" %><%@
 page import="com.liferay.segments.exception.RequiredSegmentsExperienceException" %><%@
 page import="com.liferay.site.navigation.model.SiteNavigationMenu" %><%@
 page import="com.liferay.sites.kernel.util.SitesUtil" %><%@
@@ -161,7 +164,8 @@ page import="java.util.ResourceBundle" %><%@
 page import="java.util.TreeMap" %>
 
 <%@ page import="javax.portlet.PortletRequest" %><%@
-page import="javax.portlet.PortletURL" %>
+page import="javax.portlet.PortletURL" %><%@
+page import="javax.portlet.RenderRequest" %>
 
 <liferay-frontend:defineObjects />
 
