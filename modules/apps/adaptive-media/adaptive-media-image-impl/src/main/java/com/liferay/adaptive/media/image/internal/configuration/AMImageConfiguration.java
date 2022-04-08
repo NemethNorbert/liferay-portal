@@ -65,4 +65,14 @@ public interface AMImageConfiguration {
 	)
 	public int imageMaxSize();
 
+	/**
+	 * Set this to <code>true</code> to enable the usage of ImageMagick for
+	 * image scaling, if ImageMagick has been configured as an External Service.
+	 */
+	@Meta.AD(
+		deflt = "false", description = "imageMagick-enabled-key-description",
+		name = "imageMagick-enabled", required = false
+	)
+	public boolean imageMagickEnabled();
+
 }
