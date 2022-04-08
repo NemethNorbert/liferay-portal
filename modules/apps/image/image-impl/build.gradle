@@ -1,5 +1,5 @@
 dependencies {
-	compileInclude group: "org.im4java", name: "im4java", version: "1.2.0"
+	compileInclude group: "org.im4java", name: "im4java", version: "1.4.0"
 
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
