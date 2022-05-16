@@ -122,12 +122,6 @@ public class LayoutSiteNavigationMenuItemType
 			return false;
 		}
 
-		if (!ArrayUtil.contains(
-				portletDataContext.getLayoutIds(), layout.getLayoutId())) {
-
-			return false;
-		}
-
 		LayoutRevision layoutRevision = _layoutStaging.getLayoutRevision(
 			layout);
 
@@ -143,7 +137,7 @@ public class LayoutSiteNavigationMenuItemType
 
 		portletDataContext.addReferenceElement(
 			siteNavigationMenuItem, siteNavigationMenuItemElement, layout,
-			PortletDataContext.REFERENCE_TYPE_DEPENDENCY, true);
+			PortletDataContext.REFERENCE_TYPE_WEAK, true);
 
 		return true;
 	}
