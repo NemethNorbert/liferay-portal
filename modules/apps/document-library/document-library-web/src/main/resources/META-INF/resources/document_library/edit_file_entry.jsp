@@ -675,9 +675,11 @@ renderResponse.setTitle(headerTitle);
 	var form = document.<portlet:namespace />fm;
 
 	function <portlet:namespace />changeFileEntryType() {
+		var fileElement = Liferay.Util.getFormElement(form, 'file');
+
 		Liferay.Util.setFormValues(form, {
 			<%= Constants.CMD %>: '<%= Constants.PREVIEW %>',
-			documentUpload: true,
+			documentUpload: Boolean(fileElement && fileElement.value),
 		});
 
 		form.submit();
