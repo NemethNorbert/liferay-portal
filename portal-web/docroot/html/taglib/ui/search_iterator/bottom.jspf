@@ -159,6 +159,14 @@
 
 		var searchContainerId = searchContainer.get('id');
 
+		if (sessionStorage.getItem(searchContainerId + "_selections")) {
+			let selections = sessionStorage.getItem(searchContainerId + "_selections").split(',')
+			searchContainer.select?.getCurrentPageElements().getDOMNodes().map(ele=>{
+				if(selections.find(element => element === ele.value)){
+					ele.checked = true;
+				}
+			})
+		}
 		searchContainer.on('rowToggled', (event) => {
 			var selectedItems = event.elements.allSelectedElements.getDOMNodes().map(e=>e.value);
 			var currentPageSelectedElements = event.elements.currentPageSelectedElements.getDOMNodes().map(e =>e.value);
