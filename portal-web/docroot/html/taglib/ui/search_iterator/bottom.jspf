@@ -157,6 +157,40 @@
 
 		searchContainer.updateDataStore(<%= primaryKeysJSONArray.toString() %>);
 
+		var searchContainerId = searchContainer.get('id');
+
+		searchContainer.on('rowToggled', (event) => {
+			var selectedItems = event.elements.allSelectedElements.getDOMNodes().map(e=>e.value);
+			var currentPageSelectedElements = event.elements.currentPageSelectedElements.getDOMNodes().map(e =>e.value);
+			var currentPageElements = event.elements.currentPageElements.getDOMNodes().map(e => e.value);
+			var possibleUnselectedElements = currentPageElements.map(e => {
+				if(!currentPageSelectedElements.includes(e)) {
+					return e;
+				}
+			})
+			if(sessionStorage.getItem(searchContainerId + "_selections")) {
+				let storedSelections = sessionStorage.getItem(searchContainerId + "_selections").split(',')
+				let selections = selectedItems.map(e=>{
+					if(!storedSelections.includes(e)) {
+						return e;
+					}
+				});
+				storedSelections = storedSelections.map(e => {
+					if(!possibleUnselectedElements.includes(e)) {
+						return e;
+					}
+				})
+				const finalSelections =selections.concat(storedSelections);
+				if (selections.length > 0) {
+					sessionStorage.setItem(searchContainerId + "_selections", finalSelections)
+				} else{
+					searchContainer.removeItem(searchContainerId + "_selections");
+				}
+			} else if(selectedItems) {
+				sessionStorage.setItem(searchContainerId + "_selections", selectedItems);
+			}
+		});
+
 		var destroySearchContainer = function(event) {
 			if (event.portletId === '<%= portletDisplay.getRootPortletId() %>') {
 				searchContainer.destroy();
