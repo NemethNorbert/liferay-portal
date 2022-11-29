@@ -238,6 +238,9 @@ for (long groupId : groupIds) {
 <aui:script require="frontend-js-web/index as frontendJsWeb">
 	var {delegate} = frontendJsWeb;
 
+	let selectionStorageId;
+
+
 	function selectAssets(assetEntryList) {
 		var assetClassName = '';
 		var assetEntryIds = [];
@@ -247,6 +250,16 @@ for (long groupId : groupIds) {
 
 			assetClassName = assetEntry.assetclassname;
 		});
+
+		if (sessionStorage.getItem(selectionStorageId + "_selections")) {
+			const selections = sessionStorage.getItem(selectionStorageId + "_selections").split(',');
+			selections.map(ele=>{
+				if(!assetEntryIds.includes(ele)){
+					assetEntryIds.push(ele);
+				}
+			})
+			localStorage.removeItem(selectionStorageId + "_selections");
+		}
 
 		Liferay.Util.postForm(document.<portlet:namespace />fm, {
 			data: {
@@ -268,8 +281,16 @@ for (long groupId : groupIds) {
 			var delegateTarget = event.delegateTarget;
 
 			Liferay.Util.openSelectionModal({
+				customEvents:[{name:'selectionStorage', onEvent:(e)=>{
+					selectionStorageId= e.selectionStorageId;
+				}}],
 				customSelectEvent: true,
 				multiple: true,
+				onClose: function (event) {
+					if(sessionStorage.getItem(selectionStorageId + "_selections")) {
+						sessionStorage.removeItem(selectionStorageId + "_selections");
+					}
+				},
 				onSelect: function (selectedItems) {
 					if (selectedItems) {
 						selectAssets(selectedItems);
