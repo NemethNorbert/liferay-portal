@@ -381,6 +381,7 @@ const openSelectionModal = ({
 	buttonAddLabel = Liferay.Language.get('add'),
 	buttonCancelLabel = Liferay.Language.get('cancel'),
 	containerProps,
+	customEvents,
 	customSelectEvent = false,
 	getSelectedItemsOnly = true,
 	height,
@@ -469,10 +470,11 @@ const openSelectionModal = ({
 			  ]
 			: null,
 		containerProps,
+		customEvents,
 		height,
 		id: id || selectEventName,
 		iframeBodyCssClass,
-		onClose: () => {
+		onClose: (event) => {
 			eventHandlers.forEach((eventHandler) => {
 				eventHandler.detach();
 			});
