@@ -158,6 +158,7 @@
 		searchContainer.updateDataStore(<%= primaryKeysJSONArray.toString() %>);
 
 		var searchContainerId = searchContainer.get('id');
+		Liferay.Util.getOpener().Liferay.fire('selectionStorage',{selectionStorageId:searchContainerId});
 
 		if (sessionStorage.getItem(searchContainerId + "_selections")) {
 			let selections = sessionStorage.getItem(searchContainerId + "_selections").split(',')
