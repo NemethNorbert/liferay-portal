@@ -157,6 +157,37 @@
 
 		searchContainer.updateDataStore(<%= primaryKeysJSONArray.toString() %>);
 
+		if (!Liferay.SPA && searchContainer.select){
+			var searchContainerId = searchContainer.get('id');
+
+			searchContainer.on('rowToggled', (event) => {
+				var selectedItemsVal = event.elements.allSelectedElements.val();
+				var currentPageSelectedElementsVal = event.elements.currentPageSelectedElements.val();
+				var possibleUnselectedElementsVal = event.elements.currentPageElements.val().filter(e => !currentPageSelectedElementsVal.includes(e));
+
+				if(sessionStorage.getItem(searchContainerId + Liferay.ThemeDisplay.getUserId() + "_selections")) {
+					var storedSelections = sessionStorage.getItem(searchContainerId + Liferay.ThemeDisplay.getUserId() + "_selections").split(',')
+
+					storedSelections = storedSelections.filter(e => !possibleUnselectedElementsVal.includes(e));
+
+					selectedItemsVal.map(e=>{
+						if(!storedSelections.includes(e)) {
+							storedSelections.push(e);
+						}
+					});
+
+					if (storedSelections.length > 0) {
+						sessionStorage.setItem(searchContainerId + Liferay.ThemeDisplay.getUserId() + "_selections", storedSelections)
+					} else {
+						searchContainer.removeItem(searchContainerId + Liferay.ThemeDisplay.getUserId() + "_selections");
+					}
+
+				} else if(selectedItemsVal) {
+					sessionStorage.setItem(searchContainerId + Liferay.ThemeDisplay.getUserId() + "_selections", selectedItemsVal);
+				}
+			});
+		}
+
 		var destroySearchContainer = function(event) {
 			if (event.portletId === '<%= portletDisplay.getRootPortletId() %>') {
 				searchContainer.destroy();
