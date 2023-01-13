@@ -157,6 +157,29 @@
 
 		searchContainer.updateDataStore(<%= primaryKeysJSONArray.toString() %>);
 
+		if (!Liferay.SPA && searchContainer.select){
+			var searchContainerId = searchContainer.get('id');
+
+			searchContainer.on('rowToggled', (event) => {
+				var selectedItems = [];
+
+				if (event.elements.allSelectedElements.size() > 0) {
+					selectedItems = event.elements.allSelectedElements.val();
+				}
+
+				if(sessionStorage.getItem(searchContainerId + Liferay.ThemeDisplay.getUserId() + "_selections")) {
+					if (selectedItems.length > 0) {
+						sessionStorage.setItem(searchContainerId + Liferay.ThemeDisplay.getUserId() + "_selections", selectedItems)
+					} else {
+						sessionStorage.removeItem(searchContainerId + Liferay.ThemeDisplay.getUserId() + "_selections");
+					}
+
+				} else if(selectedItems.length > 0) {
+					sessionStorage.setItem(searchContainerId + Liferay.ThemeDisplay.getUserId() + "_selections", selectedItems);
+				}
+			});
+		}
+
 		var destroySearchContainer = function(event) {
 			if (event.portletId === '<%= portletDisplay.getRootPortletId() %>') {
 				searchContainer.destroy();
