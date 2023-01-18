@@ -22,13 +22,37 @@ const ResultsBar = ({
 	clearResultsURL,
 	filterLabelItems,
 	itemsTotal,
+	onClearButtonClick,
+	searchContainerId,
 	searchValue,
+	setActive,
 }) => {
 	const resultsBarRef = useRef();
+	const searchContainerRef = useRef();
+
+	useEffect(() => {
+		Liferay.componentReady(searchContainerId).then((searchContainer) => {
+			searchContainerRef.current = searchContainer;
+		});
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	useEffect(() => {
 		resultsBarRef.current?.focus();
 	}, [searchValue]);
+
+	const handleClick = (event) => {
+		event.preventDefault();
+
+		searchContainerRef.current?.select?.toggleAllRows(false, true);
+
+		setActive(false);
+
+		onClearButtonClick(event);
+
+		window.location.href = clearResultsURL;
+	};
 
 	return (
 		<>
@@ -87,7 +111,7 @@ const ResultsBar = ({
 							searchValue
 						)}
 						className="component-link tbar-link"
-						href={clearResultsURL}
+						onClick={(event) => handleClick(event)}
 					>
 						{Liferay.Language.get('clear')}
 					</ClayLink>

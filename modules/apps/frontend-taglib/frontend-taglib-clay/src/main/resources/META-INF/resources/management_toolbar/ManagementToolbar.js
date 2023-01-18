@@ -282,7 +282,10 @@ function ManagementToolbar({
 					clearResultsURL={clearResultsURL}
 					filterLabelItems={filterLabelItems}
 					itemsTotal={itemsTotal}
+					onClearButtonClick={onClearSelectionButtonClick}
+					searchContainerId={searchContainerId}
 					searchValue={searchValue}
+					setActive={setActive}
 				/>
 			)}
 		</FeatureFlagContext.Provider>
