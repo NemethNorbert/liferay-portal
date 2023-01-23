@@ -440,6 +440,59 @@ AUI.add(
 
 					if (!Liferay.SPA) {
 						instance._restoreFromSessionStorage(host);
+						window.addEventListener('beforeunload', () => {
+							if (
+								sessionStorage.getItem(
+									instance.get('searchContainerId') +
+										Liferay.ThemeDisplay.getUserId() +
+										'_selections'
+								)
+							) {
+
+								// Cleaning sessionStorage if the user navigates away
+
+								if (
+									!document
+										.getElementById(
+											instance.get('searchContainerId')
+										)
+										.contains(document.activeElement) &&
+									!document
+										.getElementsByClassName(
+											'management-bar'
+										)[0]
+										?.contains(document.activeElement) &&
+									!document
+										.getElementsByClassName('tbar-nav')[0]
+										?.contains(document.activeElement)
+								) {
+									sessionStorage.removeItem(
+										instance.get('searchContainerId') +
+											Liferay.ThemeDisplay.getUserId() +
+											'_selections'
+									);
+								}
+
+								// Cleaning sessionsSotre if the user initated a single action on an item
+
+								else if (
+									document
+										.getElementById(
+											instance.get('searchContainerId')
+										)
+										.contains(document.activeElement) &&
+									document.activeElement.classList.contains(
+										'component-action'
+									)
+								) {
+									sessionStorage.removeItem(
+										instance.get('searchContainerId') +
+											Liferay.ThemeDisplay.getUserId() +
+											'_selections'
+									);
+								}
+							}
+						});
 					}
 				},
 
