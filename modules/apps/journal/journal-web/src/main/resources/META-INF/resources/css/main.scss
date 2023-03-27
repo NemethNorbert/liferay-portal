@@ -88,6 +88,7 @@ $productMenuWidth: 320px;
 			left: 0;
 			min-height: 3.5rem;
 			position: fixed;
+			top: $controlMenuHeight;
 			transition: left ease $productMenuTransitionDuration,
 				width ease $productMenuTransitionDuration;
 			width: 100%;
@@ -218,19 +219,13 @@ $productMenuWidth: 320px;
 		.edit-article-sidebar {
 			border-left: 1px #e7e7ed solid;
 			box-shadow: none;
-			margin-top: $toolbarHeight;
 			max-width: 90vw;
 			outline: 0;
 			overflow-y: scroll;
 			padding-top: 0;
 			position: fixed;
-			top: auto;
 			width: $productMenuWidth;
 			z-index: 1;
-
-			@include media-breakpoint-up(lg) {
-				margin-top: $toolbarDesktopHeight;
-			}
 
 			.article-content-description {
 				@extend .article-content-content;
