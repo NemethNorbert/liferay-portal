@@ -85,7 +85,7 @@ public class JournalArticleModelIndexerWriterContributor
 		else {
 			batchIndexingActionable.setInterval(
 				_batchIndexingHelper.getBulkSize(
-					JournalArticleResource.class.getName()));
+					JournalArticle.class.getName()));
 			batchIndexingActionable.setPerformActionMethod(
 				(JournalArticleResource articleResource) -> {
 					JournalArticle latestIndexableArticle =
