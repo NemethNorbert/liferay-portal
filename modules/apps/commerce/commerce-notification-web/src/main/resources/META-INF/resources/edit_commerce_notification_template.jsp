@@ -33,6 +33,8 @@ String title = LanguageUtil.get(resourceBundle, "add-notification-template");
 
 if (commerceNotificationTemplate != null) {
 	title = LanguageUtil.format(request, "edit-x", commerceNotificationTemplate.getName(), false);
+
+	fromName = commerceNotificationTemplate.getFromName();
 }
 %>
 
@@ -110,7 +112,14 @@ if (commerceNotificationTemplate != null) {
 				<div class="col-6">
 					<aui:input name="bcc" value="<%= bcc %>" />
 
-					<aui:input name="fromName" value="<%= fromName %>" />
+					<label for="<portlet:namespace />fromNameFieldWrapper"><liferay-ui:message key="from-name" /></label>
+
+					<aui:field-wrapper label="" name="fromNameFieldWrapper">
+						<liferay-ui:input-localized
+							name="fromName"
+							xml="<%= fromName %>"
+						/>
+					</aui:field-wrapper>
 				</div>
 
 				<c:if test="<%= (definitionTerms != null) && !definitionTerms.isEmpty() %>">
