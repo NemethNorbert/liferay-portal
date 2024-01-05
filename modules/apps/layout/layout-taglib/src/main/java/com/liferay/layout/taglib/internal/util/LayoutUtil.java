@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpComponentsUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -104,15 +105,31 @@ public class LayoutUtil {
 				continue;
 			}
 
+			Boolean disabled =
+				(checkDisplayPage && !layout.isContentDisplayPage()) ||
+				(!enableCurrentPage && (layout.getPlid() == selPlid));
+
 			jsonArray.put(
 				JSONUtil.put(
+					"children",
+					() -> {
+						if (disabled && layout.hasChildren()) {
+							return getLayoutsJSONArray(
+								checkDisplayPage, enableCurrentPage, groupId,
+								httpServletRequest, itemSelectorReturnType,
+								privateLayout, layout.getLayoutId(),
+								selectedLayoutUuid, layout.getPlid(), 0,
+								GetterUtil.getInteger(
+									PropsValues.
+										LAYOUT_MANAGE_PAGES_INITIAL_CHILDREN));
+						}
+
+						return null;
+					}
+				).put(
 					"disabled",
 					() -> {
-						if ((checkDisplayPage &&
-							 !layout.isContentDisplayPage()) ||
-							(!enableCurrentPage &&
-							 (layout.getPlid() == selPlid))) {
-
+						if (disabled) {
 							return true;
 						}
 
