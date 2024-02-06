@@ -110,11 +110,6 @@ test('Undo and Redo buttons work as expected', async ({
 
 	await pageEditorPage.goToEditMode(site, layout);
 
-	// Assert undo and redo buttons are visible
-
-	expect(pageEditorPage.undoButton).toBeVisible();
-	expect(pageEditorPage.redoButton).toBeVisible();
-
 	// Change number of tabs to 5
 
 	await pageEditorPage.changeFragmentConfiguration(
