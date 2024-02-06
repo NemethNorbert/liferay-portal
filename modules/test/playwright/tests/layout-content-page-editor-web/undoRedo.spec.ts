@@ -172,7 +172,7 @@ test('Undo history works as expected', async ({
 
 	const headingId = getRandomId();
 
-	const headingFragment = getFragmentDefinition(
+	const fragmentDefinition = getFragmentDefinition(
 		headingId,
 		'BASIC_COMPONENT-heading'
 	);
@@ -180,7 +180,7 @@ test('Undo history works as expected', async ({
 	const layout = await apiHelpers.headlessDelivery.createSitePage(
 		site.id,
 		getRandomId(),
-		getPageDefinition([headingFragment])
+		getPageDefinition([fragmentDefinition])
 	);
 
 	// Go to edit mode of page
