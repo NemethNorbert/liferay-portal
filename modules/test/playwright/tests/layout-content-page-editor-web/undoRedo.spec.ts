@@ -191,38 +191,35 @@ test('Undo history works as expected', async ({
 
 	await expect(page.getByTitle('History')).toBeVisible();
 
-	// Select the fragment
-
-	await pageEditorPage.selectFragment(headingId);
-
 	// Go to General Panel and change the Heading level 3 times
 
-	await pageEditorPage.goToConfigurationTab('General');
-	await expect(page.getByLabel('Heading Level', {exact: true})).toBeVisible();
-	await page.getByLabel('Heading Level', {exact: true}).selectOption('h2');
-	await expect(
-		page
-			.locator(`.lfr-layout-structure-item-${headingId}`)
-			.locator('h2.component-heading')
-	).toBeAttached();
-	await page.getByLabel('Heading Level', {exact: true}).selectOption('h3');
-	await expect(
-		page
-			.locator(`.lfr-layout-structure-item-${headingId}`)
-			.locator('h3.component-heading')
-	).toBeAttached();
-	await page.getByLabel('Heading Level', {exact: true}).selectOption('h4');
-	await expect(
-		page
-			.locator(`.lfr-layout-structure-item-${headingId}`)
-			.locator('h4.component-heading')
-	).toBeAttached();
+	await pageEditorPage.changeFragmentConfiguration(
+		headingId,
+		'General',
+		'Heading Level',
+		'h2'
+	);
 
-	// Open the History dropdown and assert we have 3 + 1 Action inlcuding Undo All
+	await pageEditorPage.changeFragmentConfiguration(
+		headingId,
+		'General',
+		'Heading Level',
+		'h3'
+	);
+
+	await pageEditorPage.changeFragmentConfiguration(
+		headingId,
+		'General',
+		'Heading Level',
+		'h4'
+	);
+
+	// Open the History dropdown and assert we have 3 + 1 Action including Undo All
 
 	await page.getByTitle('History').click();
+
 	await expect(
-		page.locator('#clay-dropdown-menu-2').locator('ul > li > button')
+		pageEditorPage.undoHistory.locator('ul > li > button')
 	).toHaveCount(4);
 
 	// Assert the current History position is disabled
