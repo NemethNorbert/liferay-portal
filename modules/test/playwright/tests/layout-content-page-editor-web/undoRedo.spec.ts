@@ -222,37 +222,28 @@ test('Undo history works as expected', async ({
 		pageEditorPage.undoHistory.locator('ul > li > button')
 	).toHaveCount(4);
 
-	// Assert the current History position is disabled
+	// Assert the current (fir) History position is disabled
 
 	await expect(
-		page
-			.getByRole('menuitem', {name: 'Update Heading Configuration'})
-			.first()
+		pageEditorPage.undoHistory.getByRole('menuitem').nth(0)
 	).toBeDisabled();
 
 	// Assert the heading fragment has the correct heading level after changing history
 
-	await page
-		.getByRole('menuitem', {name: 'Update Heading Configuration'})
-		.nth(1)
-		.click();
+	await pageEditorPage.undoHistory.getByRole('menuitem').nth(1).click();
+
 	await expect(
-		page
-			.locator(`.lfr-layout-structure-item-${headingId}`)
-			.locator('h3.component-heading')
+		pageEditorPage.getFragment(headingId).locator('h3')
 	).toBeAttached();
 
 	// Assert the new History position is updated
 
 	await expect(
-		page
-			.getByRole('menuitem', {name: 'Update Heading Configuration'})
-			.first()
+		pageEditorPage.undoHistory.getByRole('menuitem').nth(0)
 	).toBeEnabled();
+
 	await expect(
-		page
-			.getByRole('menuitem', {name: 'Update Heading Configuration'})
-			.nth(1)
+		pageEditorPage.undoHistory.getByRole('menuitem').nth(1)
 	).toBeDisabled();
 
 	// Delete the site
