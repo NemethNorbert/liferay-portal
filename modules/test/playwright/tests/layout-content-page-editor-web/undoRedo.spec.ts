@@ -69,7 +69,7 @@ test('View Undo interaction state is cleared after refreshing the page', async (
 
 	// Refresh the page
 
-	await page.reload({waitUntil: 'domcontentloaded'});
+	await page.reload();
 
 	// Assert Undo button is disabled
 
