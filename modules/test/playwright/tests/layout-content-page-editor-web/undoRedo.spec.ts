@@ -110,51 +110,52 @@ test('Undo and Redo buttons work as expected', async ({
 
 	await pageEditorPage.goToEditMode(site, layout);
 
-	// Assert undo button is visible
+	// Assert undo and redo buttons are visible
 
-	const undoButton = page.getByTitle('Undo');
-	const redoButton = page.getByTitle('Redo');
-	const tabsFragment = page.locator(`.lfr-layout-structure-item-${tabsId}`);
+	expect(pageEditorPage.undoButton).toBeVisible();
+	expect(pageEditorPage.redoButton).toBeVisible();
 
-	expect(undoButton).toBeVisible();
-	expect(redoButton).toBeVisible();
+	// Change number of tabs to 5
 
-	// Select the fragment
-
-	await tabsFragment.click();
-
-	// Go to Styles panel and set text to Align Center
-
-	await pageEditorPage.goToConfigurationTab('General');
-	await page.getByLabel('Number of Tabs', {exact: true}).fill('5');
-	await tabsFragment.click();
-
-	await expect(tabsFragment.getByText('Tab 5')).toBeVisible();
+	await pageEditorPage.changeFragmentConfiguration(
+		tabsId,
+		'General',
+		'Number of Tabs',
+		'5'
+	);
 
 	// Delete tabs fragment
 
-	await page.keyboard.press('Backspace');
+	await pageEditorPage.deleteFragment(tabsId);
 
-	await expect(tabsFragment).not.toBeAttached();
+	// Assert undo button is enabled and redo button is disabled
 
-	// Assert undo button is enabled redo button is disabled
+	await expect(pageEditorPage.undoButton).toBeEnabled();
+	await expect(pageEditorPage.redoButton).toBeDisabled();
 
-	await expect(undoButton).toBeEnabled();
-	await expect(redoButton).toBeDisabled();
+	// Undo deleting the fragment
 
-	await undoButton.click();
+	await pageEditorPage.undoButton.click();
 
 	// Assert tabsfragment its present and configuration is not lost
+
+	const tabsFragment = pageEditorPage.getFragment(tabsId);
 
 	await expect(tabsFragment).toBeAttached();
 	await expect(tabsFragment.getByText('Tab 5')).toBeVisible();
 
+	// Undo changing number of tabs
+
+	await pageEditorPage.undoButton.click();
+
+	// Check tab 5 is not present
+
+	await expect(tabsFragment.getByText('Tab 5')).not.toBeVisible();
+
 	// Assert Undo button is disabled and Redo button is enabled
 
-	await undoButton.click();
-
-	await expect(undoButton).toBeDisabled();
-	await expect(redoButton).toBeEnabled();
+	await expect(pageEditorPage.undoButton).toBeDisabled();
+	await expect(pageEditorPage.redoButton).toBeEnabled();
 
 	// Delete the site
 
