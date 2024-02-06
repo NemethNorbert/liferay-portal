@@ -50,9 +50,9 @@ test('View Undo interaction state is cleared after refreshing the page', async (
 
 	await pageEditorPage.goToEditMode(site, layout);
 
-	// Assert undo button is visible
+	// Assert undo button is disabled
 
-	expect(page.getByTitle('Undo')).toBeVisible();
+	await expect(page.getByTitle('Undo')).toBeDisabled();
 
 	// Select the fragment
 
