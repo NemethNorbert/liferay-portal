@@ -52,7 +52,7 @@ test('View Undo interaction state is cleared after refreshing the page', async (
 
 	// Assert undo button is disabled
 
-	await expect(page.getByTitle('Undo')).toBeDisabled();
+	await expect(pageEditorPage.undoButton).toBeDisabled();
 
 	// Select the fragment
 
@@ -65,7 +65,7 @@ test('View Undo interaction state is cleared after refreshing the page', async (
 
 	// Assert undo button is enabled
 
-	await expect(page.getByTitle('Undo')).toBeEnabled();
+	await expect(pageEditorPage.undoButton).toBeEnabled();
 
 	// Refresh the page
 
@@ -73,7 +73,7 @@ test('View Undo interaction state is cleared after refreshing the page', async (
 
 	// Assert Undo button is disabled
 
-	await expect(page.getByTitle('Undo')).toBeDisabled();
+	await expect(pageEditorPage.undoButton).toBeDisabled();
 
 	// Delete the site
 
