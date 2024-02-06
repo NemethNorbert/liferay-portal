@@ -91,7 +91,7 @@ test('Undo and Redo buttons work as expected', async ({
 
 	const site = await apiHelpers.headlessSite.createSite(getRandomId());
 
-	// Create a page with a Heading fragment
+	// Create a page with a Tabs fragment
 
 	const tabsId = getRandomId();
 
