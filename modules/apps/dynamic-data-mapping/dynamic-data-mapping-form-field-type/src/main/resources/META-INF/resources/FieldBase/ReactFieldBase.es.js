@@ -19,7 +19,7 @@ import {
 } from 'data-engine-js-components-web';
 import {sub} from 'frontend-js-web';
 import moment from 'moment/min/moment-with-locales';
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 
 import './FieldBase.scss';
 
@@ -369,6 +369,39 @@ export function FieldBase({
 			Liferay.detach('disableRepeatableButton', disableRepeatableButton);
 		};
 	}, []);
+
+	const resetTranslations = useCallback(() => {
+		const pagesVisitor = new PagesVisitor(pages);
+
+		dispatch({
+			payload: pagesVisitor.mapFields(
+				(field) => {
+					return {
+						...field,
+						localizedValue: {
+							...field.localizedValue,
+							[editingLanguageId]: '',
+						},
+						value: '',
+					};
+				},
+				false,
+				true
+			),
+			type: CORE_EVENT_TYPES.PAGE.UPDATE,
+		});
+	}, [dispatch, editingLanguageId, pages]);
+
+	useEffect(() => {
+		Liferay.on('inputLocalized:resetTranslations', resetTranslations);
+
+		return () => {
+			Liferay.detach(
+				'inputLocalized:resetTranslations',
+				resetTranslations
+			);
+		};
+	}, [resetTranslations]);
 
 	return (
 		<ClayForm.Group

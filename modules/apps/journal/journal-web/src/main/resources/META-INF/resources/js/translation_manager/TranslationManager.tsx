@@ -63,18 +63,7 @@ export default function TranslationManager({
 	);
 
 	const getLocalizableFields = useCallback(() => {
-		const ddmFields = Array.from(
-			document.querySelectorAll<HTMLInputElement>(
-				`[data-ddm-localizable-field-id]`
-			)
-		)
-			.map(
-				(field) =>
-					`${field.dataset.fieldName}${field.dataset.ddmLocalizableFieldId}`
-			)
-			.reduce((acc, name) => ({...acc, [name]: {}}), {});
-
-		const fields = {...initialFields, ...ddmFields};
+		const fields = getAllLocalizableFields(initialFields);
 
 		setFields(fields);
 
@@ -157,4 +146,19 @@ export function fieldToTranslations(fields: Record<string, Field>) {
 	}
 
 	return translations;
+}
+
+export function getAllLocalizableFields(initialFields: Record<string, Field>) {
+	const ddmFields = Array.from(
+		document.querySelectorAll<HTMLInputElement>(
+			`[data-ddm-localizable-field-id]`
+		)
+	)
+		.map(
+			(field) =>
+				`${field.dataset.fieldName}${field.dataset.ddmLocalizableFieldId}`
+		)
+		.reduce((acc, name) => ({...acc, [name]: {}}), {});
+
+	return {...initialFields, ...ddmFields};
 }

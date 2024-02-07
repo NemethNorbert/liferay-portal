@@ -25,4 +25,7 @@ export declare function fieldToTranslations(
 	fieldName: string;
 	languages: Liferay.Language.Locale[];
 }[];
+export declare function getAllLocalizableFields(
+	initialFields: Record<string, Field>
+): {};
 export {};
