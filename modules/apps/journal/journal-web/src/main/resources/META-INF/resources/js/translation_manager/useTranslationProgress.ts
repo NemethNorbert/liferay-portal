@@ -148,6 +148,7 @@ export default function useTranslationProgress({
 		defaultLanguageId,
 		selectedLanguageId,
 		translationProgress,
+		translations,
 		updateTranslations,
 	};
 }
