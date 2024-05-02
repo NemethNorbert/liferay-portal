@@ -221,7 +221,7 @@ export default function FieldBase({
 	visible,
 	warningMessage,
 }) {
-	const {editingLanguageId, pages} = useFormState();
+	const {editingLanguageId, history, pages,} = useFormState();
 	const [disabledRepeatableButton, setDisabledRepeatableButton] = useState(
 		false
 	);

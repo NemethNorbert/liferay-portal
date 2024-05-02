@@ -8,6 +8,7 @@ import {
 	FormProvider,
 	Pages,
 	activePageReducer,
+	historyReducer,
 	pagesStructureReducer,
 	parseProps,
 } from 'data-engine-js-components-web';
@@ -37,7 +38,7 @@ const FormSettings = (props) => {
 		<ConfigProvider config={config}>
 			<FormProvider
 				initialState={{activePage: 0}}
-				reducers={[activePageReducer, pagesStructureReducer]}
+				reducers={[activePageReducer, historyReducer, pagesStructureReducer]}
 				value={state}
 			>
 				<FormSettingsModal
