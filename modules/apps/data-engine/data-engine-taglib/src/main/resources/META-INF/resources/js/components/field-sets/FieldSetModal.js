@@ -13,6 +13,7 @@ import {
 	KeyboardDNDContextProvider,
 	dragAndDropReducer,
 	fieldEditableReducer,
+	historyReducer,
 	languageReducer,
 	pageReducer,
 	pagesStructureReducer,
@@ -340,6 +341,7 @@ const FieldSetModal = ({fieldSet, onClose: onCloseProp}) => {
 					reducers={[
 						dragAndDropReducer,
 						fieldEditableReducer,
+						historyReducer,
 						languageReducer,
 						pageReducer,
 						pagesStructureReducer,

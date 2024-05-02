@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 
 import {getFormId, getFormNode} from '../../../utils/formId.es';
+import { EVENT_TYPES } from '../../actions/eventTypes.es';
 import {useConfig} from '../../hooks/useConfig.es';
 import {useEvaluate} from '../../hooks/useEvaluate.es';
 import {useForm, useFormState} from '../../hooks/useForm.es';
@@ -29,6 +30,45 @@ export function Layout({components, editable, itemPath, rows, viewMode}) {
 
 	const Components = components ?? mergeVariants(editable, variants);
 
+	useEffect(() => {
+		const undoHandler = () => {
+			dispatch({type: EVENT_TYPES.HISTORY.PREV})
+		}
+		const redoHandler = () => {
+			dispatch({type: EVENT_TYPES.HISTORY.NEXT})
+		}
+
+		Liferay.on(
+			'undo',
+			undoHandler
+		);
+		Liferay.on(
+			'redo',
+			redoHandler
+		);
+	
+	  return () => {
+		Liferay.detach(
+			'undo',
+			undoHandler)
+		Liferay.detach(
+			'redo',
+			redoHandler)
+	  }
+	}, [dispatch])
+
+	useEffect(() => {
+		const handleAutoSave = () => {
+			dispatch({payload: pages, type: EVENT_TYPES.HISTORY.ADD})
+		}
+
+		Liferay.on('autoSave', handleAutoSave)
+	  
+		return () => {
+		  Liferay.detach('autoSave', handleAutoSave)
+		}
+	  }, [dispatch, pages])
+	
 	return (
 		<Components.Rows
 			activePage={activePage}

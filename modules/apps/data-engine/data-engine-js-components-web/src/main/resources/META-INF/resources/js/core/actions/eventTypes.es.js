@@ -44,6 +44,11 @@ const FIELD_SET = {
 	ADD: 'fieldset_add',
 };
 
+const HISTORY = {
+	ADD: 'add_step',
+	NEXT: 'next_step',
+	PREV: 'prev_step',
+}
 const LANGUAGE = {
 	ADD: 'language_add',
 	CHANGE: 'language_change',
@@ -57,6 +62,7 @@ export const EVENT_TYPES = {
 	DND,
 	FIELD,
 	FIELD_SET,
+	HISTORY,
 	LANGUAGE,
 	PAGE,
 	SECTION,

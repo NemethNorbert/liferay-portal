@@ -13,6 +13,7 @@ import {FormProvider, useForm} from '../../core/hooks/useForm.es';
 import {
 	activePageReducer,
 	fieldReducer,
+	historyReducer,
 	languageReducer,
 	pageValidationReducer,
 	pagesStructureReducer,
@@ -110,6 +111,7 @@ export function FormFieldSettings({children, onAction, ...otherProps}) {
 					fieldReducer,
 					formBuilderReducer,
 					languageReducer,
+					historyReducer,
 					objectFieldsReducer,
 					pagesStructureReducer,
 					pageValidationReducer,
