@@ -13,6 +13,24 @@ export default function historyReducer(state, action) {
                     currentStep: state.history.currentStep + 1,
                     steps: [...state.history.steps.slice(0, state.history.currentStep+1), action.payload]},
             };
+        case EVENT_TYPES.HISTORY.BLUR:
+            if(state.history.lock) {
+                Liferay.fire('autoSave')
+            }
+
+            return {
+                history: {
+                    ...state.history,
+                    lock: false,
+                }
+            };
+        case EVENT_TYPES.HISTORY.LOCK:
+            return {
+                history: {
+                    ...state.history,
+                    lock: true,
+                }
+            };
         case EVENT_TYPES.HISTORY.NEXT:
             return {
                 history: {

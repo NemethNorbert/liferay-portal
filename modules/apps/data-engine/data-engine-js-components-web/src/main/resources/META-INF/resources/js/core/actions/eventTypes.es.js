@@ -46,6 +46,8 @@ const FIELD_SET = {
 
 const HISTORY = {
 	ADD: 'add_step',
+	BLUR: 'handle_blur',
+	LOCK: 'lock_change',
 	NEXT: 'next_step',
 	PREV: 'prev_step',
 }

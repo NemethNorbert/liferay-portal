@@ -194,6 +194,10 @@ AUI.add(
 
 				_animating: null,
 
+				_autoSave() {
+					Liferay.fire('autoSave')
+				},
+
 				_availableLanguagesSubscription: null,
 
 				_bindManageTranslationsButton() {
@@ -800,6 +804,12 @@ AUI.add(
 					];
 
 					if (!instance.get('editor')) {
+						eventHandles.push(
+							inputPlaceholder.on(
+								'input',
+								A.debounce('_autoSave', 1000, instance)
+							)
+						);
 						eventHandles.push(
 							inputPlaceholder.on(
 								'input',

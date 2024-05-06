@@ -88,6 +88,7 @@ export default function fieldChange({
 		// the field.
 
 		dispatch({payload: editedPages, type: EVENT_TYPES.PAGE.UPDATE});
+		dispatch({type: EVENT_TYPES.HISTORY.LOCK});
 
 		if (evaluable && (viewMode || needsPageEvaluation(fieldName))) {
 			try {
