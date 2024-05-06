@@ -17,6 +17,7 @@ export default function fieldBlur({
 		const {fieldInstance} = properties;
 
 		dispatch({payload: properties, type: EVENT_TYPES.FIELD.BLUR});
+		dispatch({type: EVENT_TYPES.HISTORY.BLUR})
 
 		Liferay.fire('ddmFieldBlur', {
 			fieldName: fieldInstance.label,

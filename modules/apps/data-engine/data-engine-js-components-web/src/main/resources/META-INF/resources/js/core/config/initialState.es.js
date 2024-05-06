@@ -24,6 +24,7 @@ export const INITIAL_STATE = {
 	focusedField: {},
 	history: {
 		currentStep: -1,
+		lock: false,
 		steps: [],
 
 	},
