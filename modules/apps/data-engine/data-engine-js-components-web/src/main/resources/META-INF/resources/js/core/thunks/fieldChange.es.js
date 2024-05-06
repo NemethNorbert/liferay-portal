@@ -88,7 +88,11 @@ export default function fieldChange({
 		// the field.
 
 		dispatch({payload: editedPages, type: EVENT_TYPES.PAGE.UPDATE});
-		dispatch({type: EVENT_TYPES.HISTORY.LOCK});
+		if (fieldInstance.type === 'numeric' || fieldInstance.type === 'text' || fieldInstance.type === 'rich_text') {
+			dispatch({type: EVENT_TYPES.HISTORY.LOCK});
+		} else {
+			Liferay.fire('autoSave')
+		}
 
 		if (evaluable && (viewMode || needsPageEvaluation(fieldName))) {
 			try {
