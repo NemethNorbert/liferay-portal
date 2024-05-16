@@ -38,6 +38,7 @@ export default function SaveButtons({
 
 	useEffect(() => {
 		initializeLock('publishing', {
+			errorIndicator: document.getElementById(`${portletNamespace}savingChangesError`),
 			lockedIndicator: document.getElementById(
 				`${portletNamespace}savingChangesIndicator`
 			),

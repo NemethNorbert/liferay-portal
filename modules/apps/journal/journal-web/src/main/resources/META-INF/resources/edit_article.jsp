@@ -159,6 +159,16 @@ journalEditArticleDisplayContext.setViewAttributes();
 										%>'
 									/>
 								</div>
+
+								<div class="align-items-center d-none mx-3 small" id="<portlet:namespace />savingChangesError">
+									<liferay-ui:message key="alert-helper-warning" />
+
+									<clay:icon
+										cssClass="ml-2"
+										symbol="block"
+									/>
+								</div>
+
 								<div class="align-items-center d-none mx-3 small" id="<portlet:namespace />savingChangesIndicator">
 									<liferay-ui:message key="saving" />
 
