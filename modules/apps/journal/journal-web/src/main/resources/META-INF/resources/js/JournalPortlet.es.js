@@ -378,6 +378,8 @@ export default function _JournalPortlet({
 							document.getElementById(
 								`${namespace}articleId`
 							).value = articleId;
+
+							Liferay.fire('asyncFormSubmission', {articleId})
 						}
 					}
 					const friendlyUrlInputComponent = Liferay.component(
