@@ -389,6 +389,7 @@ export default function _JournalPortlet({
 							`${namespace}titleMapAsXML`
 						);
 
+						friendlyUrlInputComponent.updateInputLanguage(titleInputComponent.getValue(defaultLanguageId).toLowerCase(), defaultLanguageId)
 						friendlyUrlInputComponent.updateInput(titleInputComponent.getValue(defaultLanguageId).toLowerCase())
 					}
 
