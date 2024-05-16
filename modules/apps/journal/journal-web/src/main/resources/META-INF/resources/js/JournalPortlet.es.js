@@ -380,6 +380,19 @@ export default function _JournalPortlet({
 							).value = articleId;
 						}
 					}
+					const friendlyUrlInputComponent = Liferay.component(
+						`${namespace}friendlyURL`
+					);
+
+					if (!friendlyUrlInputComponent.getValue()) {
+						const titleInputComponent = Liferay.component(
+							`${namespace}titleMapAsXML`
+						);
+
+						friendlyUrlInputComponent.updateInput(titleInputComponent.getValue(defaultLanguageId).toLowerCase())
+					}
+
+					lockHolder.lock?.unlock();
 				}
 			})
 			.catch((error) => {
