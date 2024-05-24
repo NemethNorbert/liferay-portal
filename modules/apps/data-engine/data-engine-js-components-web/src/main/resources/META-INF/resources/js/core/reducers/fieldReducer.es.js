@@ -36,7 +36,7 @@ export function createRepeatedField(
 		localizedValueEdited,
 		name: generateName(name, {instanceId, repeatedIndex}),
 		nestedFields: nestedFields?.map((nestedField) =>
-			createRepeatedField(nestedField)
+			createRepeatedField(defaultLanguageId, nestedField)
 		),
 		valid: true,
 		value: predefinedValue,
