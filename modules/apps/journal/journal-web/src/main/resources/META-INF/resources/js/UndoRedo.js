@@ -181,7 +181,7 @@ export default function UndoRedo({
 	}, []);
 
 	return (
-		<div>
+		<>
 			<ClayButtonWithIcon
 				aria-label={Liferay.Language.get('undo')}
 				className="btn-monospaced"
@@ -209,6 +209,6 @@ export default function UndoRedo({
 				symbol="redo"
 				title={Liferay.Language.get('redo')}
 			/>
-		</div>
+		</>
 	);
 }
