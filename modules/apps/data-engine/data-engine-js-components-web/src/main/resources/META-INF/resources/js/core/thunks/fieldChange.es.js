@@ -89,7 +89,7 @@ export default function fieldChange({
 
 		dispatch({payload: editedPages, type: EVENT_TYPES.PAGE.UPDATE});
 
-		if (Liferay.FeatureFlags['LPD-22301']) {
+		if (Liferay.FeatureFlags['LPD-11228']) {
 			if (
 				fieldInstance.type === 'numeric' ||
 				fieldInstance.type === 'text' ||

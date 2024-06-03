@@ -40,7 +40,7 @@ Map<String, Map<String, String>> languagesTranslationsAriaLabelsMap = new HashMa
 					var lock = false;
 
 					function <%= namespace + randomNamespace %>onBlurMethod() {
-						if (lock && Liferay.FeatureFlags['LPD-22301']) {
+						if (lock && Liferay.FeatureFlags['LPD-11228']) {
 							lock = false;
 
 							Liferay.fire('journal:autoSave', {fieldName: "<%= inputEditorName %>"});
@@ -48,7 +48,7 @@ Map<String, Map<String, String>> languagesTranslationsAriaLabelsMap = new HashMa
 					}
 
 					function <%= namespace + randomNamespace %>onChangeEditor() {
-						if (Liferay.FeatureFlags['LPD-22301']) {
+						if (Liferay.FeatureFlags['LPD-11228']) {
 							lock = true;
 
 							var inputLocalized = Liferay.component('<%= namespace + HtmlUtil.escapeJS(fieldName) %>');

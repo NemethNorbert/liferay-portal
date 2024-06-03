@@ -205,7 +205,7 @@ AUI.add(
 					if (instance.get('edited')) {
 						instance.set('edited', false);
 
-						Liferay.fire('autoSave', {
+						Liferay.fire('journal:autoSave', {
 							fieldName: instance.get('name'),
 						});
 					}
@@ -381,7 +381,7 @@ AUI.add(
 						value = input.val();
 					}
 
-					if (Liferay.FeatureFlags['LPD-22301']) {
+					if (Liferay.FeatureFlags['LPD-11228']) {
 						instance.set('edited', true);
 					}
 
@@ -821,7 +821,7 @@ AUI.add(
 					];
 
 					if (!instance.get('editor')) {
-						if (Liferay.FeatureFlags['LPD-22301']) {
+						if (Liferay.FeatureFlags['LPD-11228']) {
 							eventHandles.push(
 								inputPlaceholder.on(
 									'blur',
