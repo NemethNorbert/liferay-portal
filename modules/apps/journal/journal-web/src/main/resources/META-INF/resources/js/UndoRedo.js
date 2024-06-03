@@ -15,7 +15,7 @@ const META_FIELD_NAMES = {
 export default function UndoRedo({
 	initialDefaultLanguageId,
 	languageId,
-	namespace,
+	portletNamespace,
 }) {
 	const [
 		// eslint-disable-next-line no-unused-vars
@@ -32,20 +32,20 @@ export default function UndoRedo({
 		const nextStep = history[newStep];
 
 		const titleInputComponent = Liferay.component(
-			`${namespace}${META_FIELD_NAMES.title}`
+			`${portletNamespace}${META_FIELD_NAMES.title}`
 		);
 
 		const descriptionInputComponent = Liferay.component(
-			`${namespace}${META_FIELD_NAMES.description}`
+			`${portletNamespace}${META_FIELD_NAMES.description}`
 		);
 
 		const friendlyURLInputComponent = Liferay.component(
-			`${namespace}${META_FIELD_NAMES.friendlyURL}`
+			`${portletNamespace}${META_FIELD_NAMES.friendlyURL}`
 		);
 
 		if (nextStep.selectedLanguageId !== selectedLanguageId) {
 			const selectedLanguageIdInput = document.getElementById(
-				`${namespace}languageId`
+				`${portletNamespace}languageId`
 			);
 
 			selectedLanguageIdInput.value = nextStep.selectedLanguageId;
@@ -86,23 +86,23 @@ export default function UndoRedo({
 	const handleAutoSave = useCallback(
 		({fieldName}) => {
 			const defaultLanguageIdInput = document.getElementById(
-				`${namespace}defaultLanguageId`
+				`${portletNamespace}defaultLanguageId`
 			);
 
 			const descriptionInputComponent = Liferay.componentReady(
-				`${namespace}${META_FIELD_NAMES.description}`
+				`${portletNamespace}${META_FIELD_NAMES.description}`
 			);
 
 			const titleInputComponent = Liferay.componentReady(
-				`${namespace}${META_FIELD_NAMES.title}`
+				`${portletNamespace}${META_FIELD_NAMES.title}`
 			);
 
 			const friendlyURLInputComponent = Liferay.componentReady(
-				`${namespace}${META_FIELD_NAMES.friendlyURL}`
+				`${portletNamespace}${META_FIELD_NAMES.friendlyURL}`
 			);
 
 			const selectedLanguageIdInput = document.getElementById(
-				`${namespace}languageId`
+				`${portletNamespace}languageId`
 			);
 
 			Promise.all([
@@ -139,7 +139,7 @@ export default function UndoRedo({
 				}
 			);
 		},
-		[history, namespace, selectedLanguageId, step]
+		[history, portletNamespace, selectedLanguageId, step]
 	);
 
 	const localeChangeHandler = useCallback(
@@ -147,14 +147,14 @@ export default function UndoRedo({
 			const selectedLanguageId = event.item.getAttribute('data-value');
 
 			const selectedLanguageIdInput = document.getElementById(
-				`${namespace}languageId`
+				`${portletNamespace}languageId`
 			);
 
 			selectedLanguageIdInput.value = selectedLanguageId;
 
 			Liferay.fire('journal:autoSave', {fieldName: 'Locale Change'});
 		},
-		[namespace]
+		[portletNamespace]
 	);
 
 	useEffect(() => {
