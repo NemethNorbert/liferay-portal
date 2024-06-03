@@ -39,12 +39,12 @@ export function Layout({components, editable, itemPath, rows, viewMode}) {
 			dispatch({type: EVENT_TYPES.HISTORY.NEXT});
 		};
 
-		Liferay.on('undo', undoHandler);
-		Liferay.on('redo', redoHandler);
+		Liferay.on('journal:undo', undoHandler);
+		Liferay.on('journal:redo', redoHandler);
 
 		return () => {
-			Liferay.detach('undo', undoHandler);
-			Liferay.detach('redo', redoHandler);
+			Liferay.detach('journal:undo', undoHandler);
+			Liferay.detach('journal:redo', redoHandler);
 		};
 	}, [dispatch]);
 
@@ -53,10 +53,10 @@ export function Layout({components, editable, itemPath, rows, viewMode}) {
 			dispatch({payload: state, type: EVENT_TYPES.HISTORY.ADD});
 		};
 
-		Liferay.on('autoSave', handleAutoSave);
+		Liferay.on('journal:autoSave', handleAutoSave);
 
 		return () => {
-			Liferay.detach('autoSave', handleAutoSave);
+			Liferay.detach('journal:autoSave', handleAutoSave);
 		};
 	}, [dispatch, state]);
 

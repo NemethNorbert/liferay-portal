@@ -43,7 +43,7 @@ Map<String, Map<String, String>> languagesTranslationsAriaLabelsMap = new HashMa
 						if (lock && Liferay.FeatureFlags['LPD-22301']) {
 							lock = false;
 
-							Liferay.fire('autoSave', {fieldName: "<%= inputEditorName %>"});
+							Liferay.fire('journal:autoSave', {fieldName: "<%= inputEditorName %>"});
 						}
 					}
 

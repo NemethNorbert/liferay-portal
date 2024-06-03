@@ -152,7 +152,7 @@ export default function UndoRedo({
 
 			selectedLanguageIdInput.value = selectedLanguageId;
 
-			Liferay.fire('autoSave', {fieldName: 'Locale Change'});
+			Liferay.fire('journal:autoSave', {fieldName: 'Locale Change'});
 		},
 		[namespace]
 	);
@@ -166,16 +166,16 @@ export default function UndoRedo({
 	}, [localeChangeHandler]);
 
 	useEffect(() => {
-		Liferay.on('autoSave', handleAutoSave);
+		Liferay.on('journal:autoSave', handleAutoSave);
 
 		return () => {
-			Liferay.detach('autoSave', handleAutoSave);
+			Liferay.detach('journal:autoSave', handleAutoSave);
 		};
 	}, [handleAutoSave]);
 
 	useEffect(() => {
 		setTimeout(() => {
-			Liferay.fire('autoSave', {fieldName: 'Reset'});
+			Liferay.fire('journal:autoSave', {fieldName: 'Reset'});
 		}, 1000);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
@@ -188,7 +188,7 @@ export default function UndoRedo({
 				disabled={step <= 0}
 				displayType="secondary"
 				onClick={() => {
-					Liferay.fire('undo');
+					Liferay.fire('journal:undo');
 					handleUndoRedo(step - 1);
 				}}
 				size="sm"
@@ -202,7 +202,7 @@ export default function UndoRedo({
 				disabled={!history.length || step === history.length - 1}
 				displayType="secondary"
 				onClick={() => {
-					Liferay.fire('redo');
+					Liferay.fire('journal:redo');
 					handleUndoRedo(step + 1);
 				}}
 				size="sm"
