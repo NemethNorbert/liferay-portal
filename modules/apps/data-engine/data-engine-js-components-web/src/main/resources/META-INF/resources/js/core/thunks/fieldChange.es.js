@@ -98,7 +98,7 @@ export default function fieldChange({
 				dispatch({type: EVENT_TYPES.HISTORY.LOCK});
 			}
 			else {
-				Liferay.fire('journal:autoSave', {
+				Liferay.fire('journal:storeState', {
 					fieldName: fieldInstance.label,
 				});
 			}

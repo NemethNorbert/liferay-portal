@@ -49,14 +49,14 @@ export function Layout({components, editable, itemPath, rows, viewMode}) {
 	}, [dispatch]);
 
 	useEffect(() => {
-		const handleAutoSave = () => {
+		const handleStoreState = () => {
 			dispatch({payload: state, type: EVENT_TYPES.HISTORY.ADD});
 		};
 
-		Liferay.on('journal:autoSave', handleAutoSave);
+		Liferay.on('journal:storeState', handleStoreState);
 
 		return () => {
-			Liferay.detach('journal:autoSave', handleAutoSave);
+			Liferay.detach('journal:storeState', handleStoreState);
 		};
 	}, [dispatch, state]);
 

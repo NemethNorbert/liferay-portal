@@ -23,7 +23,7 @@ export default function historyReducer(state, action) {
 			};
 		case EVENT_TYPES.HISTORY.BLUR:
 			if (state.history.lock) {
-				Liferay.fire('autoSave', {fieldName: action.payload});
+				Liferay.fire('journal:storeState', {fieldName: action.payload});
 			}
 
 			return {

@@ -199,18 +199,6 @@ AUI.add(
 
 				_animating: null,
 
-				_autoSave() {
-					const instance = this;
-
-					if (instance.get('edited')) {
-						instance.set('edited', false);
-
-						Liferay.fire('journal:autoSave', {
-							fieldName: instance.get('name'),
-						});
-					}
-				},
-
 				_availableLanguagesSubscription: null,
 
 				_bindManageTranslationsButton() {
@@ -592,6 +580,18 @@ AUI.add(
 
 				_selectedLanguageIdSubscription: null,
 
+				_storeState() {
+					const instance = this;
+
+					if (instance.get('edited')) {
+						instance.set('edited', false);
+
+						Liferay.fire('journal:storeState', {
+							fieldName: instance.get('name'),
+						});
+					}
+				},
+
 				_updateHelpMessage(languageId) {
 					const instance = this;
 
@@ -825,7 +825,7 @@ AUI.add(
 							eventHandles.push(
 								inputPlaceholder.on(
 									'blur',
-									A.bind('_autoSave', instance)
+									A.bind('_storeState', instance)
 								)
 							);
 						}
