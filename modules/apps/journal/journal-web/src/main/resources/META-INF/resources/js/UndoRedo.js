@@ -193,7 +193,7 @@ export default function UndoRedo({
 				}}
 				size="sm"
 				symbol="undo"
-				title="Undo"
+				title={Liferay.Language.get('undo')}
 			/>
 
 			<ClayButtonWithIcon
@@ -207,7 +207,7 @@ export default function UndoRedo({
 				}}
 				size="sm"
 				symbol="redo"
-				title="Redo"
+				title={Liferay.Language.get('redo')}
 			/>
 		</div>
 	);
