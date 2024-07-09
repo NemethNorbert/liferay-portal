@@ -198,6 +198,22 @@ const RichText = ({
 	}, [editorRef, currentValue, defaultLocale]);
 
 	useEffect(() => {
+		const handleRestoreState = () => {
+			console.log('value:', value);
+			console.log('currentValue:', currentValue)
+
+			editorRef.current.editor.setData(value)
+		};
+
+		Liferay.after('ddm:restoreState', handleRestoreState)
+	
+		return () => {
+			Liferay.detach('ddm:restoreState', handleRestoreState)
+		}
+	}, [value, currentValue])
+	
+
+	useEffect(() => {
 		Liferay.after('inputLocalized:resetTranslations', resetTranslation);
 
 		return () => {
