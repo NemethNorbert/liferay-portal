@@ -591,7 +591,10 @@ AUI.add(
 						instance.set('edited', false);
 
 						Liferay.fire('journal:storeState', {
-							fieldName: instance.get('name'),
+							fieldName:
+								Liferay.Language.get('edit') +
+								' ' +
+								instance.get('name'),
 						});
 					}
 				},
