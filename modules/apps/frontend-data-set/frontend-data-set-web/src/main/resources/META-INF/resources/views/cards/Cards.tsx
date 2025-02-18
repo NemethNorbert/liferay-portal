@@ -82,6 +82,7 @@ const Card = ({item, schema}: {item: any; schema: ICardSchema}) => {
 			description={localizedDescription}
 			href={(schema.link && item[schema.link]) || null}
 			imgProps={imageProps}
+			labels={schema.labels}
 			onSelectChange={
 				selectable
 					? () => {

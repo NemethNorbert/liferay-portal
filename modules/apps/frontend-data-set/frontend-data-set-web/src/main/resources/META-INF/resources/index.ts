@@ -157,6 +157,11 @@ export interface ITableSchema {
 export interface ICardSchema {
 	description: string;
 	image?: string;
+	labels?: Array<
+		React.RefAttributes<HTMLAnchorElement | HTMLSpanElement> & {
+			value: string;
+		}
+	>;
 	link?: string;
 	sticker?: string;
 	symbol: string;
